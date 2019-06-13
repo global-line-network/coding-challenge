@@ -1,5 +1,5 @@
 <?php
-use Symfony\Component\Routing\Route;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
