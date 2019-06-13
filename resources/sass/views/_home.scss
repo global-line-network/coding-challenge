@@ -1,0 +1,111 @@
+@import "../components/variables.scss";
+@import "../components/mixins.scss";
+
+#homeView {
+  #homeView__header {
+
+    #homeView__header__imageContainer {
+      width: 30%;
+    }
+
+    @include respond-between(xs, md) {
+      #homeView__header__imageContainer {
+        width: 50%;
+      }
+    }
+  }
+
+  #homeView__control {
+    h1 {
+      @include text(2.8rem, #000000, $font-family-bold);
+    }
+
+    @include respond-between(xs, md) {
+      h1 {
+        @include text(2rem, #000000, $font-family-bold);
+      }
+    }
+
+    button {
+      background: transparent;
+      margin-left: 0.5em;
+      border: none;
+      color: white;
+    }
+  }
+
+  #homeView__content {
+    .userContainerGlobalLine {
+      border-radius: 6px;
+      background: $body-bg;
+      padding: .5em 1em;
+      border: 1px solid #B2B2B2;
+
+      .userContainerImageGlobalLine {
+        align-self: start;
+
+        img {
+          border-radius: 100%;
+          padding: 0.25rem;
+          height: auto;
+          width: 5em;
+        }
+      }
+
+      .userContainerContentGlobalLine {
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .userContainerActionsGlobalLine {
+        align-self: flex-end;
+        margin-left: 0.5em;
+
+        @include respond-between (xs, sm) {
+          margin-left: auto;
+        }
+
+        .inActiveEdit {
+          background: gray;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 100%;
+          padding: 0.41em;
+
+          .fa-icon {
+            fill: white;
+          }
+        }
+
+        .activeEdit {
+          background: #6BC259;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 100%;
+          padding: 0.41em;
+
+          .fa-icon {
+            fill: white;
+          }
+        }
+
+        .activeDelete {
+          background: #D85A4B;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 100%;
+          padding: 0.41em;
+
+          .fa-icon {
+            fill: white;
+          }
+        }
+      }
+    }
+  }
+}
