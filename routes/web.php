@@ -1,4 +1,5 @@
 <?php
+use Symfony\Component\Routing\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,4 +14,12 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('users')->group(function () {
+    Route::get('/', 'UserController@index')->name('users');
+    Route::get('/{id}', 'UserController@show')->name('user_show');
+    Route::post('/create', 'UserController@create')->name('user_create');
+    Route::post('/update/{id}', 'UserController@update')->name('user_update');
+    Route::delete('/{id}', 'UserController@delete')->name('user_delete');
 });
