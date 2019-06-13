@@ -18,7 +18,7 @@ However, I think I misunderstood the mock up design a little, I might have impro
 - Run in your command line `php artisan key:generate`
 - Open up Phpmyadmin to setup database 
 - Create database 
-- Open the file .env to setup database credentials
+- Open the .env file to setup database credentials (If .env file does not exist, then rename .env.example to .env and proceed)
 - Change the values to your database values
   
           DB_DATABASE=databaseName
