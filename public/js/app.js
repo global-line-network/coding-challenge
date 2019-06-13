@@ -1751,12 +1751,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'home',
   data: function data() {
     return {
       users: [],
-      editingAction: false,
       error: '',
       created: false,
       updated: false,
@@ -1788,15 +1800,29 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    deActivateUser: function deActivateUser(user, index) {
+    checkEnteredValue: function checkEnteredValue(user, index) {
       var _this3 = this;
 
-      this.users.map(function (x) {
-        if (x.id === user.id) {
-          x.active = false;
+      axios.post('/users/check-value', user).then(function (response) {
+        if (response.data.matches === true) {
+          _this3.users.map(function (x) {
+            if (x.id === user.id) {
+              x.active = false;
 
-          _this3.$set(_this3.users, index, x);
+              _this3.$set(_this3.users, index, x);
+            }
+          });
+        } else {
+          _this3.users.map(function (x) {
+            if (x.id === user.id) {
+              x.active = true;
+
+              _this3.$set(_this3.users, index, x);
+            }
+          });
         }
+      })["catch"](function (e) {
+        _this3.error = e;
       });
     },
     createUser: function createUser() {
@@ -1805,11 +1831,43 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/users/create').then(function (response) {
         if (response.data.created === true) {
           _this4.created = true;
+          _this4.updated = false;
+          _this4.deleted = false;
 
           _this4.getUsers();
         }
       })["catch"](function (e) {
         _this4.error = e;
+      });
+    },
+    updateUser: function updateUser(user) {
+      var _this5 = this;
+
+      axios.post('/users/update', user).then(function (response) {
+        if (response.data.updated === true) {
+          _this5.updated = true;
+          _this5.created = false;
+          _this5.deleted = false;
+
+          _this5.getUsers();
+        }
+      })["catch"](function (e) {
+        _this5.error = e;
+      });
+    },
+    deleteUser: function deleteUser(user) {
+      var _this6 = this;
+
+      axios.post('/users/delete/' + user.id).then(function (response) {
+        if (response.data.deleted === true) {
+          _this6.deleted = true;
+          _this6.created = false;
+          _this6.updated = false;
+
+          _this6.getUsers();
+        }
+      })["catch"](function (e) {
+        _this6.error = e;
       });
     }
   },
@@ -82720,6 +82778,49 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
+    _vm.created || _vm.updated || _vm.deleted
+      ? _c(
+          "div",
+          {
+            staticClass: "alert alert-success alert-dismissible fade show",
+            class: {
+              "alert-success": _vm.created || _vm.updated,
+              "alert-danger": _vm.deleted && !_vm.created && !_vm.updated
+            },
+            attrs: { role: "alert" }
+          },
+          [
+            _vm.created && !_vm.deleted
+              ? _c("strong", [_vm._v("User created!")])
+              : _vm.updated
+              ? _c("strong", [_vm._v("User updated!")])
+              : _vm.deleted && !_vm.created && !_vm.updated
+              ? _c("strong", [_vm._v("User deleted!")])
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                attrs: {
+                  type: "button",
+                  "data-dismiss": "alert",
+                  "aria-label": "Close"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.created = false
+                    _vm.updated = false
+                    _vm.deleted = false
+                  }
+                }
+              },
+              [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+            )
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
     _c("div", { attrs: { id: "homeView__content" } }, [
       _c(
         "div",
@@ -82752,6 +82853,14 @@ var render = function() {
                 _c("div", { staticClass: "userContainerContentGlobalLine" }, [
                   _c("div", { staticClass: "mb-1" }, [
                     _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: user.name,
+                          expression: "user.name"
+                        }
+                      ],
                       staticClass: "txtInputGlobalLine",
                       attrs: { name: "name", type: "text" },
                       domProps: { value: user.name },
@@ -82760,7 +82869,16 @@ var render = function() {
                           return _vm.activateUser(user, index)
                         },
                         focusout: function($event) {
-                          return _vm.deActivateUser(user, index)
+                          return _vm.checkEnteredValue(user, index)
+                        },
+                        keypress: function($event) {
+                          return _vm.checkEnteredValue(user, index)
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(user, "name", $event.target.value)
                         }
                       }
                     })
@@ -82768,6 +82886,14 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", [
                     _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: user.date,
+                          expression: "user.date"
+                        }
+                      ],
                       staticClass: "dateInputGlobalLine",
                       attrs: { name: "date", type: "date" },
                       domProps: { value: user.date },
@@ -82776,7 +82902,16 @@ var render = function() {
                           return _vm.activateUser(user, index)
                         },
                         focusout: function($event) {
-                          return _vm.deActivateUser(user, index)
+                          return _vm.checkEnteredValue(user, index)
+                        },
+                        keypress: function($event) {
+                          return _vm.checkEnteredValue(user, index)
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(user, "date", $event.target.value)
                         }
                       }
                     })
@@ -82811,7 +82946,14 @@ var render = function() {
                     user.active
                       ? _c(
                           "div",
-                          { staticClass: "mb-2 activeEdit" },
+                          {
+                            staticClass: "mb-2 activeEdit",
+                            on: {
+                              click: function($event) {
+                                return _vm.updateUser(user)
+                              }
+                            }
+                          },
                           [_c("v-icon", { attrs: { name: "check" } })],
                           1
                         )
@@ -82820,7 +82962,14 @@ var render = function() {
                     user.active
                       ? _c(
                           "div",
-                          { staticClass: "activeDelete" },
+                          {
+                            staticClass: "activeDelete",
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteUser(user)
+                              }
+                            }
+                          },
                           [_c("v-icon", { attrs: { name: "times" } })],
                           1
                         )

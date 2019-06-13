@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Faker\Generator as Faker;
-use Illuminate\Http\Request;
+
+
 use App\User;
-use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -33,6 +33,7 @@ class UserController extends Controller
         $user = User::find($request->id);
 
         $user->name = $request->name;
+
         $user->date = $request->date;
 
         $user->save();
@@ -47,5 +48,17 @@ class UserController extends Controller
         $user->delete();
 
         return response()->json(['deleted' => true]);
+    }
+
+    public function checkValue(Request $request){
+
+        $user = User::find($request->id);
+
+        if ($user->name === $request->name && $user->date == $request->date){
+            return response()->json(['matches' => true]);
+        } else {
+            return response()->json(['matches' => false]);
+        }
+
     }
 }
