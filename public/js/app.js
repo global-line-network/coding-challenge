@@ -1784,69 +1784,76 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.users.forEach(function (user) {
           user.active = false;
+          user.showDelete = false;
         });
       })["catch"](function (e) {
         _this.error = e;
       });
     },
-    activateUser: function activateUser(user, index) {
+    showDeleteButton: function showDeleteButton(user, index, _boolean) {
       var _this2 = this;
+
+      if (_boolean === true) {
+        this.users.map(function (x) {
+          if (x.id === user.id) {
+            x.showDelete = true;
+
+            _this2.$set(_this2.users, index, x);
+          }
+        });
+      } else {
+        this.users.map(function (x) {
+          if (x.id === user.id) {
+            x.showDelete = false;
+
+            _this2.$set(_this2.users, index, x);
+          }
+        });
+      }
+    },
+    activateUser: function activateUser(user, index) {
+      var _this3 = this;
 
       this.users.map(function (x) {
         if (x.id === user.id) {
           x.active = true;
 
-          _this2.$set(_this2.users, index, x);
+          _this3.$set(_this3.users, index, x);
         }
       });
     },
     checkEnteredValue: function checkEnteredValue(user, index) {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.post('/users/check-value', user).then(function (response) {
         if (response.data.matches === true) {
-          _this3.users.map(function (x) {
+          _this4.users.map(function (x) {
             if (x.id === user.id) {
               x.active = false;
 
-              _this3.$set(_this3.users, index, x);
+              _this4.$set(_this4.users, index, x);
             }
           });
         } else {
-          _this3.users.map(function (x) {
+          _this4.users.map(function (x) {
             if (x.id === user.id) {
               x.active = true;
 
-              _this3.$set(_this3.users, index, x);
+              _this4.$set(_this4.users, index, x);
             }
           });
-        }
-      })["catch"](function (e) {
-        _this3.error = e;
-      });
-    },
-    createUser: function createUser() {
-      var _this4 = this;
-
-      axios.post('/users/create').then(function (response) {
-        if (response.data.created === true) {
-          _this4.created = true;
-          _this4.updated = false;
-          _this4.deleted = false;
-
-          _this4.getUsers();
         }
       })["catch"](function (e) {
         _this4.error = e;
       });
     },
-    updateUser: function updateUser(user) {
+    createUser: function createUser() {
       var _this5 = this;
 
-      axios.post('/users/update', user).then(function (response) {
-        if (response.data.updated === true) {
-          _this5.updated = true;
-          _this5.created = false;
+      axios.post('/users/create').then(function (response) {
+        if (response.data.created === true) {
+          _this5.created = true;
+          _this5.updated = false;
           _this5.deleted = false;
 
           _this5.getUsers();
@@ -1855,19 +1862,34 @@ __webpack_require__.r(__webpack_exports__);
         _this5.error = e;
       });
     },
-    deleteUser: function deleteUser(user) {
+    updateUser: function updateUser(user) {
       var _this6 = this;
 
-      axios.post('/users/delete/' + user.id).then(function (response) {
-        if (response.data.deleted === true) {
-          _this6.deleted = true;
+      axios.post('/users/update', user).then(function (response) {
+        if (response.data.updated === true) {
+          _this6.updated = true;
           _this6.created = false;
-          _this6.updated = false;
+          _this6.deleted = false;
 
           _this6.getUsers();
         }
       })["catch"](function (e) {
         _this6.error = e;
+      });
+    },
+    deleteUser: function deleteUser(user) {
+      var _this7 = this;
+
+      axios.post('/users/delete/' + user.id).then(function (response) {
+        if (response.data.deleted === true) {
+          _this7.deleted = true;
+          _this7.created = false;
+          _this7.updated = false;
+
+          _this7.getUsers();
+        }
+      })["catch"](function (e) {
+        _this7.error = e;
       });
     }
   },
@@ -82934,10 +82956,20 @@ var render = function() {
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    !user.active
+                    !user.active && !user.showDelete
                       ? _c(
                           "div",
-                          { staticClass: "inActiveEdit" },
+                          {
+                            staticClass: "inActiveEdit",
+                            on: {
+                              click: function($event) {
+                                return _vm.showDeleteButton(user, index, true)
+                              },
+                              mouseenter: function($event) {
+                                return _vm.showDeleteButton(user, index, true)
+                              }
+                            }
+                          },
                           [_c("v-icon", { attrs: { name: "trash" } })],
                           1
                         )
@@ -82959,7 +82991,7 @@ var render = function() {
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    user.active
+                    user.active || user.showDelete
                       ? _c(
                           "div",
                           {
@@ -82967,6 +82999,9 @@ var render = function() {
                             on: {
                               click: function($event) {
                                 return _vm.deleteUser(user)
+                              },
+                              mouseleave: function($event) {
+                                return _vm.showDeleteButton(user, index, false)
                               }
                             }
                           },

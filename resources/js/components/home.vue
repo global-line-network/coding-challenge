@@ -48,13 +48,13 @@
                             <div v-if="!user.active" class="mb-2 inActiveEdit">
                                 <v-icon name="pencil-alt"/>
                             </div>
-                            <div v-if="!user.active" class="inActiveEdit">
+                            <div v-if="!user.active && !user.showDelete" @click="showDeleteButton(user, index, true)" @mouseenter="showDeleteButton(user, index, true)"  class="inActiveEdit">
                                 <v-icon name="trash"/>
                             </div>
                             <div v-if="user.active" @click="updateUser(user)" class="mb-2 activeEdit">
                                 <v-icon name="check"/>
                             </div>
-                            <div v-if="user.active" @click="deleteUser(user)" class="activeDelete">
+                            <div v-if="user.active || user.showDelete" @click="deleteUser(user)" @mouseleave="showDeleteButton(user, index, false)" class="activeDelete">
                                 <v-icon name="times"/>
                             </div>
                         </div>
@@ -84,12 +84,30 @@
                         this.users = response.data;
                         this.users.forEach((user) => {
                             user.active = false;
+                            user.showDelete = false;
                         });
                     })
                     .catch(e => {
                         this.error = e;
                     });
 
+            },
+            showDeleteButton(user, index, boolean){
+                if (boolean === true){
+                    this.users.map(x => {
+                        if (x.id === user.id) {
+                            x.showDelete = true;
+                            this.$set(this.users, index, x);
+                        }
+                    });
+                } else{
+                    this.users.map(x => {
+                        if (x.id === user.id) {
+                            x.showDelete = false;
+                            this.$set(this.users, index, x);
+                        }
+                    });
+                }
             },
             activateUser(user, index) {
 
