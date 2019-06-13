@@ -1,5 +1,7 @@
-@import "./components/fonts.scss";
-@import "./components/variables.scss";
+@import "./components/_fonts.scss";
+@import "./components/_variables.scss";
+@import "./components/_mixins.scss";
+@import "./components/_components.scss";
 @import '~bootstrap/scss/bootstrap';
 
 html,

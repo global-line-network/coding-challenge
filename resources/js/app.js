@@ -8,6 +8,11 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon.vue'
+Vue.component('v-icon', Icon);
+
+//Pages
 Vue.component('home', require('./components/home.vue').default);
 
 /**

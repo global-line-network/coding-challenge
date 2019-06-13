@@ -1,0 +1,42 @@
+.primaryButtonGlobalLine {
+  color: white;
+  background: #0983E6;
+  padding: .75em 1.5em;
+  text-align: left;
+  @include text(16px, #FDFEFF, $font-family-medium);
+  border: none;
+  transition: 0.2s;
+  border-radius: 14px;
+
+  &:hover {
+    background: #4d9ee7;
+    transition: 0.2s;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+
+    button {
+      background: #4d9ee7;
+    }
+  }
+}
+
+.txtInputGlobalLine {
+  border: none;
+  @include text(20px, #000000, $font-family-bold);
+
+  &:focus {
+    border-bottom: 2px solid #1D8EE8;
+    outline:none;
+  }
+}
+
+.dateInputGlobalLine{
+  border: none;
+  @include text(16px, #000000, $font-family-bold);
+
+  &:focus {
+    border-bottom: 1px solid #1D8EE8;
+    outline:none;
+  }
+}

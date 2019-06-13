@@ -25,6 +25,7 @@
         "node-sass": "^4.12.0"
     },
     "dependencies": {
-        "css-loader": "^3.0.0"
+        "css-loader": "^3.0.0",
+        "vue-awesome": "^3.5.4"
     }
 }

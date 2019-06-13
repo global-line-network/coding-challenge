@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Faker\Generator as Faker;
 use Illuminate\Http\Request;
 use App\User;
 use Carbon\Carbon;
@@ -11,8 +12,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-
-        return response()->json(['users' => $users]);
+        return response()->json($users);
     }
 
     public function show ($id)
@@ -22,15 +22,10 @@ class UserController extends Controller
         return response()->json(['user' => $user]);
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        User::create([
-            'name' => $request->name,
-            'date' => Carbon::now()
-        ]);
-
+        factory(User::class, 1)->create();
         return response()->json(['created' => true]);
-
     }
 
     public function update(Request $request)

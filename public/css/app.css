@@ -29,8 +29,55 @@
 @font-face {
   font-family: 'BwModelicaExtraBold';
   font-style: normal;
-  font-weight: normal;
+  font-weight: 700;
   src: local("Bw Modelica ExtraBold"), url("/fonts/BwModelica-ExtraBold.otf") format("opentype");
+}
+
+.primaryButtonGlobalLine {
+  color: white;
+  background: #0983E6;
+  padding: .75em 1.5em;
+  text-align: left;
+  color: #FDFEFF;
+  font-size: 16px;
+  font-family: "BwModelicaMedium";
+  border: none;
+  transition: 0.2s;
+  border-radius: 14px;
+}
+
+.primaryButtonGlobalLine:hover {
+  background: #4d9ee7;
+  transition: 0.2s;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.primaryButtonGlobalLine:hover button {
+  background: #4d9ee7;
+}
+
+.txtInputGlobalLine {
+  border: none;
+  color: #000000;
+  font-size: 20px;
+  font-family: "BwModelicaBold";
+}
+
+.txtInputGlobalLine:focus {
+  border-bottom: 2px solid #1D8EE8;
+  outline: none;
+}
+
+.dateInputGlobalLine {
+  border: none;
+  color: #000000;
+  font-size: 16px;
+  font-family: "BwModelicaBold";
+}
+
+.dateInputGlobalLine:focus {
+  border-bottom: 1px solid #1D8EE8;
+  outline: none;
 }
 
 /*!
