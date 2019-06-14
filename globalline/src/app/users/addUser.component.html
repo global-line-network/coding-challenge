@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Add New User</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="mb-10">
+      <mat-card>
+            <div class="">
+                <mat-form-field>
+                    <input matInput placeholder="Enter the First Name" [formControl]="firstName" required>
+                    <mat-error *ngIf="firstName.invalid">First Name is required</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <input matInput placeholder="Enter the Last Name" [formControl]="lastName" required>
+                    <mat-error *ngIf="lastName.invalid">Last Name is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="">
+                <mat-form-field>
+                    <input matInput placeholder="Enter the Job" [formControl]="job" required>
+                    <mat-error *ngIf="job.invalid">Job is required</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <input matInput placeholder="Enter the email" [formControl]="email" required>
+                    <mat-error *ngIf="email.invalid">{{getEmailErrorMsg()}}</mat-error>
+                </mat-form-field>
+            </div>
+      </mat-card>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button cdkFocusInitial (click)="addNewUser();">Add</button>
+</mat-dialog-actions>
