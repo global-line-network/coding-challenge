@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.user-grid figure {
+    align-items: inherit !important;
+    justify-content: inherit !important;
+}
+
+.page-center-card {
+    justify-content: center;
+    align-items: center;
+    left: 25%;
+    right: 25%;
+    width: 50%;
+    position: absolute;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

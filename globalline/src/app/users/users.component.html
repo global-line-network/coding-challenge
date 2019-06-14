@@ -1,0 +1,43 @@
+<div class="mt-10">
+        <h1 style="text-align:center"> User Accounts </h1>
+    <mat-card class="mt-10" class="page-center-card">
+        <div class="mt-10">
+
+            <button mat-raised-button color="primary" (click)="openAddUserPopup()"> 
+                <mat-icon aria-hidden="false" aria-label="add icon">add</mat-icon> 
+                Create User
+            </button>
+
+        </div>
+        <div class="mt-10">
+            <mat-card *ngFor="let user of userList" class="mb-10">
+
+                <mat-grid-list cols="3" rowHeight="30px" class="user-grid">
+                    <mat-grid-tile [colspan]="1" [rowspan]="2">
+                        <div style="width: 60px; height: 60px; display: block;">
+                            <img style="width: 60px; height: 60px; display: block; border-radius: 50px;" src="{{user.avatar}}"> 
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1"> 
+                        <div style="width:100%">
+                            <span>{{user.first_name + ' ' + user.last_name}}</span>
+                            <span style="float: right">
+                                <mat-icon class="cursor-pointer" aria-hidden="false" aria-label="edit icon">edit</mat-icon>
+                            </span>
+                            
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1"> 
+                        <div style="width:100%">
+                            <span>{{user.email}}</span>
+                            <span  style="float:right">
+                                <mat-icon class="cursor-pointer" aria-hidden="false" aria-label="delete icon">delete</mat-icon>
+                            </span>
+                        </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </mat-card>
+
+        </div>
+    </mat-card>
+</div>

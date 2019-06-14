@@ -1,0 +1,11 @@
+<button mat-raised-button (click)="isLogin=true;" >Login</button> 
+
+<button mat-raised-button (click)="isLogin=false" >Register</button>
+
+<div class="mt-10"> 
+    
+    <app-login *ngIf="isLogin"></app-login>
+
+    <app-register *ngIf="!isLogin"></app-register>
+
+</div>
