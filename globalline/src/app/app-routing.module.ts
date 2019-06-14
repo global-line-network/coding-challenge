@@ -11,32 +11,18 @@ const routes: Routes = [
     data: {
       title: 'Home'
     },
-    /* children: [
-       {
-        path: 'login',
-        loadChildren: './views/components/components.module#ComponentsModule',
-        //canActivate: [ActivateGuard]
-      }
-    ] */
   },
   {
     path: 'users',
     component: UsersComponent,
     data: {
       title: 'Users'
-    },
-    /* children: [
-       {
-        path: 'login',
-        loadChildren: './views/components/components.module#ComponentsModule',
-        //canActivate: [ActivateGuard]
-      }
-    ] */
+    }
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 
 import { UsersComponent } from './users.component';
-import {AddUserComponent} from './addUser.component';
+import { AddUserComponent } from './addUser.component';
 import { UsersService } from './services/users.service';
 import { UsersDataService } from './services/usersdata.service';
 

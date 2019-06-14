@@ -1,6 +1,11 @@
 <div class="mt-10">
         <h1 style="text-align:center"> User Accounts </h1>
-    <mat-card class="mt-10" class="page-center-card">
+
+    <div data-key="spinner" class="spinner" *ngIf="showLoader" style="top: 40px;">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+    </div>
+    <mat-card class="mt-10" class="page-center-card" *ngIf="!showLoader">
         <div class="mt-10">
 
             <button mat-raised-button color="primary" (click)="openAddUserPopup()"> 
@@ -8,30 +13,64 @@
                 Create User
             </button>
 
+            <!-- <mat-form-field style="float: right; bottom:20px">
+                <input matInput type="text" placeholder="Search User" [(ngModel)]="searchText">
+            </mat-form-field> -->
         </div>
         <div class="mt-10">
-            <mat-card *ngFor="let user of userList" class="mb-10">
+            <mat-card *ngFor="let user of userList" class="mb-10" style="width: 43%; display: inline-block; margin-right: 15px">
 
-                <mat-grid-list cols="3" rowHeight="30px" class="user-grid">
+                <mat-grid-list cols="3" rowHeight="40px" class="user-grid">
                     <mat-grid-tile [colspan]="1" [rowspan]="2">
                         <div style="width: 60px; height: 60px; display: block;">
                             <img style="width: 60px; height: 60px; display: block; border-radius: 50px;" src="{{user.avatar}}"> 
                         </div>
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1"> 
-                        <div style="width:100%">
+                        <div style="width:100%" *ngIf="!user.isEdit">
                             <span>{{user.first_name + ' ' + user.last_name}}</span>
                             <span style="float: right">
-                                <mat-icon class="cursor-pointer" aria-hidden="false" aria-label="edit icon">edit</mat-icon>
+                                <mat-icon class="cursor-pointer" aria-hidden="false" aria-label="edit icon"
+                                (click)="setSelectedUserEdit(user); user.isEdit = true;"
+                                >edit</mat-icon>
                             </span>
-                            
+                        </div>
+
+                        <!-- Edit User -->
+                        <div style="width:100%" *ngIf="user.isEdit">
+                            <span>
+                                <mat-form-field>
+                                    <input matInput placeholder="Enter the Name" [(ngModel)]="user.editData.name">
+                                </mat-form-field>
+                            </span>
+                            <span style="float: right">
+                                <mat-icon class="cursor-pointer" aria-hidden="false" aria-label="edit icon"
+                                    (click)="updateUserData(user);" style="color: #48c448;"
+                                >check_circle</mat-icon>
+                            </span>
                         </div>
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1"> 
-                        <div style="width:100%">
+                        <div style="width:100%" *ngIf="!user.isEdit">
                             <span>{{user.email}}</span>
                             <span  style="float:right">
-                                <mat-icon class="cursor-pointer" aria-hidden="false" aria-label="delete icon">delete</mat-icon>
+                                <mat-icon class="cursor-pointer" aria-hidden="false" aria-label="delete icon"
+                                (click)="confirmationToDelete(user)">delete</mat-icon>
+                            </span>
+                        </div>
+
+                        <!-- Edit User -->
+                        <div style="width:100%" *ngIf="user.isEdit">
+                            <span>
+                                <mat-form-field>
+                                    <input matInput placeholder="Enter the Email" [(ngModel)]="user.editData.email" required>
+                                    <mat-error>Last Name is required</mat-error>
+                                </mat-form-field>
+                            </span>
+                            <span style="float: right">
+                                <mat-icon class="cursor-pointer" aria-hidden="false" aria-label="edit icon"
+                                (click)="user.isEdit = false;" style="color:#ea6464"
+                                >cancel</mat-icon>
                             </span>
                         </div>
                     </mat-grid-tile>

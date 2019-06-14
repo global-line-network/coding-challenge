@@ -18,6 +18,12 @@ export class LoginDataService {
 
     }
 
+    /**
+     * @name loginUser
+     * @param userData {Object}
+     * @description
+     * Login User
+     */
     loginUser(userData) : Observable<any> {
         var url = this.BASE_URL + '/api/login';
 

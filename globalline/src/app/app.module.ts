@@ -12,6 +12,8 @@ import { MaterialModule } from './material/material.module';
 
 import { LandingModule } from './landing/landing.module';
 import { UsersModule } from './users/users.module';
+import { SharedModule } from './shared/shared.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { UsersModule } from './users/users.module';
     HttpClientModule,
     MaterialModule,
     LandingModule,
-    UsersModule
+    UsersModule,
+    SharedModule,
+    ToastrModule.forRoot()
   ],
   providers: [ ],
   bootstrap: [AppComponent]

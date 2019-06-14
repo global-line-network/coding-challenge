@@ -2,23 +2,27 @@ import { Injectable } from '@angular/core';
 
 import { RegisterDataService } from './registerData.service';
 
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Injectable()
 export class RegisterService {
 
-    constructor ( private registerDataService : RegisterDataService, private toaster: MatSnackBar) {
+    constructor ( private registerDataService : RegisterDataService, private toaster: ToastrService) {
 
     }
 
+    /**
+     * @name registerNewUser
+     * @param userData {Object}
+     * @description
+     * Register New User
+     */
     registerNewUser(userData) {
         this.registerDataService.registerUser(userData).subscribe( resp => {
-
-            console.log("New User Registerd Successfully!!");
-            
+            this.toaster.success("User Registerd Successfully");
         }, error => {
-            console.log("Error While Creating New User!!");
+            this.toaster.error(error.error.error);
         });
     }
 

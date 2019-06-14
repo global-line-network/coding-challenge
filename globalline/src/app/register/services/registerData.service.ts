@@ -18,6 +18,12 @@ export class RegisterDataService {
 
     }
 
+    /**
+     * @name registerNewUser
+     * @param userData {Object}
+     * @description
+     * Register New User
+     */
     registerUser(userData) : Observable<any> {
         var url = this.BASE_URL + '/api/register';
 
