@@ -8,10 +8,16 @@ body {
   background-color: #eeeeee73;
   /* align-items: left;
   justify-content: left; */
-  font-size: calc(14px + 2vmin);
+  /* font-size: calc(10px + 2vmin); */
+  font-size: 12.5px;
+  line-height: 2;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.bgColor {
+  background-color: #eeeeee73;
 }

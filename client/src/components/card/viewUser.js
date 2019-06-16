@@ -21,14 +21,15 @@ class ViewUser extends Component {
     const hoverDisplay = this.state.hover
       ? { display: "block" }
       : { display: "none" };
+    const hoverbgColorClass = this.state.hover ? "bgColor" : "bg-white";
     return (
       <div
-        className="card m-2 p-2 "
+        className={"card m-2 p-2 " + hoverbgColorClass}
         onMouseOver={this.onMouseOver}
         onMouseOut={this.onMouseOut}
       >
         <div className="row p-2 m-2 mr-0">
-          <div className="col">
+          <div className="w-25 mr-4">
             <img
               src={this.props.displayImgUrl}
               alt="User's Avatar"
@@ -40,7 +41,7 @@ class ViewUser extends Component {
             <h2>{this.props.dob}</h2>
           </div>
         </div>
-        <div className="row">
+        <div className="col">
           <div className="m-2 p-2 float-right" style={hoverDisplay}>
             <input
               value="Edit"
