@@ -2,7 +2,7 @@ import requests
 from . import utils
 
 
-def create():
+def test_create():
     conf = utils.get_test_config()
     payload = {
         "name": "morpheus",
@@ -16,7 +16,7 @@ def create():
     assert response.status_code == 201
 
 
-def update():
+def test_update():
     conf = utils.get_test_config()
     payload = {
         "name": "morpheus",

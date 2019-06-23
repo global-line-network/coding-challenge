@@ -4,6 +4,7 @@
   "urls" : {
     "users": "/api/users",
     "register": "/api/register",
-    "login": "/api/login"
+    "login": "/api/login",
+    "unknown": "/api/unknown"
   }
 }

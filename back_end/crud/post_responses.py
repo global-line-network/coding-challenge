@@ -38,20 +38,34 @@ def process_and_save_user(usr, post_data, new_created_at=False):
     return response_data
 
 
-def process_create(post_data):
+def process_and_save_resource(resource, post_data):
     response_data = {}
-    try:
-        usr = models.Users.objects.get(name=post_data.get('name'), job=post_data.get('job'))
-        response_data = {
-            'name': usr.name,
-            'job': usr.job,
-            'id': usr.id,
-            'createdAt': usr.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
-        }
-    except models.Users.DoesNotExist:
-        usr = models.Users()
-        response_data = process_and_save_user(usr, post_data)
-        response_data['createdAt'] = usr.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
+    if post_data.get('name'):
+        resource.name = post_data.get('name')
+        response_data['name'] = resource.name
+    if post_data.get('year'):
+        resource.year = post_data.get('year')
+        response_data['year'] = resource.year
+    if post_data.get('color'):
+        resource.email = post_data.get('color')
+        response_data['color'] = resource.color
+    if post_data.get('pantone_value'):
+        resource.pantone_value = post_data.get('pantone_value')
+        response_data['pantone_value'] = resource.pantone_value
+    resource.save()
+    return response_data
+
+
+def process_create(post_data):
+    usr = models.Users()
+    response_data = process_and_save_user(usr, post_data)
+    response_data['createdAt'] = usr.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
+    return HttpResponse(json.dumps(response_data), content_type="application/json", status=201)
+
+
+def process_create_resource(post_data):
+    resource = models.Resource()
+    response_data = process_and_save_resource(resource, post_data)
     return HttpResponse(json.dumps(response_data), content_type="application/json", status=201)
 
 
