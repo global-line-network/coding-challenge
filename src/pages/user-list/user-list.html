@@ -1,0 +1,67 @@
+<ion-header>
+
+  <ion-navbar>
+    <img src="../../assets/imgs/gl.png" />
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h1> User Accounts </h1>
+      </ion-col>
+      <ion-col></ion-col>
+      <ion-col>
+        <div style="float: right !important">
+          <button ion-button color="danger" icon-only (click)="handlelogout()">
+            <ion-icon name="md-exit"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-start round (click)="handleadduser()">
+          <ion-icon name="md-add-circle"></ion-icon>
+          Create New
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        *ngFor="let item of userdata | paginate: { itemsPerPage: perPage, currentPage: p, id : 'user_list', totalItems: maxPage}"
+        class="card-width">
+        <ion-card class="rounded">
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="{{item.avatar}}">
+            </ion-avatar>
+            <h2>{{item.first_name}} {{item.last_name}}</h2>
+            <p>{{item.email}}</p>
+          </ion-item>
+          <ion-card-content>
+            <p>Stop waiting for things to happen go out and make them happen!</p>
+          </ion-card-content>
+          <ion-row>
+            <button ion-button icon-start clear small (click)="handleupdateuser(item)">
+              <ion-icon name="md-create"></ion-icon>
+            </button>
+            <button ion-button icon-start clear small (click)="handledeleteuser(item.id)">
+              <ion-icon name="md-trash"></ion-icon>
+            </button>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <div class="pagenation-right">
+        <pagination-controls id="user_list" (pageChange)="pageChanged($event)" directionLinks="true" responsive="true"
+          previousLabel="Previous" nextLabel="Next">
+        </pagination-controls>
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-content>

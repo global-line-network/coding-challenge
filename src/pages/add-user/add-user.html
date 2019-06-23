@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-navbar>
+
+    <ion-grid style="background-color: #488aff" class="grid-header">
+      <ion-row>
+        <ion-col>
+          <ion-title *ngIf="!edit">Add New User</ion-title>
+          <ion-title *ngIf="edit">Update User Details</ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-grid>
+            <ion-item>
+              <ion-label position="stacked">First Name</ion-label>
+              <ion-input name="fName" [(ngModel)]="fName"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Last Name</ion-label>
+              <ion-input name="lName" [(ngModel)]="lName"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Job</ion-label>
+              <ion-input name="job" [(ngModel)]="job"></ion-input>
+            </ion-item>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4></ion-col>
+        <ion-col col-4></ion-col>
+        <ion-col col-4></ion-col>
+        <ion-col col-4></ion-col>
+        <ion-col col-4></ion-col>
+        <ion-col col-4></ion-col>
+        <ion-col col-4></ion-col>
+        <ion-col col-4></ion-col>
+        <ion-col col-4></ion-col>
+
+        <ion-col col-sm4>
+          <ion-buttons end>
+
+            <button ion-button type="button" (click)="handlecancel()" color="light">
+              Cancel
+            </button>
+
+            <button ion-button type="button" (click)="handleCreateUser()" color="primary">
+              <span *ngIf="!edit">
+                Confirm
+              </span>
+              <span *ngIf="edit">
+                Update
+              </span>
+            </button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+</ion-content>
