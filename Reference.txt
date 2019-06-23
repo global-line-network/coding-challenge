@@ -22,7 +22,7 @@ password : cityslicka
 
 Restore the Database
 
-Path to backup file ./backend/mysql/
+Path to backup file ./backend/mysql/user_management.sql
 
 Modify the database credentials based your settings in the config file
 
@@ -34,4 +34,5 @@ $ npm install
 
 Run Server
 $nodemon server or npm start
+
 
