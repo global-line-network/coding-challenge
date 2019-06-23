@@ -7,7 +7,8 @@ export class ConfigProvider {
   public URL: string;
   constructor(public http: HttpClient) {
     console.log('Hello ConfigProvider Provider');
-    this.Api = 'https://reqres.in/api/'
+    // this.Api = 'https://reqres.in/api/';
+    this.Api = 'http://localhost:3000/api/';
 
   }
 

@@ -31,6 +31,7 @@ export class AddUserPage {
       this.fName = this.updateUserObj.first_name;
       this.lName = this.updateUserObj.last_name;
       this.email = this.updateUserObj.email;
+      this.job = this.updateUserObj.job;
     } else {
       this.edit = false;
     }
@@ -51,7 +52,9 @@ export class AddUserPage {
     });
     loading.present();
     self.objrequest = {};
-    self.objrequest['name'] = self.fName + ' ' + self.lName;
+    self.objrequest['first_name'] = self.fName;
+    self.objrequest['last_name'] = self.lName;
+    self.objrequest['email'] = self.email;
     self.objrequest['job'] = self.job;
     if (!this.edit) {
       self.userProvider.handlecreateuser(self.objrequest)

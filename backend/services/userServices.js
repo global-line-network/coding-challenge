@@ -4,7 +4,7 @@ var User = {
 
     handleRegisterUser: function (data, token, callback) {
         try {
-            return db.query('CALL SP_Register_User(?,?,?,?,?)', [data.email, data.password, data.first_name, data.last_name, token], callback);
+            return db.query('CALL SP_Register_User(?,?,?,?,?)', [data.first_name, data.last_name, data.email, data.job, token], callback);
         } catch (e) {
             console.log("Error in handleRegisterUser : " + e);
         }
@@ -26,9 +26,9 @@ var User = {
         }
     },
 
-    handleUpdateUser(data, callback) {
+    handleUpdateUser(userId, data, callback) {
         try {
-            return db.query('CALL SP_Update_User(?)', [data], callback);
+            return db.query('CALL SP_Update_User(?,?,?,?,?)', [userId, data.first_name, data.last_name, data.email, data.job], callback);
         } catch (e) {
             console.log("Error in handleUpdateUser : " + e);
         }

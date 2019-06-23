@@ -5,7 +5,7 @@ var uuid = require("uuid");
 var controller = {
 
     registerUser(req, res) {
-        if (req.body.email && req.body.password && req.body.first_name && req.body.last_name && req.body.email) {
+        if (req.body.first_name && req.body.last_name && req.body.email && req.body.job) {
             userServices.handleRegisterUser(req.body, uuid.v4(), function (err, rows) {
                 if (err) {
                     res.json(err);
@@ -56,7 +56,8 @@ var controller = {
 
     listUsers(req, res) {
         if (req.query.page && req.query.page > 0) {
-            userServices.handleListUsers(req.params.id, function (err, rows) {
+            var QueryStringPage = parseInt(req.query.page);
+            userServices.handleListUsers(QueryStringPage, function (err, rows) {
                 if (err) {
                     res.json(err);
                 }
@@ -74,6 +75,22 @@ var controller = {
 
         } else {
             return res.status(400).send("Page Number Should be greater than Zero");
+        }
+    },
+
+    updateUser(req, res) {
+        if (req.params.id && req.body.first_name && req.body.last_name && req.body.email && req.body.job) {
+            userServices.handleUpdateUser(req.params.id, req.body, function (err, rows) {
+                if (err) {
+                    res.json(err);
+                }
+                else {
+                    return res.status(200).send(rows[0]);
+                }
+
+            });
+        } else {
+            return res.status(400).send("Missing required fields");
         }
     }
 

@@ -62,13 +62,12 @@ export class UserListPage {
         }
       });
     } catch (e) {
-      console.log("Exception in handleaddDeclineMessages: " + e);
+      console.log("Exception in handleadduser: " + e);
     }
 
   }
 
   handledeleteuser(item) {
-    console.log("Delete button clicked : " + item);
     let alert = this.alertCtrl.create({
       title: ' ',
       message: "Are you sure want to delete ?",
@@ -83,7 +82,6 @@ export class UserListPage {
         {
           text: "Ok",
           handler: () => {
-            console.log('Delete clicked');
             this.handledelete(item);
           }
         }
@@ -98,17 +96,15 @@ export class UserListPage {
       var self = this;
       let modal = this.modalCtrl.create(AddUserPage, { "item": item }, { enableBackdropDismiss: false });
       modal.onDidDismiss(data => {
-        console.log("modalController dismiss : " + data);
         if (data && data.length) {
-          self.p = data;
+          self.p = 1;
           self.getUserList();
         }
       });
       modal.present();
 
     } catch (e) {
-      console.log("Exception in Edit Task SubCategory : " + e);
-      alert("Exception in Edit SubCategory : " + e);
+      console.log("Exception in handleupdateuser : " + e);
     }
 
   }
@@ -136,8 +132,7 @@ export class UserListPage {
         });
 
     } catch (e) {
-      console.log("Exception in Edit Task SubCategory : " + e);
-      alert("Exception in Edit SubCategory : " + e);
+      console.log("Exception in handledelete : " + e);
     }
   }
 

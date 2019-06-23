@@ -26,27 +26,31 @@ export class SigninPage {
 
 
   public login() {
-    var self = this;
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    loading.present();
-    self.objrequest = {};
-    self.objrequest['email'] = self.inputEmail;
-    self.objrequest['password'] = self.inputPassword;
-    self.loginProvider.handlelogin(self.objrequest)
-      .then(data => {
-        loading.dismiss();
-        this.navCtrl.setRoot(UserListPage);
-      })
-      .catch(error => {
-        loading.dismiss();
-        const toast = this.toastCtrl.create({
-          message: error.error.error,
-          duration: 2000
-        });
-        toast.present();
+    try {
+      var self = this;
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
       });
+      loading.present();
+      self.objrequest = {};
+      self.objrequest['email'] = self.inputEmail;
+      self.objrequest['password'] = self.inputPassword;
+      self.loginProvider.handlelogin(self.objrequest)
+        .then(data => {
+          loading.dismiss();
+          this.navCtrl.setRoot(UserListPage);
+        })
+        .catch(error => {
+          loading.dismiss();
+          const toast = this.toastCtrl.create({
+            message: error.error.error,
+            duration: 2000
+          });
+          toast.present();
+        });
+    } catch (e) {
+      console.log('Exception in login :' + e);
+    }
   }
 
 }
