@@ -1,0 +1,7 @@
+{
+    "host": "localhost",
+    "port": 3306,
+    "user": "mysql_dev",
+    "password": "dev@123",
+    "database": "user_management"
+}
