@@ -1,0 +1,38 @@
+
+Before proceeding, make sure the latest version of Node.js and npm are installed
+
+#### Front end ####
+
+Install the Ionic CLI
+$ npm install -g ionic
+
+Install the dependencies
+$ npm install
+
+Run the App
+$ cd {'App Name'}
+$ ionic serve
+
+Credentials
+email : eve.holt@reqres.in
+password : cityslicka
+
+
+#### Backend ####
+
+Restore the Database
+
+Path to backup file ./backend/mysql/user_management.sql
+
+Modify the database credentials based your settings in the config file
+
+Path to the config file
+$cd {'App Name'}/backend/config/config.json
+
+Install the dependencies
+$ npm install
+
+Run Server
+$nodemon server or npm start
+
+

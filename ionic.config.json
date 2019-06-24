@@ -1,0 +1,7 @@
+{
+  "name": "UserManager",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
