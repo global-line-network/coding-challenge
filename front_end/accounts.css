@@ -24,6 +24,11 @@ footer {
   .row.content {height: auto;}
 }
 
+input{
+    width:50px;
+    margin-bottom:5px;
+}
+
 .no-bullets {
     list-style: none;
 }

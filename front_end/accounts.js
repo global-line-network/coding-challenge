@@ -1,38 +1,25 @@
 $(document).ready(function(){
 
-    $('#listUsers').click(function(){
-        var page = $('#usersPage').val();
-        if (!page) {
-            page = 1;
-        }
-        $.ajax({
-            type:'GET',
-            url:'https://reqres.in/api/users',
-            data: 'page=' + page,
-            contentType: "application/json; charset=utf-8",
-            dataType: 'json',
-            success: function(result, stataus, xhr){
-                $('#tempResults').text(JSON.stringify(result));
-            }
-        }).done(function (data) {
-        });
-    });
-
     $('#getUser').click(function(){
+        alert('Click');
         var userId = $('#userId').val();
         if (!userId) {
             userId = 1;
         }
         $.ajax({
             type:'GET',
-            url:'https://reqres.in/api/users/' + userId,
+            url: 'http://localhost:8080/api/users/' + userId,
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },
             success: function(result, stataus, xhr){
+                alert('Sent get request');
                 if (xhr.status == 404) {
-                    $('#tempResults').text('{}');
+                    alert('User not found');
                 } else {
-                    $('#tempResults').text(JSON.stringify(result));
+                    $('#profilePic').attr('src',result['avatar']);
                 }
             }
         }).done(function (data) {
