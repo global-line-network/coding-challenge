@@ -1,69 +1,150 @@
 $(document).ready(function(){
 
-    $.fn.display_users_in_page = function(data) {
-    }
-
-    $.fn.show_all_users = function(page_number) {
-        $.ajax({
-            type:'GET',
-            url:'https://reqres.in/api/users',
-            data: 'page=' + page_number,
-            dataType: 'json',
-            success: function(result, stataus, xhr){
-                $.fn.display_users_in_page(result['data']);
-                var next_page = page_number + 1;
-                if ( next_page <= result['total_pages'] ) {
-                    $.fn.show_all_users(next_page);
-                }
-            }
-        }).done(function (data) {
-        });
-    }
-
-    $.fn.show_all_users()
-
-    $.fn.search_user_in_response = function(user_name, response_data) {
-        for (var i = 0; i < response_data.length; i++) {
-            first = response_data[i]['first_name'].toLowerCase();
-            last = response_data[i]['last_name'].toLowerCase();
-
-            if (user_name.toLowerCase() == first) {
-                return response_data[i]['id'];
-            } else if (user_name.toLowerCase() == last) {
-                return response_data[i]['id'];
-            } else if (user_name.toLowerCase() == first + ' ' + last) {
-                return response_data[i]['id'];
-            } else if (user_name.toLowerCase() == last + ' ' + first) {
-                return response_data[i]['id'];
-            }
+    $('#listUsers').click(function(){
+        var page = $('#usersPage').val();
+        if (!page) {
+            page = 1;
         }
-        return false;
-    }
-
-    $.fn.search_user = function(user_name, page_number) {
         $.ajax({
             type:'GET',
             url:'https://reqres.in/api/users',
-            data: 'page=' + page_number,
+            data: 'page=' + page,
+            contentType: "application/json; charset=utf-8",
             dataType: 'json',
             success: function(result, stataus, xhr){
-                var user_id = $.fn.search_user_in_response(user_name, result['data'])
-                var next_page = page_number + 1
-                if (user_id) {
-                    alert("User ID: " + user_id);
-                }
-                if ( next_page <= result['total_pages'] ) {
-                    $.fn.search_user(user_name, next_page);
+                $('#tempResults').text(JSON.stringify(result));
+            }
+        }).done(function (data) {
+        });
+    });
+
+    $('#getUser').click(function(){
+        var userId = $('#userId').val();
+        if (!userId) {
+            userId = 1;
+        }
+        $.ajax({
+            type:'GET',
+            url:'https://reqres.in/api/users/' + userId,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function(result, stataus, xhr){
+                if (xhr.status == 404) {
+                    $('#tempResults').text('{}');
                 } else {
-                    alert('Search Finished');
+                    $('#tempResults').text(JSON.stringify(result));
                 }
             }
         }).done(function (data) {
         });
-    }
+    });
 
-    $('#search-btn').click(function(){
-        var name = $('#user-name-search').val();
-        $.fn.search_user(name, 1);
+    $('#listResource').click(function(){
+        var resourcePage = $('#resourcePage').val();
+        if (!resourcePage) {
+            resourcePage = 1;
+        }
+        $.ajax({
+            type:'GET',
+            url:'https://reqres.in/api/unknown',
+            data: 'page=' + resourcePage,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function(result, stataus, xhr){
+                $('#tempResults').text(JSON.stringify(result));
+            }
+        }).done(function (data) {
+        });
+    });
+
+    $('#getResource').click(function(){
+        var resourceId = $('#resourceId').val();
+        if (!resourceId) {
+            resourceId = 1;
+        }
+        $.ajax({
+            type:'GET',
+            url:'https://reqres.in/api/users/' + resourceId,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function(result, stataus, xhr){
+                $('#tempResults').text(JSON.stringify(result));
+            }
+        }).done(function (data) {
+        });
+    });
+
+    $.fn.get_create_update_payload = function(name, job) {
+        var payload = {};
+        if (name) {
+            $.extend(payload, {"name": name});
+        }
+        if (job) {
+            $.extend(payload, {"job": job});
+        }
+        return JSON.stringify(payload);
+   };
+
+    $('#createUser').click(function(){
+        var payload = $.fn.get_create_update_payload($('#createName').val(), $('#createJob').val());
+        $.ajax({
+            type:'POST',
+            url:'https://reqres.in/api/users',
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            data: payload,
+            success: function(result, stataus, xhr){
+                $('#tempResults').text(JSON.stringify(result));
+            }
+        }).done(function (data) {
+        });
+    });
+
+    $('#updateUser').click(function(){
+        var payload = $.fn.get_create_update_payload($('#updateName').val(), $('#updateJob').val());
+        var userId = $('#updateUserId').val();
+        $.ajax({
+            type:'PUT',
+            url:'https://reqres.in/api/users/' + userId,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            data: payload,
+            success: function(result, stataus, xhr){
+                $('#tempResults').text(JSON.stringify(result));
+            }
+        }).done(function (data) {
+        });
+    });
+
+    $('#updatePatchUser').click(function(){
+        var payload = $.fn.get_create_update_payload($('#updatePatchName').val(), $('#updatePatchJob').val());
+        var userId = $('#updatePatchUserId').val();
+        $.ajax({
+            type:'PATCH',
+            url:'https://reqres.in/api/users/' + userId,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            data: payload,
+            success: function(result, stataus, xhr){
+                $('#tempResults').text(JSON.stringify(result));
+            }
+        }).done(function (data) {
+        });
+    });
+
+    $('#deleteUser').click(function(){
+        var userId = $('#deleteUserId').val();
+        $.ajax({
+            type:'DELETE',
+            url:'https://reqres.in/api/users/' + userId,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function(result, stataus, xhr){
+                if (xhr.status == 204) {
+                    $('#tempResults').text('{}');
+                }
+            }
+        }).done(function (data) {
+        });
     });
 });

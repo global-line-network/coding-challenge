@@ -24,10 +24,6 @@ footer {
   .row.content {height: auto;}
 }
 
-div {
-    border: 1px solid red;
-}
-
 .no-bullets {
     list-style: none;
 }
