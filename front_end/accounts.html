@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Coding Challenge</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="accounts.js"></script>
+  <script src="accounts.js"></script>
+  <link rel="stylesheet" href="accounts.css">
+
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-md-3 sidenav">
+      <h4>Basic CURD Application</h4>
+
+      <div class="form-group">
+        <input type="text" class="form-control" id="usersPage" placeholder="Page..">
+        <button id="listUsers" type="button" class="btn">List Users</button>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="userId" placeholder="User ID..">
+        <button id="getUser" type="button" class="btn">Get User</button>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="resourcePage" placeholder="Page..">
+        <button id="listResource" type="button" class="btn">Get Resource</button>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="resourceId" placeholder="Resource ID..">
+        <button id="getResource" type="button" class="btn">Get Resource</button>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="createName" placeholder="Name..">
+        <input type="text" class="form-control" id="createJob" placeholder="Job..">
+        <button id="createUser" type="button" class="btn">Create User</button>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="updateUserId" placeholder="ID..">
+        <input type="text" class="form-control" id="updateName" placeholder="Name..">
+        <input type="text" class="form-control" id="updateJob" placeholder="Job..">
+        <button id="updateUser" type="button" class="btn">Update User</button>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="updatePatchUserId" placeholder="ID..">
+        <input type="text" class="form-control" id="updatePatchName" placeholder="Name..">
+        <input type="text" class="form-control" id="updatePatchJob" placeholder="Job..">
+        <button id="updatePatchUser" type="button" class="btn">(PATCH) Update User</button>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="deleteUserId" placeholder="User ID..">
+        <button id="deleteUser" type="button" class="btn">Delete User</button>
+      </div>
+    </div>
+
+    <h4><small>&nbsp;&nbsp;SEARCH RESULTS</small></h4>
+      <hr>
+
+    <div id="main-container" class="col-md-9">
+      <p id="tempResults"></p>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+  <p>Coding Challenge By: Eziel Cabahug</p>
+</footer>
+
+</body>
+</html>
