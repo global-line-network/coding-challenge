@@ -20,7 +20,7 @@ class UserAccountListItem extends Component<IUserAccountListItemProps, IUserAcco
         super(props);
 
         this.state = {
-            isEditing: false,
+            isEditing: props.user.name.trim().length === 0,
             nameInput: props.user.name,
             dateInput: props.user.birthDate
         };
@@ -104,6 +104,7 @@ class UserAccountListItem extends Component<IUserAccountListItemProps, IUserAcco
                         {!this.state.isEditing && <div className="row m-2"><i className="far fa-trash-alt" 
                             onClick={() => this.props.onDelete(this.props.user.id)}></i></div>}
                     </div>
+                    <div>{this.props.user.id}</div>
                 </div>
             </div>
         );

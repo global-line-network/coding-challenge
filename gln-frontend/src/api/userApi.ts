@@ -2,13 +2,24 @@ import { UserAccount } from "./types";
 
 const ENDPOINT = "https://reqres.in";
 
+const mapApiModelToViewModel = (apiUser: any) : UserAccount => {
+    const user : UserAccount = {
+        id: apiUser.id,
+        name: `${apiUser.first_name} ${apiUser.last_name}`,
+        avatarUrl: apiUser.avatar,
+        birthDate: new Date().toLocaleDateString()
+    };
+
+    return user;
+};
+
 class UserApi {
 
-    static async createUser(user: UserAccount) : Promise<Response> {
+    static async createUser(user: UserAccount) : Promise<UserAccount> {
 
         const names = user.name.split(' ');
 
-        return await fetch(`${ENDPOINT}/api/users`, {
+        const response = await fetch(`${ENDPOINT}/api/users`, {
             method: 'POST',
             body: JSON.stringify({
                 first_name: names[0],
@@ -19,6 +30,10 @@ class UserApi {
                 'Content-Type': 'application/json'
             }
         });
+
+        const responseJson = await response.json();
+
+        return mapApiModelToViewModel(responseJson);
     }
 
     static async getUsers() : Promise<UserAccount[]> {
@@ -27,16 +42,7 @@ class UserApi {
 
         const responseJson = await response.json();
 
-        return responseJson.data.map((item : any) => {
-            const user : UserAccount = {
-                id: item.id,
-                name: `${item.first_name} ${item.last_name}`,
-                avatarUrl: item.avatar,
-                birthDate: "test"
-            };
-
-            return user;
-        });
+        return responseJson.data.map((item : any) => mapApiModelToViewModel(item));
     }
 }
 

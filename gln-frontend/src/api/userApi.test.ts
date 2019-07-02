@@ -11,13 +11,15 @@ test("Can get users from api", async () => {
 
 test("Can create user on api", async () => {
 
-    const response = await UserApi.createUser({
+    const newUser = await UserApi.createUser({
         id: -1,
         name: "Hello",
         birthDate: "test",
         avatarUrl: ""
     });
 
-    expect(response).toBeDefined();
-    expect(response.ok).toBe(true);
+    expect(newUser).toBeDefined();
+    expect(newUser.id).toBeDefined();
+    expect(newUser.name).toBe("Hello ");
+    expect(newUser.avatarUrl).toBeDefined();
 });
