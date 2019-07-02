@@ -1,0 +1,21 @@
+<div class="c-Header">
+  <div class="_logo">
+    <img
+      src="https://camo.githubusercontent.com/0f5c3117a2586ece7929e0c49f7f0094e42908fd/68747470733a2f2f676c6f62616c6c696e652e6d792f7374617469632f6c6f676f2e706e67"
+      alt=""
+    />
+  </div>
+</div>
+<div class="c-Wrapper">
+  <div class="c-Flex z-UserList">
+    <div class="_flexItem" *ngFor="let user of userList">
+      <div class="c-User">
+        <span class="_avatar"></span>
+        <div class="_data">
+          <div class="_name">{{ user.first_name }}</div>
+          <div class="_dob"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
