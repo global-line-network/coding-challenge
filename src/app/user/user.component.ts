@@ -13,9 +13,22 @@ export class UserComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.userService.getAll().subscribe((userList:any) => {
+    this.userService.getAll().subscribe((userList: any) => {
       this.userList = userList.data;
       this.isDataLoading = false;
     });
+  }
+
+  enableEdit(user) {
+    user.isEditing = true;
+  }
+
+  doneEditing(user) {
+    this.userService.update(user);
+    user.isEditing = false;
+  }
+
+  cancelEditing(user) {
+    user.isEditing = false;
   }
 }

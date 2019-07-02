@@ -8,6 +8,7 @@
   border: 1px solid $Grey;
   padding: 0.5em 1em;
   border-radius: 1em;
+  position: relative;
   ._avatar {
     width: 3em;
     height: 3em;
@@ -16,5 +17,49 @@
   }
   ._name {
     @include Text18Black;
+  }
+  ._options {
+    opacity: 0;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 1em;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  ._option {
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    background-size: 100%;
+    &.z-Edit {
+      background-image: url(../images/EditIconBlack.png);
+    }
+    &.z-Delete {
+      background-image: url(../images/DeleteIconBlack.png);
+    }
+    &.z-Save {
+      background-image: url(../images/DoneIconGreen.png);
+    }
+    &.z-Cancel {
+      background-image: url(../images/CancelIconRed.png);
+    }
+  }
+  ._options {
+    &.z-Grey {
+      ._option {
+        background-size: 80%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        border: 1px solid $Grey;
+      }
+    }
+  }
+  &:hover {
+    ._options {
+      opacity: 1;
+    }
   }
 }

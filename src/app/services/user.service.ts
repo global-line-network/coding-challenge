@@ -10,4 +10,7 @@ export class UserService {
   getAll() {
     return this.http.get(this.baseUrl + 'api/users');
   }
+  update(user) {
+    return this.http.get(this.baseUrl + 'api/users');
+  }
 }

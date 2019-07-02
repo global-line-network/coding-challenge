@@ -11,11 +11,19 @@
 
   <div class="w-Flex z-FlexWrap z-HPadding2 z-UserList u-Top4">
     <div class="_flexItem" *ngFor="let user of userList">
-      <div class="c-User">
+      <div class="c-User" [ngClass]="{ 'z-Editing': user.isEditing }">
         <span class="_avatar" [ngStyle]="{ 'background-image': 'url(' + user.avatar + ')' }"></span>
         <div class="_content">
           <div class="_name">{{ user.first_name }} {{ user.last_name }}</div>
           <div class="_dob"></div>
+        </div>
+        <div class="_options z-Grey" *ngIf="!user.isEditing">
+          <span class="_option z-Edit" (click)="enableEdit(user)"></span>
+          <span class="_option z-Delete" (click)="delete(user)"></span>
+        </div>
+        <div class="_options" *ngIf="user.isEditing">
+          <span class="_option z-Save" (click)="doneEditing(user)"></span>
+          <span class="_option z-Cancel" (click)="cancelEditing(user)"></span>
         </div>
       </div>
     </div>
