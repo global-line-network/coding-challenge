@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const UserAccountPage : React.FC = (props: any) => {
+class UserAccountPage extends Component {
+    constructor(parameters: any) {
+        super(parameters);
+    }
 
-    return (
-        <div>
-            <title>User Accounts</title>
+    componentDidMount() {
+        
+    }
 
-            <button type="button" className="btn btn-primary">+ Create New</button>
-        </div>
-    );
-};
+    render() {
+        return (
+            <div className="container">
+                <h1 className="">User Accounts</h1>
+    
+                <button type="button" className="btn btn-primary">+ Create New</button>
+            </div>
+        );
+    }
+}
 
 export default UserAccountPage;
