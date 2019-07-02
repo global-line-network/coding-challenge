@@ -21,14 +21,19 @@ export class UserComponent implements OnInit {
 
   enableEdit(user) {
     user.isEditing = true;
+    user.preservedValue = { ...user, isEditing: false };
   }
 
   doneEditing(user) {
     this.userService.update(user);
     user.isEditing = false;
+    delete user.preservedValue;
   }
 
   cancelEditing(user) {
     user.isEditing = false;
+    const preservedValue = user.preservedValue;
+    delete user.preservedValue;
+    Object.keys(user).map(key => (user[key] = preservedValue[key]));
   }
 }

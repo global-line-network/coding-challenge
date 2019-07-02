@@ -155,6 +155,9 @@ button {
     outline: none;
   }
 }
+input {
+  min-width: 2em;
+}
 a {
   color: inherit;
 }
