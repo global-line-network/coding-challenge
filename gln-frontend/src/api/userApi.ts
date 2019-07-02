@@ -1,16 +1,12 @@
 import { UserAccount } from "./types";
-import { async } from "q";
 
 const ENDPOINT = "https://reqres.in";
 
 class UserApi {
-    constructor() {
-        
-    }
 
     static getUsers() : Promise<UserAccount[]> {
 
-        return fetch(`${ENDPOINT}/api/users`)
+        return fetch(`${ENDPOINT}/api/users?per_page=8`)
             .then(res => {
                 return res.json();
             })
