@@ -1,0 +1,31 @@
+.modal {
+    &.show {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex !important;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        z-index: 9999;
+    }
+    .modal-dialog {
+        flex: 0 0 auto;
+        background: #fff;
+        max-height: 90vh;
+        width: 32rem;
+        max-width: 90%;
+        border-radius: 1.5rem;
+    }
+    .modal-content {
+        border: 0 !important;
+        padding: 1.5rem;
+        overflow: auto;
+        border-radius: 1.5rem;
+    }
+    .modal-lg {
+        width: 54rem;
+    }
+}

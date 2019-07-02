@@ -1,0 +1,100 @@
+/* ==========================================================================
+   #BUTTON
+   ========================================================================== */
+
+.c-Icon {
+    background-size: 100%;
+    &.z-UpArrowGrey,
+    &.z-UpArrowBlue {
+        background: url(../images/UpgradeWhiteIcon.png) $Grey2 center center no-repeat;
+        width: 2em;
+        height: 2em;
+        border-radius: 0.5em;
+    }
+    &.z-UpArrowBlue {
+        background-color: $Blue;
+    }
+    &.z-RefreshBlue,
+    &.z-RefreshGrey {
+        background: url(../images/ChangeBlueIcon.png) $Grey2 center center no-repeat;
+        width: 2em;
+        height: 2em;
+        border-radius: 0.5em;
+        background-size: 80%;
+    }
+
+    &.z-RefreshBlue {
+        background-color: $Blue;
+    }
+    &.z-Key {
+        background: url(../images/KeyCardIcon.png) $Blue center center no-repeat;
+        width: 2em;
+        height: 2em;
+        border-radius: 0.5em;
+        background-size: 1.9em;
+        margin-top: 0.5em;
+    }
+
+    &.z-AddNote,
+    &.z-AddNoteGrey {
+        background: url(../images/PlusCommentWhiteIcon.png) $Grey2 center center no-repeat;
+        width: 1.5em;
+        height: 1.5em;
+        cursor: pointer;
+        background-size: 70%;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 1px;
+        border-radius: 0.5em;
+    }
+    &.z-AddNote {
+        background-color: $Blue;
+    }
+
+    &.z-CreateLink {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        background: $Orange url(../images/NewReservationIcon.png) center center no-repeat;
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        background-size: 50%;
+        cursor: pointer;
+        box-shadow: 0px 1px 7px 3px rgba(0, 0, 0, 0.3);
+        bottom: 4rem;
+        right: 6rem;
+        z-index: 1000;
+        &:hover {
+            background-color: $Orange2;
+        }
+    }
+
+    &.FutureIcon,
+    &.FutureIconGrey {
+        float: right;
+        border-radius: 0.5em;
+        width: 1.5em;
+        height: 1.5em;
+        background: url(../images/FutureWhiteIcon.png) $Grey2 center center no-repeat;
+        cursor: pointer;
+        background-size: 85%;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 1px;
+    }
+    &.FutureIcon {
+        background-color: $Blue;
+    }
+
+    &.HistoricIcon,
+    &.HistoricIconGrey {
+        float: right;
+        border-radius: 0.5em;
+        width: 1.5em;
+        height: 1.5em;
+        background: url(/assets/images/HistoricWhiteIcon.png) $Grey2 center center no-repeat;
+        cursor: pointer;
+        background-size: 85%;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 1px;
+    }
+    &.HistoricIcon {
+        background-color: $Blue;
+    }
+}

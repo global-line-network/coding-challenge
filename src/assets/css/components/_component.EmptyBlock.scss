@@ -1,0 +1,30 @@
+/* ==========================================================================
+   #EMPTY STATUS
+   ========================================================================== */
+
+.c-EmptyBlock {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    ._textBold {
+        @include Text18BlackBold;
+        display: block;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+    }
+    ._textNormal {
+        @include Text14Grey2;
+        display: block;
+        padding-bottom: 0.25rem;
+    }
+    ._link {
+        @include Text14BlueUnderLine;
+        display: block;
+        cursor: pointer;
+        color: $Blue !important;
+    }
+}

@@ -1,0 +1,13 @@
+/* ==========================================================================
+   #BUTTON
+   ========================================================================== */
+
+.c-Toggle {
+    ._header {
+        background: url(../images/DownArrowGreyIcon.png);
+        padding-right: 2em;
+        &.z-Visible {
+            background: url(../images/UpArrowBlueIcon.png);
+        }
+    }
+}

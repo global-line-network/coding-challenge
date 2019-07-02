@@ -1,0 +1,53 @@
+.c-EmployeeDetails {
+    display: flex;
+    justify-content: space-between;
+    ._avatar {
+        width: 4rem;
+        height: 3rem;
+        padding-left: 1em;
+        flex: none;
+    }
+    ._avatarImage {
+        width: 100%;
+    }
+    ._middle {
+        padding: 0 1em;
+        flex: none;
+        width: calc(100% - 9rem);
+    }
+    ._right {
+        background: url(../images/ClockBlueIcon.png) calc(50% - 0.5rem) 0 no-repeat;
+        @include Text16Grey;
+        padding: 2.4rem 1rem 0 0;
+        flex: none;
+        width: 5rem;
+    }
+    ._text1 {
+        @include Text24BlueBold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: block;
+    }
+    ._status {
+        padding: 0.5em 0 0 0;
+        display: flex;
+        justify-content: space-between;
+    }
+    ._statusText {
+        @include Text16Grey;
+        padding: 0 1em 0 0;
+    }
+    ._statusPill {
+        border-radius: 1em;
+        border: 1px solid $Blue;
+        flex: 1 1 auto;
+        height: 1.25em;
+    }
+    ._statusFill {
+        width: 50%;
+        background: $Blue;
+        height: calc(1.25em - 2px);
+        border-radius: 1em;
+    }
+}

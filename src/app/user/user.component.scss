@@ -1,5 +1,6 @@
 .c-Flex {
   &.z-UserList {
+    flex-wrap: wrap;
     ._flexItem {
       width: 50%;
     }

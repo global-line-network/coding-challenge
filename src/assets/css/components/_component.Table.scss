@@ -1,0 +1,12 @@
+.c-Table {
+}
+._row {
+    display: flex;
+    justify-content: stretch;
+    padding: 1em 0 0.5em 0;
+    border-bottom: 1px solid $Grey3;
+    &.cdk-drag-preview{
+        background-color: $White;
+        opacity: 0.7;
+    }
+}

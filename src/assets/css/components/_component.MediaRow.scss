@@ -1,0 +1,40 @@
+/* ==========================================================================
+   #MEDIA ROW
+   ========================================================================== */
+
+.c-MediaRow {
+    display: flex;
+    ._media {
+        flex: 0 0 auto;
+        align-self: center;
+    }
+    ._content {
+        flex: 1 1 auto;
+        &.z-16BlueBold {
+            @include Text16BlueBold;
+        }
+    }
+    &.z-LPadding3 {
+        > ._content {
+            padding-left: 0.5em;
+        }
+    }
+    &.z-LPadding4 {
+        > ._content {
+            padding-left: 1em;
+        }
+    }
+    &.z-LPadding5 {
+        > ._content {
+            padding-left: 1.5em;
+        }
+    }
+    &.z-VCentered {
+        align-items: center;
+    }
+    &.z-MediaTop {
+        ._media {
+            align-self: flex-start;
+        }
+    }
+}

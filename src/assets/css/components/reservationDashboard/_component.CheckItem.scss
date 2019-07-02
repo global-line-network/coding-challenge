@@ -1,0 +1,106 @@
+.c-CheckItem {
+    display: flex;
+    padding: 0.5em 0 0.5em 0.5em;
+    border-bottom: 1px solid $Grey3;
+    ._media {
+        flex: 0 0 3.31em;
+        padding-right: 0.56em;
+    }
+    ._content {
+        flex: 1 1 auto;
+    }
+    ._text1 {
+        @include Text14BlueBold;
+    }
+    ._text2 {
+        @include Text12Grey;
+        padding-top: 0.875em;
+    }
+    ._text3 {
+        @include Text12Grey3;
+    }
+    ._text4 {
+        @include Text11Grey2;
+    }
+    ._text5 {
+        @include Text12Grey3Bold;
+    }
+    ._text6 {
+        @include Text14Grey2Bold;
+    }
+    [class*='_text'] {
+        display: block;
+    }
+    ._metaWrap {
+        padding-top: 0.6em;
+        display: flex;
+        justify-content: space-between;
+    }
+    ._statusText {
+        @include Text11Grey2;
+        padding-left: 0.25rem;
+    }
+    ._meta {
+        display: flex;
+    }
+    ._metaContent {
+        padding-left: 0.15em;
+    }
+    ._metaText1 {
+        @include Text12Grey;
+        &.z-Red {
+            @include Text14RedUnderLine;
+        }
+    }
+    .z-Green {
+        @include Text12Green;
+    }
+    ._buttonWrap {
+        padding-top: 0.5em;
+    }
+
+    ._buttonWrap :hover {
+        box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    ._button {
+        @include Button24BlueWhite;
+    }
+
+    &.z-GreyHeading {
+        ._text1 {
+            @include Text14Grey2Bold;
+        }
+    }
+    &.z-Single {
+        border-bottom: 0;
+        padding: 0;
+    }
+    // &.z-ShortBorder {
+    //     border-bottom: 0;
+    //     position: relative;
+    //     &:before {
+    //         content: ' ';
+    //         position: absolute;
+    //         top: 0;
+    //         left: 0;
+    //         height: 1px;
+    //         background: $Grey3;
+    //         width: calc(100% - 2.5em);
+    //     }
+    // }
+    &.z-Selected {
+        ._media,
+        ._content {
+            position: relative;
+            z-index: 10;
+        }
+        background-color: $LightBlue2;
+        border-radius: 50px 50px 50px 50px;
+    }
+    &.z-TextVPadding3 {
+        [class*='_text'] {
+            padding-bottom: 0.5em;
+        }
+    }
+}

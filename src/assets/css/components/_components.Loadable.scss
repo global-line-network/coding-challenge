@@ -1,0 +1,20 @@
+/* ==========================================================================
+   #LOADABLE
+   ========================================================================== */
+
+.c-Loadable {
+    position: relative;
+    display: block;
+    &.z-Loading:after {
+        content: ' ';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: $WhiteTrans url(../images/LoadingIcon.gif) center center no-repeat;
+        background-size: 6em;
+        cursor: wait;
+        z-index: 1000;
+    }
+}
