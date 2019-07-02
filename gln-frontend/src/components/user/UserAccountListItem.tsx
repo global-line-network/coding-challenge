@@ -31,8 +31,12 @@ class UserAccountListItem extends Component<IUserAccountListItemProps, IUserAcco
     }
 
     onEditToggle() {
+
+        const isCancelling = this.state.isEditing === false;
+
         this.setState({
-            ...this.state,
+            nameInput: isCancelling ? this.props.user.name : this.state.nameInput,
+            dateInput: isCancelling ? this.props.user.birthDate : this.state.dateInput,
             isEditing: !this.state.isEditing
         });
     }
