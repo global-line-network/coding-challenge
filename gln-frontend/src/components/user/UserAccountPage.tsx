@@ -8,6 +8,7 @@ interface IUserAccountPageState {
 }
 
 class UserAccountPage extends Component<any, IUserAccountPageState> {
+    
     constructor(parameters: any) {
         super(parameters);
 
@@ -20,8 +21,6 @@ class UserAccountPage extends Component<any, IUserAccountPageState> {
     }
 
     onEditConfirm(editedUser: UserAccount) {
-        console.log("edit confirm!");
-
         this.setState({
             users: [
                 ...this.state.users.slice(0, editedUser.id - 1), 
@@ -32,7 +31,11 @@ class UserAccountPage extends Component<any, IUserAccountPageState> {
     }
 
     onDelete(userId : number) {
-        console.log(`delete user ${userId} clicked!`);
+        this.setState({
+            users: [
+                ...this.state.users.filter(user => user.id !== userId)
+            ]
+        });
     }
 
     componentDidMount() {
