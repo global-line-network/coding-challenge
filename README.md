@@ -1,49 +1,27 @@
+# Crud
 
-<p align="center">
-  <img src="https://globalline.my/static/logo.png" width="200">
-</p>
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
 
+## Development server
 
-Thanks for taking the time to do our front-end / full-stack practical coding challenge.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-The objective of this challenge is to evaluate your domain knowledge in front-end / full-stack development: code organization, style and best practices.
+## Code scaffolding
 
-# Overview:
-The main challenge will be to build a simple user management tool that will perform basic CRUD operations on a user. Please use mockups as a reference 
-about look of the application. There are no business rules & guidelines other than to show us what you’re truly made of. It can be as simple or as complex as you want it to be.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-### Prerequisites
-There are none :) Our main solutions stack include but not limited to Kotlin, Java, AngularJS, Flutter, Spring...  
-Feel free to use any languages and technologies you are comfortable with.
+## Build
 
-## Mockups
-<p align="center">
-  <img src="https://globalline.my/static/1.jpg" width="250">
-  <img src="https://globalline.my/static/2.jpg" width="250">
-  <img src="https://globalline.my/static/3.jpg" width="250">
-</p>
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-### Front-end:
-- For API please use https://reqres.in/.
+## Running unit tests
 
-### Back-end:
-- The API should be similar to https://reqres.in/, performing basic operations for user.
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-_We'll be happy if you cover application with tests._
+## Running end-to-end tests
 
-### Submission Guidelines
-- Please fork the repo and then submit a Pull Request when you are done.
-- Instructions must be provided to run the application, install any dependencies, and any other information needed.
-- Please use version control and make sure we can see the history of how you went about it, rather than just uploading the complete project to GitHub.
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Questions? ###
-Please feel free to reach out and ask any questions while you are working on a solution.  
-Send your questions to [tech@chimaera.my](mailto:tech@chimaera.my).  
-  
-  
-Good luck!
+## Further help
 
-
-
-
-  
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
