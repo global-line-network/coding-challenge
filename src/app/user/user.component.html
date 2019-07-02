@@ -2,12 +2,19 @@
   <div class="g-SiteHeader">
     <div class="_logo"></div>
   </div>
-  <div class="c-Flex z-UserList">
+  <div class="c-TextRow">
+    <span class="_text z-Heading1">User Accounts</span>
+  </div>
+  <div class="c-Block u-Top4">
+    <span class="c-Button z-Blue">+ Create New</span>
+  </div>
+
+  <div class="w-Flex z-FlexWrap z-HPadding2 z-UserList u-Top4">
     <div class="_flexItem" *ngFor="let user of userList">
       <div class="c-User">
-        <span class="_avatar" [ngStyle]="{'background-image': 'url(' + user.avatar + ')'}"></span>
-        <div class="_data">
-          <div class="_name">{{ user.first_name }}</div>
+        <span class="_avatar" [ngStyle]="{ 'background-image': 'url(' + user.avatar + ')' }"></span>
+        <div class="_content">
+          <div class="_name">{{ user.first_name }} {{ user.last_name }}</div>
           <div class="_dob"></div>
         </div>
       </div>

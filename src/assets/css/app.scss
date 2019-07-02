@@ -1,20 +1,22 @@
 /*  The ITCSS approach
 https://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528 */
 
-@import "settings/settings.colors";
+@import 'settings/settings.colors';
 
-@import "tools/tools.mixins";
-@import "tools/tools.mixins.text";
+@import 'tools/tools.mixins';
 
-@import "reset/reset.all";
+@import 'reset/reset.all';
 
-@import "generic/generic.siteHeader";
+@import 'generic/generic.siteHeader';
 
-@import "wrappers/wrappers.flex";
+@import 'wrappers/wrappers.flex';
 
-@import "vender/vender.modal";
+@import 'vender/vender.modal';
 
-@import "components/component.Block";
+@import 'components/component.Block';
+@import 'components/component.Button';
+@import 'components/component.TextRow';
+@import 'components/component.User';
 
-@import "utilities/utilities.spacing";
-@import "utilities/utilities.text";
+@import 'utilities/utilities.spacing';
+@import 'utilities/utilities.text';

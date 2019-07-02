@@ -1,8 +1,10 @@
-.c-Flex {
+.w-Flex {
   &.z-UserList {
-    flex-wrap: wrap;
     ._flexItem {
       width: 50%;
+    }
+    .c-User {
+      margin-bottom: 1em;
     }
   }
 }
