@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { UserAccount } from '../../api/types';
-import { type } from 'os';
+import './UserAccountListItem.css';
 
 export interface IUserAccountListItemProps {
     user: UserAccount,
@@ -66,19 +66,18 @@ class UserAccountListItem extends Component<IUserAccountListItemProps, IUserAcco
 
     render() {
         return (
-            <div style={{ borderRadius: 10, maxWidth: 500 }} className="col border m-2 p-3">
+            <div className="user-list-item col border rounded justify-content-between">
                 <div className="row">
                     <div className="col-2">
-                        <img style={{borderRadius: 50, width: 50, height: 50}} 
-                            src={this.props.user.avatarUrl} />
+                        <img className="avatar rounded-circle" src={this.props.user.avatarUrl} />
                     </div>
 
-                    {!this.state.isEditing && <div className="col-6">
+                    {!this.state.isEditing && <div className="col">
                         <div className="row"><h4>{this.props.user.name}</h4></div>
                         <div className="row"><h5>{this.props.user.birthDate}</h5></div>
                     </div>}
 
-                    {this.state.isEditing && <div className="col-6">
+                    {this.state.isEditing && <div className="col">
                         <div className="row">
                             <input name="nameInput" className="form-control" type="text" onChange={this.onTextInputChange} 
                                 placeholder="Enter user name"
@@ -91,17 +90,17 @@ class UserAccountListItem extends Component<IUserAccountListItemProps, IUserAcco
                         </div>
                     </div>}
 
-                    <div className="col" style={{ maxWidth: 55 }}>
+                    <div className="col-1">
 
-                        {this.state.isEditing && <div className="row m-2"><i className="fas fa-check-circle" 
+                        {this.state.isEditing && <div className="row m-2"><i className="fas fa-check-circle green" 
                             onClick={this.onEditConfirmed}></i></div>}
 
-                        {this.state.isEditing && <div className="row m-2"><i className="fas fa-times-circle" 
+                        {this.state.isEditing && <div className="row m-2"><i className="fas fa-times-circle red" 
                             onClick={this.onEditToggle}></i></div>}
 
-                        {!this.state.isEditing && <div className="row m-2"><i className="far fa-edit" onClick={this.onEditToggle}></i></div>}
+                        {!this.state.isEditing && <div className="onhover-btn row m-2"><i className="far fa-edit" onClick={this.onEditToggle}></i></div>}
                         
-                        {!this.state.isEditing && <div className="row m-2"><i className="far fa-trash-alt" 
+                        {!this.state.isEditing && <div className="onhover-btn row m-2"><i className="far fa-trash-alt" 
                             onClick={() => this.props.onDelete(this.props.user.id)}></i></div>}
                     </div>
                 </div>
