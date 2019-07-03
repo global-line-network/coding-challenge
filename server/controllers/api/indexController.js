@@ -1,7 +1,7 @@
-const homeController = require('./homeController');
+const userController = require('./userController');
 const profileController = require('./profileController');
 
 module.exports = {
-  homeController,
+  userController,
   profileController
 };

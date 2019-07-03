@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  baseUrl: string = 'https://reqres.in/';
+  baseUrl: string = 'http://localhost:8000/';
 
   getAll() {
     return this.http.get(this.baseUrl + 'api/users');

@@ -6,7 +6,7 @@ const controllers = require('../controllers/api/indexController');
 const images = require('../helpers/gCloud');
 
 const router = express.Router();
-const { homeController, profileController } = controllers;
+const { userController, profileController } = controllers;
 
 /**
  * Handles controller execution and responds to user (API version).
@@ -27,21 +27,12 @@ const controllerHandler = (promise, params) => async (req, res, next) => {
 const c = controllerHandler;
 
 /**
- * Profile.
+ * User.
  */
-router.post(
-  '/profile/update',
-  images.multer.single('image'),
-  images.sendUploadToGCS,
-  c(profileController.update, (req, res, next) => [req, res, next])
-);
-
-/**
- * Home.
- */
-router.get('/', c(homeController.hello, (req, res, next) => [req, res, next]));
-router.get('/greet/:name', c(homeController.getGreeting, req => [req.params.name]));
-router.post('/greet/', c(homeController.postGreeting, req => [req.body.name]));
+router.post('/users', images.multer.single('image'), images.sendUploadToGCS, c(userController.create, (req, res, next) => [req, res, next]));
+router.get('/users', c(userController.all, (req, res, next) => [req, res, next]));
+router.put('/users/:id', c(userController.update, req => [req.params.id]));
+router.delete('/users/:id', c(userController.remove, req => [req.params.id]));
 
 /**
  * Error-handler.
