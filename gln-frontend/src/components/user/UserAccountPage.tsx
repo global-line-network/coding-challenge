@@ -80,7 +80,18 @@ class UserAccountPage extends Component<any, IUserAccountPageState> {
     
                 <button type="button" className="btn btn-primary" onClick={this.onCreateClicked}>+ Create New</button>
 
-                {this.state.users && this.state.users.map(user => <UserAccountListItem key={user.id} user={user} onEdit={this.onEditConfirm} onDelete={this.onDelete} />)}
+                <div style={{
+                    height: '80vh', 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    flexWrap: 'wrap'}}>
+
+                {this.state.users && this.state.users.map(user => <div key={user.id}>
+                    <UserAccountListItem  user={user} onEdit={this.onEditConfirm} onDelete={this.onDelete} />
+                    </div>)}
+
+                </div>
+                
             </div>
         );
     }

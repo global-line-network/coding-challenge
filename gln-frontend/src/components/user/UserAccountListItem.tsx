@@ -66,19 +66,19 @@ class UserAccountListItem extends Component<IUserAccountListItemProps, IUserAcco
 
     render() {
         return (
-            <div style={{ borderRadius: 10 }} className="col border m-2 p-3">
+            <div style={{ borderRadius: 10, maxWidth: 500 }} className="col border m-2 p-3">
                 <div className="row">
-                    <div className="col-1">
+                    <div className="col-2">
                         <img style={{borderRadius: 50, width: 50, height: 50}} 
                             src={this.props.user.avatarUrl} />
                     </div>
 
-                    {!this.state.isEditing && <div className="col-4">
+                    {!this.state.isEditing && <div className="col-6">
                         <div className="row"><h4>{this.props.user.name}</h4></div>
                         <div className="row"><h5>{this.props.user.birthDate}</h5></div>
                     </div>}
 
-                    {this.state.isEditing && <div className="col-4">
+                    {this.state.isEditing && <div className="col-6">
                         <div className="row">
                             <input name="nameInput" className="form-control" type="text" onChange={this.onTextInputChange} 
                                 placeholder="Enter user name"
@@ -91,7 +91,7 @@ class UserAccountListItem extends Component<IUserAccountListItemProps, IUserAcco
                         </div>
                     </div>}
 
-                    <div className="col-1">
+                    <div className="col" style={{ maxWidth: 55 }}>
 
                         {this.state.isEditing && <div className="row m-2"><i className="fas fa-check-circle" 
                             onClick={this.onEditConfirmed}></i></div>}
