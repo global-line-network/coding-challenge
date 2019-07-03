@@ -1,0 +1,20 @@
+<div class="c-Form z-NewUser">
+  <div class="_fieldWrap z-Half">
+    <div class="_field">
+      <input placeholder="First name" type="text" class="_textInput" [(ngModel)]="user.firstName" />
+    </div>
+    <div class="_field">
+      <input placeholder="Last name" type="text" class="_textInput" [(ngModel)]="user.lastName" />
+    </div>
+  </div>
+  <div class="_field">
+    <input placeholder="Email" type="text" class="_textInput" [(ngModel)]="user.email" />
+  </div>
+  <div class="_field">
+    <input placeholder="DOB" type="text" class="_textInput" [(ngModel)]="user.DOB" />
+  </div>
+  <div class="_field">
+    <span class="c-Button z-Cancel" (click)="cancel()">Cancel</span>
+    <span class="c-Button z-Blue" (click)="save()">Save</span>
+  </div>
+</div>

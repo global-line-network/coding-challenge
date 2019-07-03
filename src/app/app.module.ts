@@ -7,8 +7,9 @@ import { UserComponent } from './user/user.component';
 
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AddUserComponent } from './add-user/add-user.component';
 @NgModule({
-  declarations: [AppComponent, UserComponent],
+  declarations: [AppComponent, UserComponent, AddUserComponent],
   imports: [BrowserModule, HttpClientModule, FormsModule],
   providers: [UserService],
   bootstrap: [AppComponent]

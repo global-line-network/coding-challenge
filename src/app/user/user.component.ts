@@ -10,6 +10,7 @@ import { User } from '../models/user.model';
 export class UserComponent implements OnInit {
   userList: User[];
   isDataLoading: boolean = true;
+  isAddUserVisible: boolean = false;
   constructor(private userService: UserService) {}
 
   ngOnInit() {
@@ -35,5 +36,20 @@ export class UserComponent implements OnInit {
     const preservedValue = user.preservedValue;
     delete user.preservedValue;
     Object.keys(user).map(key => (user[key] = preservedValue[key]));
+  }
+
+  toggleAddUser() {
+    this.isAddUserVisible = !this.isAddUserVisible;
+  }
+
+  addUserEvent($event) {
+    if ($event.type == 'cancel') {
+      this.isAddUserVisible = false;
+    } else if ($event.type == 'save') {
+      this.isAddUserVisible = false;
+      this.userService.add($event.data).subscribe((response: any) => {
+        console.log(response);
+      });
+    }
   }
 }
