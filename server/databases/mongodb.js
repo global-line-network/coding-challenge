@@ -1,20 +1,10 @@
-const config = require('config');
-const mongoose = require('mongoose');
-
 const log = require('../helpers/logHelper');
-
-mongoose.Promise = Promise;
-
-const dbHost = config.get('database.data.host');
-const dbPort = config.get('database.data.port');
-const dbName = config.get('database.data.db');
-const dbURI = `mongodb://${dbHost}:${dbPort}/${dbName}`;
-
-const reconnectTimeout = config.get('database.data.reconnectTimeout');
-
-function connect() {
-  mongoose.connect(dbURI, { auto_reconnect: true }).catch(() => {});
-}
+// Set up mongoose connection
+const mongoose = require('mongoose');
+let dev_db_url = 'mongodb+srv://zworks:testPass@cluster0-4lww0.mongodb.net/test?retryWrites=true&w=majority';
+let mongoDB = process.env.MONGODB_URI || dev_db_url;
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
 
 module.exports = () => {
   const db = mongoose.connection;
@@ -44,6 +34,4 @@ module.exports = () => {
     log.error(`MongoDB disconnected! Reconnecting in ${reconnectTimeout / 1000}s...`);
     setTimeout(() => connect(), reconnectTimeout);
   });
-
-  connect();
 };

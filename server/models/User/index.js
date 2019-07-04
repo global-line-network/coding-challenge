@@ -13,7 +13,7 @@ const userSchema = new Schema(
       type: String
     },
     lastName: {
-      type: Boolean
+      type: String
     },
     DOB: {
       type: String

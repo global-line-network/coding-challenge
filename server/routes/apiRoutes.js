@@ -29,9 +29,9 @@ const c = controllerHandler;
 /**
  * User.
  */
-router.post('/users', images.multer.single('image'), images.sendUploadToGCS, c(userController.create, (req, res, next) => [req, res, next]));
+router.post('/users', images.multer.single('avatar'), images.sendUploadToGCS, c(userController.create, (req, res, next) => [req, res, next]));
 router.get('/users', c(userController.all, (req, res, next) => [req, res, next]));
-router.put('/users/:id', c(userController.update, req => [req.params.id]));
+router.put('/users/:id', c(userController.update, req => [req]));
 router.delete('/users/:id', c(userController.remove, req => [req.params.id]));
 
 /**

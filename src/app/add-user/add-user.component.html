@@ -14,6 +14,10 @@
     <input placeholder="DOB" type="text" class="_textInput" [(ngModel)]="user.DOB" />
   </div>
   <div class="_field">
+    <input placeholder="Avatar" type="file" class="_fileInput" (change)="onFileChange($event.target.files)" />
+  </div>
+
+  <div class="_field">
     <span class="c-Button z-Cancel" (click)="cancel()">Cancel</span>
     <span class="c-Button z-Blue" (click)="save()">Save</span>
   </div>

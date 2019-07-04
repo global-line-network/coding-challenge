@@ -17,16 +17,16 @@
         <span class="_avatar" [ngStyle]="{ 'background-image': 'url(' + user.avatar + ')' }"></span>
         <div class="_content">
           <div class="_name">
-            <span class="_value" *ngIf="!user.isEditing">{{ user.first_name }} {{ user.last_name }}</span>
+            <span class="_value" *ngIf="!user.isEditing">{{ user.firstName }} {{ user.lastName }}</span>
             <div class="_editor" *ngIf="user.isEditing">
-              <input type="text" [(ngModel)]="user.first_name" class="_textInput" />
-              <input type="text" [(ngModel)]="user.last_name" class="_textInput" />
+              <input type="text" [(ngModel)]="user.firstName" class="_textInput" />
+              <input type="text" [(ngModel)]="user.lastName" class="_textInput" />
             </div>
           </div>
           <div class="_dob">
-            <span class="_value" *ngIf="!user.isEditing">{{ user.email }} </span>
+            <span class="_value" *ngIf="!user.isEditing">{{ user.DOB }} </span>
             <div class="_editor" *ngIf="user.isEditing">
-              <input type="text" [(ngModel)]="user.email" class="_textInput" />
+              <input type="text" [(ngModel)]="user.DOB" class="_textInput" />
             </div>
           </div>
         </div>

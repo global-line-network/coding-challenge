@@ -15,7 +15,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getAll().subscribe((userList: any) => {
-      this.userList = userList.data;
+      this.userList = userList;
       this.isDataLoading = false;
     });
   }
@@ -26,9 +26,10 @@ export class UserComponent implements OnInit {
   }
 
   doneEditing(user) {
-    this.userService.update(user);
-    user.isEditing = false;
-    delete user.preservedValue;
+    this.userService.update(user).subscribe((user: any) => {
+      user.isEditing = false;
+      delete user.preservedValue;
+    });
   }
 
   cancelEditing(user) {

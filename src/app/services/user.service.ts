@@ -14,6 +14,6 @@ export class UserService {
     return this.http.post(this.baseUrl + 'api/users', user);
   }
   update(user) {
-    return this.http.get(this.baseUrl + 'api/users');
+    return this.http.put(this.baseUrl + 'api/users/' + user._id, user);
   }
 }
