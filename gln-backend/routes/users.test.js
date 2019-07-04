@@ -1,21 +1,22 @@
 const express = require('express');
 const request = require('supertest');
-const userRoute = require('./users');
+const UsersApi = require('./users');
 
 describe('user api tests', () => {
 
     // Setup test app
     const testApp = express();
-    testApp.use(userRoute);
+    testApp.use(new UsersApi());
 
     test('getting all users', done => {
         
         request(testApp)
             .get("/users")
-            .expect(200)
             .end((err, res) => {
 
                 expect(res.status).toBe(200);
+                expect(res.body).toBeDefined();
+                expect(res.body.length).toBe(2);
 
                 done();
             });
@@ -24,11 +25,12 @@ describe('user api tests', () => {
     test('get user by id', done => {
         
         request(testApp)
-            .get("/users/1")
-            .expect(200)
+            .get("/users/2")
             .end((err, res) => {
 
                 expect(res.status).toBe(200);
+                expect(res.body).toBeDefined();
+                expect(res.body.id).toBe(2);
 
                 done();
             });

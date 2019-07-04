@@ -1,5 +1,9 @@
 const express = require('express');
 
+const UserStore = require('../store/user-store');
+
+const store = new UserStore();
+
 class UsersApi {
 
     constructor() {
@@ -14,11 +18,19 @@ class UsersApi {
     }
 
     getUsers(req, res) {
-        res.sendStatus(501);
+        res.status(200).send(store.getAllUsers());
     }
 
     getUser(req, res) {
-        res.sendStatus(501);
+        const id = req.params.id;
+
+        const user = store.getUser(Number.parseInt(id));
+
+        if (user) {
+            return res.status(200).send(user);
+        }
+        
+        return res.sendStatus(404);
     }
 
     updateUser(req, res) {
