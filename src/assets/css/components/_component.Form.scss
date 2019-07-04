@@ -1,0 +1,26 @@
+/* ==========================================================================
+   #FORM
+   ========================================================================== */
+
+.c-Form {
+  padding: 1em 1em;
+  ._field {
+    padding: 0.25em 0;
+  }
+  ._fieldWrap {
+    display: flex;
+    &.z-Half {
+      ._field {
+        width: 50%;
+        flex: none;
+      }
+    }
+  }
+  ._textInput {
+    border: 1px solid $Grey;
+    height: 2rem;
+    line-height: 2rem;
+    padding: 0 1rem;
+    border-radius: 0.5rem;
+  }
+}

@@ -1,0 +1,44 @@
+<div class="c-Wrapper">
+  <div class="g-SiteHeader">
+    <div class="_logo"></div>
+  </div>
+  <div class="c-TextRow">
+    <span class="_text z-Heading1">User Accounts</span>
+  </div>
+  <div class="c-Block u-Top4">
+    <span class="c-Button z-Blue" (click)="toggleAddUser()">+ Create New</span>
+  </div>
+  <div class="c-Block z-AddUser" [ngClass]="{ 'z-Visible': isAddUserVisible }">
+    <app-add-user (onEvent)="addUserEvent($event)"></app-add-user>
+  </div>
+  <div class="w-Flex z-FlexWrap z-HPadding2 z-UserList u-Top4">
+    <div class="_flexItem" *ngFor="let user of userList; let i = index">
+      <div class="c-User" [ngClass]="{ 'z-Editing': user.isEditing }">
+        <span class="_avatar" [ngStyle]="{ 'background-image': 'url(' + user.avatar + ')' }"></span>
+        <div class="_content">
+          <div class="_name">
+            <span class="_value" *ngIf="!user.isEditing">{{ user.firstName }} {{ user.lastName }}</span>
+            <div class="_editor" *ngIf="user.isEditing">
+              <input type="text" [(ngModel)]="user.firstName" class="_textInput" />
+              <input type="text" [(ngModel)]="user.lastName" class="_textInput" />
+            </div>
+          </div>
+          <div class="_dob">
+            <span class="_value" *ngIf="!user.isEditing">{{ user.DOB }} </span>
+            <div class="_editor" *ngIf="user.isEditing">
+              <input type="text" [(ngModel)]="user.DOB" class="_textInput" />
+            </div>
+          </div>
+        </div>
+        <div class="_options z-Grey" *ngIf="!user.isEditing">
+          <span class="_option z-Edit" (click)="enableEdit(user)"></span>
+          <span class="_option z-Delete" (click)="remove(user, i)"></span>
+        </div>
+        <div class="_options" *ngIf="user.isEditing">
+          <span class="_option z-Save" (click)="doneEditing(user)"></span>
+          <span class="_option z-Cancel" (click)="cancelEditing(user)"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

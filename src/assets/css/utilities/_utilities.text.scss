@@ -1,0 +1,21 @@
+/* ==========================================================================
+   #TEXT-UTILITIES
+   ========================================================================== */
+
+.u-Upper {
+    text-transform: uppercase !important;
+}
+.u-AlignRight {
+    text-align: right !important;
+}
+.u-AlignCenter {
+    text-align: center;
+}
+.u-Underline {
+    text-decoration: underline;
+}
+.u-Ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

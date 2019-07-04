@@ -1,0 +1,130 @@
+/* ==========================================================================
+   #FLEX
+   ========================================================================== */
+
+.w-Flex {
+    display: flex;
+    > ._flexItem {
+        flex: 1 1 auto;
+        &.z-Fixed {
+            flex: 0 0 auto;
+        }
+        &.z-Flex {
+            display: flex;
+        }
+        &.z-FullChild {
+            display: flex;
+        }
+    }
+    &.z-HPadding1 {
+        > ._flexItem {
+            padding: 0 0.125em;
+        }
+    }
+    &.z-HPadding2 {
+        > ._flexItem {
+            padding: 0 0.25em;
+        }
+    }
+    &.z-HPadding3 {
+        > ._flexItem {
+            padding: 0 0.5em;
+        }
+    }
+    &.z-HPadding4 {
+        > ._flexItem {
+            padding: 0 1em;
+        }
+    }
+    &.z-HPadding5 {
+        > ._flexItem {
+            padding: 0 1.5em;
+        }
+    }
+    &[class*='z-HPadding'] {
+        > ._flexItem:first-of-type {
+            padding-left: 0;
+        }
+        > ._flexItem:last-of-type {
+            padding-right: 0;
+        }
+    }
+    &.z-FlexWrap {
+        flex-wrap: wrap;
+    }
+    &.z-SpaceBetween {
+        justify-content: space-between;
+        > ._flexItem {
+            flex: 0 0 auto;
+        }
+    }
+    &.z-JustifyLeft {
+        justify-content: flex-start;
+        > ._flexItem {
+            flex: 0 0 auto;
+        }
+    }
+    &.z-HRight {
+        justify-content: flex-end;
+        ._flexItem {
+            flex: 0 0 auto;
+        }
+    }
+    &.z-HLeft {
+        justify-content: flex-start;
+        ._flexItem {
+            flex: 0 0 auto;
+        }
+    }
+    &.z-HCentered {
+        justify-content: center;
+        justify-items: center;
+        > ._flexItem {
+            flex: none;
+        }
+    }
+    &.z-VCentered {
+        align-content: center;
+        align-items: center;
+    }
+    &.z-VBottom {
+        align-items: flex-end;
+    }
+    &.z-Center {
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
+    &.z-FullHeight {
+        height: 100vh;
+    }
+    &.z-DirV {
+        flex-direction: column;
+    }
+    &.z-Container {
+        margin: 0 auto;
+        max-width: 80em;
+        margin-top: 4em;
+    }
+    &.z-Wrap {
+        flex-wrap: wrap;
+    }
+    &.z-Padding2 {
+        padding: 0.25em;
+    }
+    &.z-Padding3 {
+        padding: 0.5em;
+    }
+    &.z-Padding4 {
+        padding: 1em;
+    }
+    &.z-WrapHPadding2 {
+        padding: 0 0.25em;
+    }
+    &.z-WrapHPadding3 {
+        padding: 0 0.5em;
+    }
+    &.z-WrapHPadding4 {
+        padding: 0 1em;
+    }
+}

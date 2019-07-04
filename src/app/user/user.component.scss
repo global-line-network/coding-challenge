@@ -1,0 +1,24 @@
+@import '../../assets/css/settings/settings.colors';
+
+.w-Flex {
+  &.z-UserList {
+    ._flexItem {
+      width: 50%;
+      flex: none;
+    }
+    .c-User {
+      margin-bottom: 1em;
+    }
+  }
+}
+.c-Block {
+  &.z-AddUser {
+    overflow: hidden;
+    max-height: 0;
+    transition: all 0.5s;
+    background: $Grey2;
+    &.z-Visible {
+      max-height: 30em;
+    }
+  }
+}
