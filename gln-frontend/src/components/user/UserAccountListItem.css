@@ -1,0 +1,47 @@
+.user-list-item {
+    max-height: 150px;
+    margin-top: 5px;
+    display: block;
+    padding: 5px;
+}
+
+.user-list-item .onhover-btn {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 300ms, opacity 300ms;
+}
+
+.user-list-item:hover .onhover-btn {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 300ms;
+}
+
+.user-list-item i {
+    width: 30px;
+    height: 30px;
+}
+
+.user-list-item i:hover {
+    cursor: pointer;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.avatar {
+    width: 75px;
+    height: 75px;
+    display: block;
+    position: absolute;
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+}

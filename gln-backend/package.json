@@ -1,0 +1,26 @@
+{
+  "name": "gln-backend",
+  "version": "1.0.0",
+  "description": "coding-challenge",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeromerodrigo/coding-challenge.git"
+  },
+  "author": "Jerome Rodrigo <jeromerodrigo@gmail.com>",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jsonfile": "^5.0.0"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "verbose": true
+  }
+}
