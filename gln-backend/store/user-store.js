@@ -17,6 +17,21 @@ class UserStore {
         }
     }
 
+    createUser(user) {
+        const store = jsonfile.readFileSync(storePath);
+
+        user.id = store.users.length + 1;
+
+        const newStore = Object.assign({
+            users: [
+                ...store.users,
+                user
+            ]
+        }, store);
+
+        jsonfile.writeFileSync(storePath, newStore);
+    }
+
     getAllUsers() {
         const store = jsonfile.readFileSync(storePath);
 
@@ -30,11 +45,28 @@ class UserStore {
     }
 
     updateUser(id, user) {
+        const store = jsonfile.readFileSync(storePath);
 
+        const newStore = Object.assign({
+            users: [
+                ...store.users.filter(user => user.id !== id),
+                user
+            ]
+        }, store);
+
+        jsonfile.writeFileSync(storePath, newStore);
     }
 
     deleteUser(id) {
+        const store = jsonfile.readFileSync(storePath);
 
+        const newStore = Object.assign({
+            users: [
+                ...store.users.filter(user => user.id !== id)
+            ]
+        }, store);
+
+        jsonfile.writeFileSync(storePath, newStore);
     }
 
 }

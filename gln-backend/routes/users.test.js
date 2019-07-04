@@ -1,6 +1,7 @@
 const express = require('express');
 const request = require('supertest');
 const UsersApi = require('./users');
+const fs = require('fs');
 
 describe('user api tests', () => {
 
@@ -16,7 +17,6 @@ describe('user api tests', () => {
 
                 expect(res.status).toBe(200);
                 expect(res.body).toBeDefined();
-                expect(res.body.length).toBe(2);
 
                 done();
             });
@@ -59,6 +59,24 @@ describe('user api tests', () => {
         
         request(testApp)
             .delete("/users/1")
+            .expect(200)
+            .end((err, res) => {
+
+                expect(res.status).toBe(200);
+
+                done();
+            });
+    });
+
+    test('create user', done => {
+
+        const testUser = {
+            name: 'Test guy'
+        };
+        
+        request(testApp)
+            .post("/users")
+            .send(testUser)
             .expect(200)
             .end((err, res) => {
 

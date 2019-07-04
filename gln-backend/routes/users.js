@@ -10,11 +10,20 @@ class UsersApi {
         const router = express.Router({ strict: true });
 
         router.get("/users", this.getUsers.bind(this));
+        router.post("/users", this.createUser.bind(this));
         router.get("/users/:id", this.getUser.bind(this));
         router.put("/users/:id", this.updateUser.bind(this));
         router.delete("/users/:id", this.deleteUser.bind(this));
 
         return router;
+    }
+
+    createUser(req, res) {
+        const user = req.body;
+
+        store.createUser(user);
+
+        res.sendStatus(200);
     }
 
     getUsers(req, res) {
@@ -34,11 +43,20 @@ class UsersApi {
     }
 
     updateUser(req, res) {
-        res.sendStatus(501);
+        const id = req.params.id;
+        const user = req.body;
+
+        store.updateUser(Number.parseInt(id), user);
+
+        res.sendStatus(200);
     }
 
     deleteUser(req, res) {
-        res.sendStatus(501);
+        const id = req.params.id;
+
+        store.deleteUser(Number.parseInt(id));
+
+        res.sendStatus(200);
     }
 }
 
