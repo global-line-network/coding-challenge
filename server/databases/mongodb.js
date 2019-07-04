@@ -1,10 +1,12 @@
 const log = require('../helpers/logHelper');
+const config = require('config');
 // Set up mongoose connection
 const mongoose = require('mongoose');
 let dev_db_url = 'mongodb+srv://zworks:testPass@cluster0-4lww0.mongodb.net/test?retryWrites=true&w=majority';
 let mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
+const reconnectTimeout = config.get('database.data.reconnectTimeout');
 
 module.exports = () => {
   const db = mongoose.connection;

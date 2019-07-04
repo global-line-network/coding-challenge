@@ -26,9 +26,10 @@ export class UserComponent implements OnInit {
   }
 
   doneEditing(user) {
-    this.userService.update(user).subscribe((user: any) => {
+    delete user.preservedValue;
+    this.userService.update(user).subscribe((userResponse: any) => {
       user.isEditing = false;
-      delete user.preservedValue;
+      //Object.keys(user).map(key => (user[key] = userResponse[key]));
     });
   }
 
@@ -49,8 +50,14 @@ export class UserComponent implements OnInit {
     } else if ($event.type == 'save') {
       this.isAddUserVisible = false;
       this.userService.add($event.data).subscribe((response: any) => {
-        console.log(response);
+        this.userList.push(response);
       });
     }
+  }
+
+  remove(user, i) {
+    this.userService.remove(user).subscribe((response: any) => {
+      this.userList.splice(i, 1);
+    });
   }
 }

@@ -12,7 +12,7 @@
     <app-add-user (onEvent)="addUserEvent($event)"></app-add-user>
   </div>
   <div class="w-Flex z-FlexWrap z-HPadding2 z-UserList u-Top4">
-    <div class="_flexItem" *ngFor="let user of userList">
+    <div class="_flexItem" *ngFor="let user of userList; let i = index">
       <div class="c-User" [ngClass]="{ 'z-Editing': user.isEditing }">
         <span class="_avatar" [ngStyle]="{ 'background-image': 'url(' + user.avatar + ')' }"></span>
         <div class="_content">
@@ -32,7 +32,7 @@
         </div>
         <div class="_options z-Grey" *ngIf="!user.isEditing">
           <span class="_option z-Edit" (click)="enableEdit(user)"></span>
-          <span class="_option z-Delete" (click)="delete(user)"></span>
+          <span class="_option z-Delete" (click)="remove(user, i)"></span>
         </div>
         <div class="_options" *ngIf="user.isEditing">
           <span class="_option z-Save" (click)="doneEditing(user)"></span>

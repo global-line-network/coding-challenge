@@ -16,4 +16,7 @@ export class UserService {
   update(user) {
     return this.http.put(this.baseUrl + 'api/users/' + user._id, user);
   }
+  remove(user) {
+    return this.http.delete(this.baseUrl + 'api/users/' + user._id);
+  }
 }

@@ -20,7 +20,9 @@ export class AddUserComponent implements OnInit {
 
   save() {
     this.formData = new FormData();
-    this.formData.append('avatar', this.avatar, this.avatar.name);
+    if (this.avatar) {
+      this.formData.append('avatar', this.avatar, this.avatar.name);
+    }
     Object.keys(this.user).map(key => this.formData.append(key, this.user[key]));
     this.onEvent.emit({ type: 'save', data: this.formData });
   }

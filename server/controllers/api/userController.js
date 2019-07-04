@@ -1,4 +1,3 @@
-const { processGreeting } = require('../../services/indexService').homeService;
 const User = require('../../models/User');
 
 function all(req, res, next) {
@@ -18,24 +17,30 @@ function create(req, res) {
     avatar: req.file ? req.file.cloudStoragePublicUrl : '',
     email: req.body.email
   });
-
-  user.save(function(err) {
-    if (err) {
-      return next(err);
-    }
-    res.send('User Created successfully');
+  return new Promise(function(resolve, reject) {
+    user.save(function(err) {
+      if (err) {
+        return reject(next(err));
+      }
+      resolve(user);
+    });
   });
 }
 
 function update(req) {
-  console.log(req);
-  User.findByIdAndUpdate(req.params.id, { $set: req.body }, function(err, user) {
-    if (err) return next(err);
-    // res.send('User udpated.');
+  return new Promise(function(resolve, reject) {
+    User.findByIdAndUpdate(req.params.id, { $set: req.body }, function(err, user) {
+      if (err) return reject(next(err));
+      resolve(user);
+    });
   });
 }
 
-function remove(name) {}
+function remove(id) {
+  return User.findByIdAndRemove(id, function(err) {
+    if (err) return next(err);
+  });
+}
 
 module.exports = {
   all,
