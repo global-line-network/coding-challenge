@@ -14,19 +14,19 @@ class UsersApi {
     }
 
     getUsers(req, res) {
-
+        res.sendStatus(501);
     }
 
     getUser(req, res) {
-
+        res.sendStatus(501);
     }
 
     updateUser(req, res) {
-
+        res.sendStatus(501);
     }
 
     deleteUser(req, res) {
-
+        res.sendStatus(501);
     }
 }
 
