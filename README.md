@@ -1,27 +1,17 @@
-# Crud
+# Install dependencies
+
+In the project root folder, run `npm install` to install the dependencies, this will install all the dependencies for both front end and back end
+
+# Front end
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
+In the project root folder, run `ng serve` to run the angular front end
 
-## Development server
+## Back end
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Start the redis server (optional) by `redis-server` (in a separate terminal)
+2. In the project root folder, run `npm run start-server-dev` to start the Node/Express backend.
 
-## Code scaffolding
+## User CRUD
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The app will be accessible in `localhost:4200`
