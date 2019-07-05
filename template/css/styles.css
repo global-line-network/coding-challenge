@@ -1,0 +1,169 @@
+
+a#new-user{
+    border-radius: 12px
+}
+
+.user-info{
+    border: 1px solid #a09c9c;
+    border-radius: 8px;
+    position: relative;
+    padding: 10px 25px;
+}
+
+.user-info img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 1px solid #a09c9c;
+    object-fit: cover;
+}
+
+.user-info .user-name{
+    position: absolute;
+    top: 15px;
+    left: 135px;
+    font-size: 25px;
+}
+
+.user-info .user-date{
+    position: absolute;
+    top: 55px;
+    left: 135px;
+    font-size: 15px;
+    font-style: italic;
+}
+
+.user-info .txt-edit{
+    position: absolute;
+    left: 135px;
+    width: 55%;
+    display: none;
+}
+
+.user-info .txt-name{
+    top: 15px
+}
+
+.user-info .txt-date{
+    top: 55px
+}
+
+
+
+.user-info .confirm{
+    display: none;
+}
+
+.user-info .action, .user-info .confirm{
+    border-radius: 50%;
+    position: absolute;
+    right: 25px;    
+}
+
+.user-info .edit, .user-info .send{
+    top: 15px;
+}
+
+.user-info .delete, .user-info .cancel{
+    top: 60px;
+    width: 40px;
+}
+
+@media (max-width: 992px) {
+    
+    .user-info img{
+        width: 80px;
+        height: 80px;
+    }
+
+    .user-info .user-name{
+        font-size: 17px;
+        left: 120px;
+        top: 24px;       
+    }
+    
+    .user-info .user-date{
+        font-size: 12px;
+        top: 55px;
+        left: 120px;
+    }
+    
+    .user-info .txt-edit{
+        width: 50%;
+        height: 33px;
+        left: 110px;
+    }
+
+    .user-info .action, .user-info .confirm{
+        right: 10px;
+    }
+
+    .user-info .edit, .user-info .send{
+        top: 10px;
+    }
+    
+    .user-info .delete, .user-info .cancel{
+        top: 55px;
+    }
+    
+}
+
+
+@media (max-width: 768px) {
+    .user-info{
+        padding: 5px;
+    }
+    
+    .user-info img{
+        width: 60px;
+        height: 60px;
+    }
+    
+    .user-info .user-name{
+        font-size: 14px;
+        left: 70px;
+        top: 18px;
+    }
+    
+    .user-info .user-date{
+        font-size: 12px;
+        left: 70px;
+        top: 40px;
+    }
+    
+    .user-info .txt-edit{
+        width: 50%;
+        height: 33px;
+        left: 70px;
+    }
+    
+    .user-info .txt-name{
+        top: 2px;
+    }
+    
+    .user-info .txt-date{
+        top: 35px;
+    }
+
+
+    .user-info .action, .user-info .confirm{
+        right: 3px;
+    }
+
+    .user-info .edit, .user-info .send{
+        top: 2px;
+        padding: 3px;
+        width: 30px;
+        height: 30px;
+    }
+    
+    .user-info .delete, .user-info .cancel{
+        top: 35px;
+        padding: 3px;
+        width: 30px;
+        height: 30px;
+    }
+    
+  }
+  
+  
