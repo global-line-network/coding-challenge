@@ -4,6 +4,7 @@
     Author     : Mohammad
 --%>
 
+<%@page import="Controller.UserController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,137 +48,42 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="">User's Name:</label>
-                            <input type="text" class="form-control" name="txt_user_name">
-                        </div>
-                        <div class="form-group">
-                            <label for="">User's Date:</label>
-                            <input type="text" class="form-control" name="txt_user_date">
-                        </div>
+                        <form id="userForm" method="POST" action="#" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="">User's Name:</label>
+                                <input type="text" class="form-control" id="txt_user_name" name="txt_user_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="">User's Date:</label>
+                                <input type="date" class="form-control" id="txt_user_date" name="txt_user_date">
+                            </div>
+                            <!-- COMPONENT START -->
+                            <div class="form-group">
+                                <div class="input-group input-file" name="file">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default btn-choose" type="button">Avatar</button>
+                                    </span> <input type="text" class="form-control"
+                                        placeholder='Choose a file...' /> <span class="input-group-btn">
+                                        <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                                    </span>
+                                </div>
+                            </div>                 
+                        </form>                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Add To DB...</button>
+                        <button type="button" class="btn btn-primary" id="uploadBtn">Upload and add to DB...</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col">
-                <div class="user-info mt-4">
-                    <img src="${pageContext.request.contextPath}/images/1.jpg" alt="">
-
-                    <h2 class="user-name">Ryan Graves</h2>
-                    <input type="text" name="txt_name" value="Ryan Graves" class="form-control txt-edit txt-name">
-                    <h4 class="user-date">15-02-2019</h4>
-                    <input type="text" name="txt_date" value="15-02-2019" class="form-control txt-edit txt-date">
-
-                    <!-- action buttons -->
-                    <a href="#" class="btn btn-outline-secondary action edit"><i class="fa fa-pencil-alt"></i></a>
-                    <a href="#" class="btn btn-outline-secondary action delete"><i class="fa fa-trash-alt"></i></a>
-
-                    <!-- confirm buttons -->
-                    <a href="#" class="btn btn-success text-white confirm send"><i class="fa fa-check"></i></a>
-                    <a href="#" class="btn btn-danger text-white confirm cancel"><i class="fa fa-times"></i></a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="user-info mt-4">
-                    <img src="${pageContext.request.contextPath}/images/2.jpg" alt="">
-
-                    <h2 class="user-name">Ryan Graves</h2>
-                    <input type="text" name="txt_name" value="Ryan Graves" class="form-control txt-edit txt-name">
-                    <h4 class="user-date">15-02-2019</h4>
-                    <input type="text" name="txt_date" value="15-02-2019" class="form-control txt-edit txt-date">
-
-                    <!-- action buttons -->
-                    <a href="#" class="btn btn-outline-secondary action edit"><i class="fa fa-pencil-alt"></i></a>
-                    <a href="#" class="btn btn-outline-secondary action delete"><i class="fa fa-trash-alt"></i></a>
-
-                    <!-- confirm buttons -->
-                    <a href="#" class="btn btn-success text-white confirm send"><i class="fa fa-check"></i></a>
-                    <a href="#" class="btn btn-danger text-white confirm cancel"><i class="fa fa-times"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="user-info mt-4">
-                    <img src="${pageContext.request.contextPath}/images/3.jpg" alt="">
-
-                    <h2 class="user-name">Ryan Graves</h2>
-                    <input type="text" name="txt_name" value="Ryan Graves" class="form-control txt-edit txt-name">
-                    <h4 class="user-date">15-02-2019</h4>
-                    <input type="text" name="txt_date" value="15-02-2019" class="form-control txt-edit txt-date">
-
-                    <!-- action buttons -->
-                    <a href="#" class="btn btn-outline-secondary action edit"><i class="fa fa-pencil-alt"></i></a>
-                    <a href="#" class="btn btn-outline-secondary action delete"><i class="fa fa-trash-alt"></i></a>
-
-                    <!-- confirm buttons -->
-                    <a href="#" class="btn btn-success text-white confirm send"><i class="fa fa-check"></i></a>
-                    <a href="#" class="btn btn-danger text-white confirm cancel"><i class="fa fa-times"></i></a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="user-info mt-4">
-                    <img src="${pageContext.request.contextPath}/images/4.jpg" alt="">
-
-                    <h2 class="user-name">Ryan Graves</h2>
-                    <input type="text" name="txt_name" value="Ryan Graves" class="form-control txt-edit txt-name">
-                    <h4 class="user-date">15-02-2019</h4>
-                    <input type="text" name="txt_date" value="15-02-2019" class="form-control txt-edit txt-date">
-
-                    <!-- action buttons -->
-                    <a href="#" class="btn btn-outline-secondary action edit"><i class="fa fa-pencil-alt"></i></a>
-                    <a href="#" class="btn btn-outline-secondary action delete"><i class="fa fa-trash-alt"></i></a>
-
-                    <!-- confirm buttons -->
-                    <a href="#" class="btn btn-success text-white confirm send"><i class="fa fa-check"></i></a>
-                    <a href="#" class="btn btn-danger text-white confirm cancel"><i class="fa fa-times"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="user-info mt-4">
-                    <img src="${pageContext.request.contextPath}/images/5.jpg" alt="">
-
-                    <h2 class="user-name">Ryan Graves</h2>
-                    <input type="text" name="txt_name" value="Ryan Graves" class="form-control txt-edit txt-name">
-                    <h4 class="user-date">15-02-2019</h4>
-                    <input type="text" name="txt_date" value="15-02-2019" class="form-control txt-edit txt-date">
-
-                    <!-- action buttons -->
-                    <a href="#" class="btn btn-outline-secondary action edit"><i class="fa fa-pencil-alt"></i></a>
-                    <a href="#" class="btn btn-outline-secondary action delete"><i class="fa fa-trash-alt"></i></a>
-
-                    <!-- confirm buttons -->
-                    <a href="#" class="btn btn-success text-white confirm send"><i class="fa fa-check"></i></a>
-                    <a href="#" class="btn btn-danger text-white confirm cancel"><i class="fa fa-times"></i></a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="user-info mt-4">
-                    <img src="${pageContext.request.contextPath}/images/7.jpg" alt="">
-
-                    <h2 class="user-name">Ryan Graves</h2>
-                    <input type="text" name="txt_name" value="Ryan Graves" class="form-control txt-edit txt-name">
-                    <h4 class="user-date">15-02-2019</h4>
-                    <input type="text" name="txt_date" value="15-02-2019" class="form-control txt-edit txt-date">
-
-                    <!-- action buttons -->
-                    <a href="#" class="btn btn-outline-secondary action edit"><i class="fa fa-pencil-alt"></i></a>
-                    <a href="#" class="btn btn-outline-secondary action delete"><i class="fa fa-trash-alt"></i></a>
-
-                    <!-- confirm buttons -->
-                    <a href="#" class="btn btn-success text-white confirm send"><i class="fa fa-check"></i></a>
-                    <a href="#" class="btn btn-danger text-white confirm cancel"><i class="fa fa-times"></i></a>
-                </div>
-            </div>
-        </div>
+        
+        <% UserController uc = new UserController(); %>
+        <%= uc.getUsersView() %>
+              
+        
+        
     </div>
 
 

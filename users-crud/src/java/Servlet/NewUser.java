@@ -5,12 +5,24 @@
  */
 package Servlet;
 
+import Controller.UserController;
+import POJO.User;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -29,19 +41,10 @@ public class NewUser extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NewUser</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet NewUser at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        //response.setContentType("text/html;charset=UTF-8");
+        
+        
+                
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,6 +74,44 @@ public class NewUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        response.setContentType("text/plain");
+        //request.getContextPath()
+        //final String UPLOAD_DIRECTORY = request.getContextPath() + "/images";
+        final String UPLOAD_DIRECTORY = "D:\\javaee\\project\\fork\\coding-challenge\\users-crud\\web\\images";
+        List<String> fields = new ArrayList<>();
+        String avatarName = "";
+        if(ServletFileUpload.isMultipartContent(request)){
+            try {
+                List<FileItem> multiparts = new ServletFileUpload(
+                                         new DiskFileItemFactory()).parseRequest(request);
+                for(FileItem item : multiparts){
+                    if(!item.isFormField()){
+                        File fileSaveDir = new File(UPLOAD_DIRECTORY);
+                        if (!fileSaveDir.exists()) {
+                            fileSaveDir.mkdir();
+                        }
+                        avatarName = new File(item.getName()).getName();
+                        item.write(new File(UPLOAD_DIRECTORY + File.separator + avatarName));
+                    }
+                    else{
+                        fields.add(item.getString());
+                    }
+                }
+            } catch (Exception e) {
+                // exception handling
+            }
+            
+            String userName = fields.get(0);
+            String userDate = fields.get(1);
+            User user = new User(0, userName, userDate, avatarName);
+
+            UserController userController = new UserController();
+            boolean addToDB = userController.createUser(user);
+             
+            PrintWriter out = response.getWriter();
+            out.print("{\"status\":" + addToDB + ", \"new-user\": { \"id\": \"" + user.getId() + "\", \"name\": \"" + user.getName() + "\", \"date\": \"" + user.getDate() + "\", \"image\": \"" + user.getImage() + "\" }}");
+        }       
+
     }
 
     /**
