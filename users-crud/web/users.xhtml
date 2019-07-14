@@ -55,8 +55,7 @@
                             </f:view>                                               
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>                            
                         </div>
                     </div>
                 </div>
@@ -77,7 +76,7 @@
 
                                 <!-- action buttons -->
                                 <a href="#" class="btn btn-outline-secondary action edit"><i class="fa fa-pencil-alt"></i></a>  
-                                <a href="#" class="btn btn-outline-secondary action delete"><i class="fa fa-trash-alt"></i></a>
+                                <h:commandLink action="#{userController.delete(user)}" class="btn btn-outline-secondary action delete"><i class="fa fa-trash-alt"></i></h:commandLink>
 
                                 <!-- confirm buttons -->
                                 <a href="#" class="btn btn-success text-white confirm send"><i class="fa fa-check"></i></a>  
