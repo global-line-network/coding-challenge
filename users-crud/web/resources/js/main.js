@@ -1,7 +1,7 @@
 $(function(){
     
     // On Window.Load
-    var url = "http://localhost:8080/users-crud/api/users";
+    var url = "/users-crud/api/users";
     $.ajax({
        dataType: 'json',
        url: url,
@@ -119,5 +119,23 @@ $(function(){
                 }
             });                
         }
+    });
+    
+    
+    $("button.test").on("click", function(){
+        $.ajax({
+            url: url,
+            dataType: "json",
+            type: "POST",
+            data: {
+                id: 3,
+                name: "aliii",
+                date: "adasda",
+                image: "werwer"
+            },
+            success: function(data){
+                alert(data.name);
+            }
+        });
     });
 });
