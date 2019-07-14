@@ -62,25 +62,23 @@
                 <c:forEach var="user" items="#{userController.all()}">
                     <div class="col-6">
                     <f:view>
-                        <h:form>
-                            
-                                <div class="user-info mt-4">
-                                    <h:graphicImage library="images" name="1.jpg" />
+                        <h:form>                            
+                            <div class="user-info mt-4">
+                                <h:graphicImage library="images" name="#{user.image}" />
 
-                                    <h2 class="user-name">#{user.name}</h2>
-                                    <h:inputText value="#{user.name}" class="form-control txt-edit txt-name" />
-                                    <h4 class="user-date">#{user.date}</h4>
-                                    <h:inputText value="#{user.date}" class="form-control txt-edit txt-date" />
+                                <h2 class="user-name">#{user.name}</h2>
+                                <h:inputText value="#{user.name}" class="form-control txt-edit txt-name" />
+                                <h4 class="user-date">#{user.date}</h4>
+                                <h:inputText value="#{user.date}" class="form-control txt-edit txt-date" />
 
-                                    <!-- action buttons -->
-                                    <a href="#" class="btn btn-outline-secondary action edit"><i class="fa fa-pencil-alt"></i></a>  
-                                    <a href="#" class="btn btn-outline-secondary action delete"><i class="fa fa-trash-alt"></i></a>
+                                <!-- action buttons -->
+                                <a href="#" class="btn btn-outline-secondary action edit"><i class="fa fa-pencil-alt"></i></a>  
+                                <a href="#" class="btn btn-outline-secondary action delete"><i class="fa fa-trash-alt"></i></a>
 
-                                    <!-- confirm buttons -->
-                                    <a href="#" class="btn btn-success text-white confirm send"><i class="fa fa-check"></i></a>  
-                                    <a href="#" class="btn btn-danger text-white confirm cancel"><i class="fa fa-times"></i></a>  
-                                </div>
-                            
+                                <!-- confirm buttons -->
+                                <a href="#" class="btn btn-success text-white confirm send"><i class="fa fa-check"></i></a>  
+                                <a href="#" class="btn btn-danger text-white confirm cancel"><i class="fa fa-times"></i></a>  
+                            </div>                            
                         </h:form>
                     </f:view>
                         </div>
