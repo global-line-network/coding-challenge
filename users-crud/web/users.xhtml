@@ -43,16 +43,20 @@
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel>User's Image:</h:outputLabel>
-                                        <h:inputText value="#{userController.image}" class="form-control" />    
+                                        <div class="input-group input-file" name="file">
+                                            <h:inputText class="form-control" value="#{userController.image}" />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                                            </span>
+                                        </div>
                                     </div>
-                                    
+                                    <h:commandButton action="#{userController.create()}" class="btn btn-primary" value="Upload and add to DB..." />
                                 </h:form>
-                            </f:view>
-                                               
+                            </f:view>                                               
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="uploadBtn">Upload and add to DB...</button>
+                            
                         </div>
                     </div>
                 </div>
@@ -83,8 +87,7 @@
                     </f:view>
                         </div>
                 </c:forEach>
-            </div>
-                
+            </div>                
         </div> 
         
         <h:outputScript library="js" name="jquery.js" />

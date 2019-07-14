@@ -8,6 +8,7 @@ package controllers;
 import entities.Users;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import sessions.UsersFacade;
@@ -90,7 +91,11 @@ public class UserController {
         user.setDate(date);
         user.setImage(image);
         
-        uf.create(user);
+        try{
+            uf.create(user);    
+        }catch(Exception ex){
+            throw new EJBException(ex.toString());
+        }        
     }
     
     public void update(){
