@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Users</title>
         <h:outputStylesheet library="css" name="all.css" />
@@ -32,7 +33,7 @@
                         </div>
                         <div class="modal-body">
                             <f:view>
-                                <h:form>
+                                <form id="sampleUploadFrm" method="POST" action="#" enctype="multipart/form-data"> 
                                     <div class="form-group">
                                         <h:outputLabel>User's Name:</h:outputLabel>
                                         <h:inputText value="#{userController.name}" class="form-control" />    
@@ -42,19 +43,19 @@
                                         <h:inputText value="#{userController.date}" class="form-control" />    
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel>User's Image:</h:outputLabel>
+                                        <h:outputLabel>User's Image:</h:outputLabel>                                        
                                         <div class="input-group input-file" name="file">
-                                            <h:inputText class="form-control" value="#{userController.image}" />
-                                            <span class="input-group-btn">
+                                            <input type="text" class="form-control"
+                                                placeholder='Choose a file...' /> <span class="input-group-btn">
                                                 <button class="btn btn-warning btn-reset" type="button">Reset</button>
                                             </span>
                                         </div>
                                     </div>
-                                    <h:commandButton action="#{userController.create()}" class="btn btn-primary" value="Upload and add to DB..." />
-                                </h:form>
+                                </form>
                             </f:view>                                               
                         </div>
                         <div class="modal-footer">
+                            <button type="button" class="btn btn-primary pull-right" id="uploadBtn">Submit</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>                            
                         </div>
                     </div>
@@ -62,32 +63,32 @@
             </div>
             
             <div class="row" id="users">
-                <c:forEach var="user" items="#{userController.all()}">
+                <ui:repeat value="#{userController.all()}" var="user">
                     <div class="col-6">
-                    <f:view>
-                        <h:form>                            
-                            <div class="user-info mt-4">
-                                <h:graphicImage library="images" name="#{user.image}" />
+                        <f:view>
+                            <h:form>                            
+                                <div class="user-info mt-4">
+                                    <h:graphicImage library="images" name="#{user.image}" />
 
-                                <h2 class="user-name">#{user.name}</h2>
-                                <h:inputText value="#{user.name}" class="form-control txt-edit txt-name" />
-                                <h4 class="user-date">#{user.date}</h4>
-                                <h:inputText value="#{user.date}" class="form-control txt-edit txt-date" />
+                                    <h2 class="user-name">#{user.name}</h2>
+                                    <h:inputText value="${userController.selectedUser.name}" class="form-control txt-edit txt-name" />
+                                    <h4 class="user-date">#{user.date}</h4>
+                                    <h:inputText value="${userController.selectedUser.date}" class="form-control txt-edit txt-date" />
 
-                                <!-- action buttons -->
-                                <a href="#" class="btn btn-outline-secondary action edit"><i class="fa fa-pencil-alt"></i></a>  
-                                <h:commandLink action="#{userController.delete(user)}" class="btn btn-outline-secondary action delete"><i class="fa fa-trash-alt"></i></h:commandLink>
-
-                                <!-- confirm buttons -->
-                                <a href="#" class="btn btn-success text-white confirm send"><i class="fa fa-check"></i></a>  
-                                <a href="#" class="btn btn-danger text-white confirm cancel"><i class="fa fa-times"></i></a>  
-                            </div>                            
-                        </h:form>
-                    </f:view>
-                        </div>
-                </c:forEach>
+                                    <!-- action buttons -->
+                                    <a data-id="${user.id}" href="#" class="btn btn-outline-secondary action edit"><i class="fa fa-pencil-alt"></i></a>  
+                                    <a data-id="${user.id}" href="#" class="btn btn-outline-secondary action delete"><i class="fa fa-trash-alt"></i></a>                                    
+                                    
+                                    <!-- confirm buttons -->
+                                    <a data-id="${user.id}" href="#" class="btn btn-success text-white confirm send"><i class="fa fa-check"></i></a>  
+                                    <a href="#" class="btn btn-danger text-white confirm cancel"><i class="fa fa-times"></i></a>  
+                                </div>                            
+                            </h:form>
+                        </f:view>
+                    </div>
+                </ui:repeat>
             </div>                
-        </div> 
+        </div>                        
         
         <h:outputScript library="js" name="jquery.js" />
         <h:outputScript library="js" name="bootstrap.js" />

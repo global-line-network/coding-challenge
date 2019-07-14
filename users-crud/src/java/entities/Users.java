@@ -69,6 +69,11 @@ public class Users implements Serializable {
         this.date = date;
         this.image = image;
     }
+    
+    public Users(String name, String date) {
+        this.name = name;
+        this.date = date;        
+    }
 
     public Integer getId() {
         return id;

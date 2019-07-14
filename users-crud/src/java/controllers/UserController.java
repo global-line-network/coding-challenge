@@ -25,7 +25,7 @@ public class UserController {
     @EJB
     private UsersFacade uf;
     
-    private Users user;
+    private final Users user;
     private Users selectedUser;
     
     private int id;
@@ -43,7 +43,7 @@ public class UserController {
     }
 
     public void setSelectedUser(Users selectedUser) {
-        this.selectedUser = selectedUser;
+        this.selectedUser = selectedUser; 
     }
 
     public int getId() {
@@ -104,6 +104,9 @@ public class UserController {
     
     public void delete(Users user){
         uf.remove(user);       
+    }
+
+    public String getData() {
+        return selectedUser.getName();
     }    
-    
 }
