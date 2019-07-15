@@ -20,7 +20,7 @@ Steps of this ASSESSMENT:
   
   
 REST APIs can be reched by:
-  GET all users: /api/users
-  GET a user by id: /api/users/id
-  DELETE a user by id: /api/users/id
-  PUT a user by id: /api/users/id/update/name/date
+  1. GET all users: /api/users
+  2. GET a user by id: /api/users/id
+  3. DELETE a user by id: /api/users/id
+  4. PUT a user by id: /api/users/id/update/name/date
