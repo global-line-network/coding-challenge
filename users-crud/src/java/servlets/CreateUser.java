@@ -37,7 +37,8 @@ public class CreateUser extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
-        final String UPLOAD_DIRECTORY =  "D:\\javaee\\project\\fork\\coding-challenge\\users-crud\\web\\resources\\images";
+        //final String UPLOAD_DIRECTORY =  "D:\\javaee\\project\\fork\\coding-challenge\\users-crud\\web\\resources\\images";
+        final String UPLOAD_DIRECTORY =  request.getServletContext().getRealPath("\\resources\\images");
         List<String> fields = new ArrayList<>();
         String name = "";
         if(ServletFileUpload.isMultipartContent(request)){
@@ -62,7 +63,7 @@ public class CreateUser extends HttpServlet {
             uf.create(user);
             PrintWriter out = response.getWriter();
             out.print("{\"status\": 1}");
-        }
+        }        
     }
 
     /**

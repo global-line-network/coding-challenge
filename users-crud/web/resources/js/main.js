@@ -162,6 +162,7 @@ $(function(){
             success : function(msg) {
                 var response = JSON.parse(msg);
                 var status = response.status;
+                //console.log(msg);
                 if (status === 1) {
                     location.reload();
                 } else {
