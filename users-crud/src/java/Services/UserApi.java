@@ -8,10 +8,9 @@ package Services;
 import entities.Users;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import javax.ws.rs.core.Response;
 import sessions.UsersFacade;
 
 /**
@@ -49,27 +48,27 @@ public class UserApi {
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Users delete(@PathParam("id") int id){
+    public Response delete(@PathParam("id") int id){
         Users user = uf.find(id);
         if(user != null){
             uf.remove(user);
-            return user;
+            return Response.status(Response.Status.NO_CONTENT).build();
         }
-        return null;
+        return Response.status(Response.Status.NOT_FOUND).build();
     }    
     
     @PUT
     @Path("/{id}/update/{name}/{date}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Users update(@PathParam("id") int id, @PathParam("name") String name, @PathParam("date") String date){
+    public Response update(@PathParam("id") int id, @PathParam("name") String name, @PathParam("date") String date){
         Users user = uf.find(id);
         if(user != null){
             user.setName(name);
             user.setDate(date);
             uf.edit(user);
-            return user;
+            return Response.ok(user).build();
         }
-        return null;
+        return Response.status(Response.Status.NOT_FOUND).build();
     }
     
 }
