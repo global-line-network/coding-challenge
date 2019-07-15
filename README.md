@@ -17,3 +17,10 @@ Steps of this ASSESSMENT:
   8. Building our View
   9. Creating our rest apis by JAX-RS
   10. Running our app
+  
+  
+REST APIs can be reched by:
+  GET all users: /api/users
+  GET a user by id: /api/users/id
+  DELETE a user by id: /api/users/id
+  PUT a user by id: /api/users/id/update/name/date
