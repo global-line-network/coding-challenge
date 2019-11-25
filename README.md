@@ -1,49 +1,26 @@
-
-<p align="center">
-  <img src="https://globalline.my/static/logo.png" width="200">
-</p>
-
-
-Thanks for taking the time to do our front-end / full-stack practical coding challenge.
-
-The objective of this challenge is to evaluate your domain knowledge in front-end / full-stack development: code organization, style and best practices.
-
-# Overview:
-The main challenge will be to build a simple user management tool that will perform basic CRUD operations on a user. Please use mockups as a reference 
-about look of the application. There are no business rules & guidelines other than to show us what you’re truly made of. It can be as simple or as complex as you want it to be.
-
-### Prerequisites
-There are none :) Our main solutions stack include but not limited to Kotlin, Java, AngularJS, Flutter, Spring...  
-Feel free to use any languages and technologies you are comfortable with.
-
-## Mockups
-<p align="center">
-  <img src="https://globalline.my/static/1.jpg" width="250">
-  <img src="https://globalline.my/static/2.jpg" width="250">
-  <img src="https://globalline.my/static/3.jpg" width="250">
-</p>
-
-### Front-end:
-- For API please use https://reqres.in/.
-
-### Back-end:
-- The API should be similar to https://reqres.in/, performing basic operations for user.
-
-_We'll be happy if you cover application with tests._
-
-### Submission Guidelines
-- Please fork the repo and then submit a Pull Request when you are done.
-- Instructions must be provided to run the application, install any dependencies, and any other information needed.
-- Please use version control and make sure we can see the history of how you went about it, rather than just uploading the complete project to GitHub.
-
-## Questions? ###
-Please feel free to reach out and ask any questions while you are working on a solution.  
-Send your questions to [tech@chimaera.my](mailto:tech@chimaera.my).  
+Software:
+  Java JDK
+  Netbeans 8.1
+  Glassfish Server 4.1
+  xampp 3.2.2: It will be our database server that contains MySQL DataBase Management System
+  MySQL connector
   
   
-Good luck!
-
-
-
-
+Steps of this ASSESSMENT:
+  1. Creating our connection Resources
+  2. Creating our project
+  3. Creating our entity classes
+  4. Creating our Session Beans (JPA)
+  5. Creating our views
+  6. Creating our JSF Managed Bean
+  7. Creating our CRUD methods
+  8. Building our View
+  9. Creating our rest apis by JAX-RS
+  10. Running our app
   
+  
+REST APIs can be reched by:
+  1. GET all users: /api/users
+  2. GET a user by id: /api/users/id
+  3. DELETE a user by id: /api/users/id
+  4. PUT a user by id: /api/users/id/update/name/date
