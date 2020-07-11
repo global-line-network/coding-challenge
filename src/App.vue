@@ -34,8 +34,6 @@ export default {
 
   @media (min-width: $media-desktop) {
     padding: 3em 5em;
-    // display: flex;
-    // justify-content: center;
   }
 }
 </style>
