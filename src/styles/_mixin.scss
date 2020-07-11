@@ -1,0 +1,11 @@
+// Navbar
+@mixin nav($margin-top, $padding-left) {
+    padding-left: $padding-left;
+    margin-top: $margin-top;
+}
+@mixin nav-brand-img($min-width, $max-width, $height) {
+    min-width: $min-width;
+    max-width: $max-width;
+    height: $height;
+}
+// !-- Navbar --!
