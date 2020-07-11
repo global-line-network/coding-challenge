@@ -1,23 +1,26 @@
 <template>
   <div id="app">
-    
+    <Main />
   </div>
 </template>
 
-
 <script>
-import Users from "./components/Users";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+// main screen container
+import Main from "./screens/Main/index";
 
 export default {
   name: "App",
   components: {
-
-  },
-  data() {}
+    Main
+  }
 };
 </script>
 
-<style>
+<style lang="scss">
+@import './styles/library';
+
 * {
   padding: 0;
   margin: 0;
@@ -25,5 +28,14 @@ export default {
 }
 
 #app {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+
+  @media (min-width: $media-desktop) {
+    padding: 3em 5em;
+    // display: flex;
+    // justify-content: center;
+  }
 }
 </style>
