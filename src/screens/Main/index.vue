@@ -1,8 +1,10 @@
 <template>
   <div class="container-main">
     <NavBar />
-    <h1 class="mt-5">{{pageTitle}}</h1>
-    <Users />
+    <div class="container-body">
+      <h1>User Accounts</h1>
+      <Users />
+    </div>
   </div>
 </template>
 
@@ -14,11 +16,6 @@ import Users from "../../components/Users/index";
 
 export default {
   name: "Main",
-  data: () => {
-    return {
-      pageTitle: "User Accounts"
-    };
-  },
   components: {
     NavBar,
     Users
