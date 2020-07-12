@@ -1,9 +1,6 @@
 <template>
   <div class="container-users">
-    <button class="btn btn-primary btn-user-create">
-      <i class="fa fa-plus" aria-hidden="true"></i>
-      <span>Create User</span>
-    </button>
+    <UserCard />
   </div>
 </template>
 
@@ -11,8 +8,13 @@
 import { fetchUsers } from "../../api/users";
 import "./style.scss";
 
+import UserCard from "./UserCard";
+
 export default {
   name: "Users",
+  components: {
+    UserCard
+  },
   methods: {
     getUsers: async () => {
       let users = await fetchUsers();
