@@ -16,7 +16,7 @@ export default {
     UserCard
   },
   methods: {
-    getUsers: async () => await fetchUsers()
+    getUsers: () => fetchUsers()
   },
   data() {
     return {
