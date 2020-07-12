@@ -1,5 +1,5 @@
 <template>
-  <div class="container-user-card row">
+  <div class="container-user-card row" v-lazy-container="{selector: 'img', loading: 'https://www.jettools.com/images/animated_spinner.gif'}">
     <div class="container-user-create">
       <button class="btn btn-primary btn-user-create">
         <font-awesome-icon :icon="['fas', 'plus']" />
@@ -12,7 +12,7 @@
         <div class="card-user-img">
           <img
             class="user-card-img-top"
-            v-bind:src="user.avatar"
+            v-bind:data-src="user.avatar"
             v-bind:alt="`${user.first_name} ${user.last_name}`"
           />
         </div>
