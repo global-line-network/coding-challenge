@@ -1,16 +1,109 @@
-.container-users {
-  & .btn-user-create {
-    width: 150px;
-    height: 50px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 30px;
+@import "../../styles//library";
 
-    & span {
-      font-size: 18px;
-      font-weight: 600;
+.container-users {
+}
+
+.container-user-card {
+  display: flex;
+
+  @media (min-width: $media-desktop) {
+    & {
+      display: flex;
+      justify-content: flex-start;
+      position: absolute;
+      width: 80%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: $media-tablet) {
+      display: flex;
+      justify-content: center;
+  }
+
+  & .container-user-create {
+    width: 100%;
+    padding-left: 15px;
+
+    & .btn-user-create {
+      width: 150px;
+      height: 50px;
+      border-radius: 15px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 30px;
+      box-shadow: none;
+
+      & span {
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  & .card {
+    margin-top: 30px;
+    padding: 0;
+    margin: 15px;
+    min-width: 280px;
+    max-width: 280px;
+    border-radius: 10px;
+    border: none;
+  }
+
+  & .card-body {
+    display: flex;
+    align-items: center;
+    max-height: 100px;
+    position: relative;
+    border-radius: 10px;
+    border: solid 1px #979797;
+    padding: 10px;
+
+    & .card-user-img {
+      flex: 1;
+
+      & .user-card-img-top {
+        border-radius: 50%;
+        max-width: 55px;
+      }
+    }
+
+    & .card-user-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex: 2;
+    }
+
+    & .card-user-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: space-around;
+      justify-content: space-around;
+      height: 100%;
+
+      & button {
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #121212;
+        border: solid 1px #a0a0a0;
+        font-size: 16px;
+
+        &:nth-child(2) {
+          margin-top: 5px;
+        }
+
+        &:hover {
+          color: rgb(237, 26, 59);
+        }
+      }
     }
   }
 }
