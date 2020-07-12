@@ -27,10 +27,12 @@ export default {
   box-sizing: border-box;
 }
 
+
 #app {
   padding: 0;
   margin: 0;
   width: 100%;
+  overflow-x: hidden;
 
   @media (min-width: $media-desktop) {
     padding: 3em 5em;
