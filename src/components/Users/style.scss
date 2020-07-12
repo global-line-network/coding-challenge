@@ -4,7 +4,9 @@
 }
 
 .container-user-card {
-  display: flex;
+  display: flex !important;
+  align-items: space-around !important;
+  justify-content: space-around !important;
 
   @media (min-width: $media-desktop) {
     & {
@@ -18,13 +20,14 @@
   }
 
   @media (max-width: $media-tablet) {
-      display: flex;
-      justify-content: center;
+    display: flex;
+    justify-content: center;
   }
 
   & .container-user-create {
     width: 100%;
     padding-left: 15px;
+    margin-bottom: 15px;
 
     & .btn-user-create {
       width: 150px;
@@ -46,11 +49,14 @@
   & .card {
     margin-top: 30px;
     padding: 0;
-    margin: 15px;
     min-width: 280px;
     max-width: 280px;
     border-radius: 10px;
     border: none;
+  }
+
+  & i {
+    width: 280px;
   }
 
   & .card-body {
