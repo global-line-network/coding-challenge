@@ -1,10 +1,11 @@
 import Vue from "vue";
 import App from "./App.vue";
 
+import VueLazyLoad from "vue-lazyload";
+
 // -- fontawesome --
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-// import { faSpinner } from '@fortawesome/free-regular-svg-icons';
 import {
   faTrash,
   faPencilAlt,
@@ -14,6 +15,10 @@ import {
 library.add(faTrash, faPencilAlt, faPlus);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 // !-- fontawesome --!
+
+// -- lazyload --
+Vue.use(VueLazyLoad);
+// !-- lazyload --!
 
 Vue.config.productionTip = false;
 
