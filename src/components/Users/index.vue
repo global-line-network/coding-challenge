@@ -1,6 +1,6 @@
 <template>
   <div class="container-users">
-    <UserCard />
+    <UserCard :userList="userList" />
   </div>
 </template>
 
@@ -16,10 +16,16 @@ export default {
     UserCard
   },
   methods: {
-    getUsers: async () => {
-      let users = await fetchUsers();
-      console.log(users);
-    }
+    getUsers: async () => await fetchUsers()
+  },
+  data() {
+    return {
+      userList: []
+    };
+  },
+  async mounted() {
+    let userData = await this.getUsers();
+    this.userList = userData.data;
   }
 };
 </script>
