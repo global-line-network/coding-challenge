@@ -1,0 +1,36 @@
+.vm--container {
+  height: 90vh;
+  min-width: 100%;
+
+  & .vm--modal {
+    position: absolute;
+    background: #fff;
+    border-radius: 10px;
+    left: 50% !important;
+    top: 10% !important;
+    transform: translateX(-50%);
+    padding: 10px;
+
+    & header {
+      & button {
+        box-shadow: none;
+        border-radius: 50%;
+        width: 30px;
+        width: 30px;
+        position: absolute;
+        right: 8px;
+        top: 8px;
+      }
+    }
+
+    & .container-user-form {
+      & .input-group-prepend {
+        margin-bottom: 10px;
+
+        & span {
+          width: 102px;
+        }
+      }
+    }
+  }
+}
