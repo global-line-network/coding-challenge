@@ -51,6 +51,7 @@
     padding: 0;
     min-width: 280px;
     max-width: 280px;
+    max-height: 280px;
     border-radius: 10px;
     border: none;
   }
@@ -82,6 +83,31 @@
       flex-direction: column;
       align-items: flex-start;
       flex: 2;
+      height: 100%;
+      padding: 10px 0 0 0;
+
+      & input {
+        border: none;
+        max-width: 140px;
+        max-height: 24px;
+        font-weight: 900;
+        outline: none;
+        border-bottom: 2px solid rgba(79, 166, 237, 0.5);
+
+        &:disabled {
+          background: transparent;
+          color: #000;
+          border-bottom: none;
+        }
+
+        &:focus {
+          border-bottom: 2px solid rgb(79, 166, 237);
+        }
+
+        &:last-child {
+          font-size: 12px;
+        }
+      }
     }
 
     & .card-user-actions {
@@ -90,7 +116,7 @@
       align-items: space-around;
       justify-content: space-around;
       height: 100%;
-
+      
       & button {
         border-radius: 50%;
         width: 30px;
@@ -101,6 +127,7 @@
         color: #121212;
         border: solid 1px #a0a0a0;
         font-size: 16px;
+        box-shadow: none;
 
         &:nth-child(2) {
           margin-top: 5px;
