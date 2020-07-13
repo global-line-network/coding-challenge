@@ -1,7 +1,22 @@
 <template>
-  <div class="container-user-card row" v-lazy-container="{selector: 'img', loading: 'https://www.jettools.com/images/animated_spinner.gif'}">
+  <div
+    class="container-user-card row"
+    v-lazy-container="{selector: 'img', loading: 'https://www.jettools.com/images/animated_spinner.gif'}"
+  >
+    <!-- modal -->
+    <ModalContent>
+      <template v-slot:modal-header>
+        <p class="mt-3 text-center lead font-weight-bold">New User</p>
+      </template>
+      <template v-slot:modal-body>
+        <UserForm />
+      </template>
+      <template v-slot:modal-footer></template>
+    </ModalContent>
+    <!-- !--modal--! -->
+
     <div class="container-user-create">
-      <button class="btn btn-primary btn-user-create">
+      <button @click="show" class="btn btn-primary btn-user-create">
         <font-awesome-icon :icon="['fas', 'plus']" />
         <span>Create User</span>
       </button>
@@ -17,8 +32,23 @@
           />
         </div>
         <div class="card-user-info">
-          <h5 class="card-title user-info-name">{{`${user.first_name} ${user.last_name}`}}</h5>
-          <p class="card-text user-info-date">12/14/2019</p>
+          <input
+            disabled
+            placeholder="Name"
+            type="text"
+            class="card-title user-info-name"
+            maxlength="16"
+            :value="user.first_name + ' ' +  user.last_name"
+          />
+
+          <input
+            disabled
+            placeholder="Registered Date"
+            type="text"
+            class="card-title user-info-date"
+            maxlength="16"
+            :value="'12/14/2019'"
+          />
         </div>
         <div class="card-user-actions">
           <button class="btn btn-default btn-user-edit">
@@ -41,9 +71,20 @@
 
 <script>
 import "./style.scss";
+import UserForm from "./UserForm";
+import ModalContent from "../Modal/index";
 
 export default {
   name: "UserCard",
-  props: ["userList"]
+  components: {
+    ModalContent,
+    UserForm
+  },
+  props: ["userList"],
+  methods: {
+    show() {
+      this.$modal.show("vue-modal");
+    }
+  }
 };
 </script>
