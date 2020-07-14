@@ -11,7 +11,9 @@
     <slot name="modal-body" />
   </body>
   <footer>
-    <slot name="modal-footer" />
+    <footer>
+      <slot name="modal-footer" />
+    </footer>
   </footer>
 </modal>
 </template>
