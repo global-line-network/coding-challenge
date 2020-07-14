@@ -1,6 +1,28 @@
 @import "../../styles//library";
 
 .container-users {
+  width: 100%;
+
+  & .container-user-create {
+    width: 100%;
+    margin-bottom: 15px;
+
+    & .btn-user-create {
+      width: 150px;
+      height: 50px;
+      border-radius: 15px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 30px;
+      box-shadow: none;
+
+      & span {
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+  }
 }
 
 .container-user-card {
@@ -22,28 +44,6 @@
   @media (max-width: $media-tablet) {
     display: flex;
     justify-content: center;
-  }
-
-  & .container-user-create {
-    width: 100%;
-    padding-left: 15px;
-    margin-bottom: 15px;
-
-    & .btn-user-create {
-      width: 150px;
-      height: 50px;
-      border-radius: 15px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      margin-top: 30px;
-      box-shadow: none;
-
-      & span {
-        font-size: 18px;
-        font-weight: 600;
-      }
-    }
   }
 
   & .card {
@@ -116,7 +116,7 @@
       align-items: space-around;
       justify-content: space-around;
       height: 100%;
-      
+
       & button {
         border-radius: 50%;
         width: 30px;
