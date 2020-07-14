@@ -1,17 +1,24 @@
 .vm--container {
-  height: 90vh;
-  min-width: 100%;
+  & .vm--overlay {
+    height: 120%;
+    border-radius: 10px;
+  }
 
   & .vm--modal {
     position: absolute;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
     background: #fff;
     border-radius: 10px;
-    left: 50% !important;
-    top: 10% !important;
-    transform: translateX(-50%);
-    padding: 10px;
+    max-width: 80%;
+    padding: 0 40px;
 
     & header {
+      display: flex;
+      justify-content: center;
+      height: 20%;
+
       & button {
         box-shadow: none;
         border-radius: 50%;
@@ -23,13 +30,29 @@
       }
     }
 
+    & body {
+      height: 60%;
+    }
+
+    & footer {
+      display: flex;
+      justify-content: flex-end;
+      height: 20%;
+    }
+
     & .container-user-form {
+      height: 100%;
+      align-items: space-around;
+
       & .input-group-prepend {
         margin-bottom: 10px;
 
         & span {
           width: 102px;
         }
+      }
+
+      & .modal-actions {
       }
     }
   }
