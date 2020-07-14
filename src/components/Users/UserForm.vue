@@ -1,6 +1,11 @@
 <template>
   <div class="container-user-form">
-    <div class="input-group mb-3">
+    <form
+      id="form-createUser"
+      class="input-group mb-3"
+      ref="formCreateUser"
+      @submit.prevent="addUser"
+    >
       <div class="input-group-prepend">
         <span class="input-group-text">First Name</span>
       </div>
@@ -11,6 +16,7 @@
         class="form-control"
         aria-label="First name"
         maxlength="16"
+        ref="first_name"
       />
 
       <div class="input-group mb-3">
@@ -24,14 +30,39 @@
           class="form-control"
           aria-label="Last name"
           maxlength="16"
+          ref="last_name"
         />
       </div>
-    </div>
+    </form>
   </div>
 </template>
 
 <script>
 export default {
-  name: "UserForm"
+  name: "UserForm",
+  data() {
+    return {
+      formErr: {
+        isVisible: false,
+        msg: ""
+      }
+    };
+  },
+  methods: {
+    async addUser() {
+      !this.$refs.formErr.isVisible;
+      this.formErr.msg = "Please enter First Name";
+
+      this.$refs.first_name.value.trim().length;
+      // let form = this.$refs.formCreateUser;
+      // form.submit();
+
+      // let newUser = await createUser({
+      //   first_name: "John",
+      //   last_name: "Doe"
+      // });
+      // console.log(newUser.user.first_name)
+    }
+  }
 };
 </script>
