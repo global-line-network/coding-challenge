@@ -3,6 +3,7 @@ import App from "./App.vue";
 
 import VueLazyLoad from "vue-lazyload";
 import VModal from "vue-js-modal";
+import VueSimpleAlert from "vue-simple-alert";
 
 // -- fontawesome --
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -20,11 +21,14 @@ Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 // -- lazyload --
 Vue.use(VueLazyLoad);
-// !-- lazyload --!
 
 // -- modal --
 Vue.use(VModal);
-// !-- modal --!
+
+// -- VueSimpleAlert --
+Vue.use(VueSimpleAlert);
+// -- VueSimpleAlert --
+
 
 Vue.config.productionTip = false;
 
