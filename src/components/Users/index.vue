@@ -5,8 +5,10 @@
 </template>
 
 <script>
-import { fetchUsers } from "../../api/users";
 import "./style.scss";
+
+import { fetchUsers } from "../../api/users";
+import { user } from "../../store";
 
 import UserCard from "./UserCard";
 
@@ -18,14 +20,16 @@ export default {
   methods: {
     getUsers: () => fetchUsers()
   },
-  data() {
-    return {
-      userList: []
-    };
+  computed: {
+    userList() {
+      return user.list;
+    }
   },
   async mounted() {
-    let userData = await this.getUsers();
-    this.userList = userData.data;
+    let users = await this.getUsers();
+    let { data } = users;
+
+    user.list = [...user.list, ...data];
   }
 };
 </script>
