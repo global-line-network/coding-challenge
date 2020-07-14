@@ -23,6 +23,44 @@
       }
     }
   }
+
+  & .container-user-form {
+    height: inherit;
+    display: flex;
+    align-items: center;
+
+    & form {
+      height: 100px;
+
+      & .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        width: 100%;
+
+        & button {
+          border-radius: 10px;
+          max-height: 38px;
+        }
+      }
+    }
+
+    & .container-prepend {
+      display: flex;
+      width: 100%;
+
+      & input {
+        margin-bottom: 10px;
+      }
+
+      & span.input-group-text {
+        width: 100px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-bottom: 10px;
+      }
+    }
+  }
 }
 
 .container-user-card {

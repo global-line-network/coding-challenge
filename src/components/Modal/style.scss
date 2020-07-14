@@ -31,29 +31,7 @@
     }
 
     & body {
-      height: 60%;
-    }
-
-    & footer {
-      display: flex;
-      justify-content: flex-end;
-      height: 20%;
-    }
-
-    & .container-user-form {
-      height: 100%;
-      align-items: space-around;
-
-      & .input-group-prepend {
-        margin-bottom: 10px;
-
-        & span {
-          width: 102px;
-        }
-      }
-
-      & .modal-actions {
-      }
+      height: 80%;
     }
   }
 }

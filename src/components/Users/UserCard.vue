@@ -9,9 +9,7 @@
         <UserForm />
       </template>
       <template v-slot:modal-footer>
-        <div class="modal-actions">
-          <button type="submit" class="btn btn-success d-flex ml-auto">Create</button>
-        </div>
+        
       </template>
     </ModalContent>
     <!-- !--modal--! -->

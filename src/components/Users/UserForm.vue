@@ -6,32 +6,40 @@
       ref="formCreateUser"
       @submit.prevent="addUser"
     >
-      <div class="input-group-prepend">
-        <span class="input-group-text">First Name</span>
-      </div>
-      <input
-        type="text"
-        id="firstName"
-        name="firstName"
-        class="form-control"
-        aria-label="First name"
-        maxlength="16"
-        ref="first_name"
-      />
-
-      <div class="input-group mb-3">
+      <div class="container-prepend">
         <div class="input-group-prepend">
-          <span class="input-group-text">Last Name</span>
+          <span class="input-group-text">First Name</span>
         </div>
         <input
           type="text"
-          id="lastName"
-          name="lastName"
+          id="firstName"
+          name="firstName"
           class="form-control"
-          aria-label="Last name"
+          aria-label="First name"
           maxlength="16"
-          ref="last_name"
+          ref="first_name"
         />
+      </div>
+
+      <div class="container-prepend">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Last Name</span>
+          </div>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            class="form-control"
+            aria-label="Last name"
+            maxlength="16"
+            ref="last_name"
+          />
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="submit" class="btn btn-success d-flex ml-auto">Create</button>
       </div>
     </form>
   </div>
@@ -40,19 +48,8 @@
 <script>
 export default {
   name: "UserForm",
-  data() {
-    return {
-      formErr: {
-        isVisible: false,
-        msg: ""
-      }
-    };
-  },
   methods: {
     async addUser() {
-      !this.$refs.formErr.isVisible;
-      this.formErr.msg = "Please enter First Name";
-
       this.$refs.first_name.value.trim().length;
       // let form = this.$refs.formCreateUser;
       // form.submit();
@@ -62,6 +59,7 @@ export default {
       //   last_name: "Doe"
       // });
       // console.log(newUser.user.first_name)
+      console.log("submitted");
     }
   }
 };
