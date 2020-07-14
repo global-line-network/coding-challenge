@@ -8,9 +8,23 @@ nav {
   align-items: center;
   display: flex;
 
+  @media (max-width: $media-desktop) {
+    display: flex !important;
+    justify-content: flex-start !important;
+    
+    & {
+      @include nav(10px, 15px);
+      & .nav-brand {
+        & img {
+          @include nav-brand-img(150px, 305px, auto);
+        }
+      }
+    }
+  }
+
   @media (max-width: $media-tablet) {
     & {
-      @include nav(10px, 10%);
+      @include nav(10px, 15px);
       & .nav-brand {
         & img {
           @include nav-brand-img(150px, 305px, auto);
