@@ -77,7 +77,7 @@ export default {
         let response = await createUser(userData);
 
         if (response.status === 2000 || response.status === 201) {
-          let avatar = await getAvatar();
+          let avatar = await getAvatar("Male");
               avatar = avatar.data.results[0].picture.medium;
 
           this.$fire({
