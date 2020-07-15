@@ -56,7 +56,7 @@
               type="text"
               class="card-title user-info-date"
               maxlength="16"
-              :value="'12/14/2019'"
+              :value="user.createdAt"
             />
           </div>
           <div class="card-user-actions">
@@ -86,7 +86,6 @@ import ModalContent from "../Modal/index";
 
 import { user } from "../../store";
 
-// import { createUser, deleteUser } from "../../api/users";
 import { deleteUser } from "../../api/users";
 
 export default {
@@ -110,7 +109,7 @@ export default {
       let userID = e.target.closest(".card").dataset.id;
 
       this.$confirm(`Confirm to delete user [${username}] ?`).then(() => {
-        // api callback
+        // api callback for backend
         deleteUser();
 
         // update state from store
