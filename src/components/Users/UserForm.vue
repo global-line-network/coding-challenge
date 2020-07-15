@@ -16,7 +16,7 @@
           name="firstName"
           class="form-control"
           aria-label="First name"
-          maxlength="16"
+          maxlength="7"
           ref="first_name"
         />
       </div>
@@ -32,34 +32,81 @@
             name="lastName"
             class="form-control"
             aria-label="Last name"
-            maxlength="16"
+            maxlength="7"
             ref="last_name"
           />
         </div>
       </div>
 
       <div class="modal-actions">
-        <button type="submit" class="btn btn-success d-flex ml-auto">Create</button>
+        <button type="submit" class="btn btn-success d-flex ml-auto">
+          <font-awesome-icon :icon="['fas', 'spinner']" :class="createSpinner" class="fa-spin" />
+          {{createText}}
+        </button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import { user, spinner } from "../../store";
+import { createUser } from "../../api/users";
+import Utils from "./utils";
+
 export default {
   name: "UserForm",
+  computed: {
+    createText: () => spinner.createUserBtn.text,
+    createSpinner: () => spinner.createUserBtn.spinner
+  },
   methods: {
     async addUser() {
-      this.$refs.first_name.value.trim().length;
-      // let form = this.$refs.formCreateUser;
-      // form.submit();
+      let userData = {
+        first_name: this.$refs.first_name.value,
+        last_name: this.$refs.last_name.value
+      };
 
-      // let newUser = await createUser({
-      //   first_name: "John",
-      //   last_name: "Doe"
-      // });
-      // console.log(newUser.user.first_name)
-      console.log("submitted");
+      if (
+        userData.first_name.trim().length < 1 ||
+        userData.last_name.trim().length < 1
+      ) {
+        this.$alert("First name or last name can not be empty", "", "info");
+      } else {
+        spinner.createUserBtn.text = "";
+        spinner.createUserBtn.spinner = "";
+        let response = await createUser(userData);
+
+        if (response.status === 2000 || response.status === 201) {
+          this.$fire({
+            title: "User Created",
+            text: "",
+            type: "success",
+            timer: 3000
+          }).then(() => this.$modal.hide("vue-modal"));
+
+          user.list = [
+            ...user.list,
+            {
+              id: response.data.id,
+              avatar:
+                "https://static-cdn.jtvnw.net/jtv_user_pictures/f8af1f4e-43bc-41c8-85c4-14e07bd1450f-profile_image-70x70.png",
+              first_name: response.data.userData.first_name,
+              last_name: response.data.userData.last_name,
+              createdAt: Utils.dateTrim(response.data.createdAt)
+            }
+          ];
+          
+
+          spinner.createUserBtn.text = "Create";
+          spinner.createUserBtn.spinner = "fade";
+        } else {
+          this.$alert(
+            "Please refresh the page and try again",
+            `Error Status: <b class="text-danger">${response.status}</b>`,
+            "error"
+          ).then(() => this.$modal.hide("vue-modal"));
+        }
+      }
     }
   }
 };
