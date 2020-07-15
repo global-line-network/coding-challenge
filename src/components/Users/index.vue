@@ -30,6 +30,10 @@ export default {
     let { data } = users;
 
     user.list = [...user.list, ...data];
+
+    user.list.map(u => {
+      !Object.keys(u).includes('createdAt') && (u.createdAt = "12/14/2019")
+    });
   }
 };
 </script>
