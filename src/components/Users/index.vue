@@ -28,7 +28,6 @@ export default {
   async mounted() {
     let users = await this.getUsers();
     let { data } = users.data;
-    console.log(data)
 
     user.list = [...user.list, ...data];
 
