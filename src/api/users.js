@@ -21,9 +21,8 @@ export function fetchUsers() {
   });
 }
 
-export function createUser(formData) {
+export function createUser(userData) {
   let url = `${Constants.users.fetch}/users`;
-  let { first_name, last_name } = formData;
   return new Promise((resolve, reject) => {
     axios
       .post(url, {
@@ -31,13 +30,10 @@ export function createUser(formData) {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        user: {
-          first_name,
-          last_name,
-        },
+        userData: userData,
       })
       .then((res) => {
-        let data = res.data;
+        let data = res;
         resolve(data).then((res) => res.json());
       })
       .catch((err) => {
