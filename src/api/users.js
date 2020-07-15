@@ -1,7 +1,7 @@
 import Constants from "../constants";
 import axios from "axios";
 
-const axiosPromise = (url) => {
+const axiosGetPromise = (url) => {
   return new Promise((resolve, reject) => {
     axios
       .get(url, {
@@ -20,15 +20,15 @@ const axiosPromise = (url) => {
 };
 
 export function getAvatar(gender) {
+  !gender ? gender = "male" : gender = gender.toLowerCase()
+  
   let url = Constants.users.img;
-  if (!gender) {
-    axiosPromise(url);
-  }
+  return axiosGetPromise(url + `?gender=${gender}`);
 }
 
 export function fetchUsers() {
   let url = `${Constants.users.fetch}/users?page=2`;
-  return axiosPromise(url);
+  return axiosGetPromise(url);
 }
 
 export function createUser(userData) {
