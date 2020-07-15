@@ -109,10 +109,7 @@ export default {
       let userID = e.target.closest(".card").dataset.id;
 
       this.$confirm(`Confirm to delete user [${username}] ?`).then(() => {
-        // api callback for backend
         deleteUser();
-
-        // update state from store
         user.list = user.list.filter(user => user.id != userID);
       });
     }
