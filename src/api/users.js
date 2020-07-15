@@ -1,8 +1,7 @@
 import Constants from "../constants";
 import axios from "axios";
 
-export function fetchUsers() {
-  let url = `${Constants.users.fetch}/users?page=2`;
+const axiosPromise = (url) => {
   return new Promise((resolve, reject) => {
     axios
       .get(url, {
@@ -12,13 +11,24 @@ export function fetchUsers() {
         },
       })
       .then((res) => {
-        let data = res.data;
-        resolve(data).then((res) => res.json());
+        resolve(res).then((res) => res.json());
       })
       .catch((err) => {
         reject(err);
       });
   });
+};
+
+export function getAvatar(gender) {
+  let url = Constants.users.img;
+  if (!gender) {
+    axiosPromise(url);
+  }
+}
+
+export function fetchUsers() {
+  let url = `${Constants.users.fetch}/users?page=2`;
+  return axiosPromise(url);
 }
 
 export function createUser(userData) {
@@ -42,4 +52,8 @@ export function createUser(userData) {
   });
 }
 
-export function deleteUser() {}
+export function deleteUser(userID) {
+  return userID;
+  // let url = `${Constants.users.fetch}/users/${userID}`;
+  // axiosPromise(url);
+}
