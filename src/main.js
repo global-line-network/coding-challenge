@@ -13,9 +13,10 @@ import {
   faPencilAlt,
   faPlus,
   faTimes,
+  faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faTrash, faPencilAlt, faPlus, faTimes);
+library.add(faTrash, faPencilAlt, faPlus, faTimes, faSpinner);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 // !-- fontawesome --!
 
@@ -28,7 +29,6 @@ Vue.use(VModal);
 // -- VueSimpleAlert --
 Vue.use(VueSimpleAlert);
 // -- VueSimpleAlert --
-
 
 Vue.config.productionTip = false;
 
