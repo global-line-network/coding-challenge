@@ -50,7 +50,7 @@
 
 <script>
 import { user, spinner } from "../../store";
-import { createUser } from "../../api/users";
+import { createUser, getAvatar } from "../../api/users";
 import Utils from "./utils";
 
 export default {
@@ -77,6 +77,9 @@ export default {
         let response = await createUser(userData);
 
         if (response.status === 2000 || response.status === 201) {
+          let avatar = await getAvatar();
+              avatar = avatar.data.results[0].picture.medium;
+
           this.$fire({
             title: "User Created",
             text: "",
@@ -88,14 +91,12 @@ export default {
             ...user.list,
             {
               id: response.data.id,
-              avatar:
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/f8af1f4e-43bc-41c8-85c4-14e07bd1450f-profile_image-70x70.png",
+              avatar,
               first_name: response.data.userData.first_name,
               last_name: response.data.userData.last_name,
               createdAt: Utils.dateTrim(response.data.createdAt)
             }
           ];
-          
 
           spinner.createUserBtn.text = "Create";
           spinner.createUserBtn.spinner = "fade";
