@@ -2,6 +2,10 @@
 
 .container-main {
 
+  & .hidden {
+    display: none;
+  }
+
   & .container-body {
     display: flex;
     flex-direction: column;
