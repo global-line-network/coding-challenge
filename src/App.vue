@@ -3,7 +3,7 @@
     <img alt="Vue logo" class="logo" src="../public/global-line-network.png">
     <div class="row justify-content-between mb-5 mt-5">
         <h3>User Management</h3>
-        <button type="button" style="width: auto" class="btn btn-outline-primary custom-btn" data-toggle="modal" data-target="#addContact">
+        <button type="button" style="width: auto" class="border-round btn btn-outline-primary custom-btn" data-toggle="modal" data-target="#addContact">
           + Add new user
         </button>
     </div>
@@ -26,6 +26,10 @@ export default {
 
 *{
   box-sizing: border-box;
+}
+
+.border-round{
+  border-radius: 20px!important;
 }
 
 .container{

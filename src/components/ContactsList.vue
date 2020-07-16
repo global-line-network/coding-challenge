@@ -7,45 +7,31 @@
             <div class="d-flex">
               <img class="img-thumbnail list-thumbnail align-self-center m-2 rounded-circle small" v-bind:src="contact.pic" />
               <div class="contact-item-left">
-                <div v-if="!contact.editing" class="contact-item-label pb-0 m-auto">{{contact.name}}</div>
-                <input 
-                  type="text" 
-                  class="contact-item-edit" 
-                  v-else 
-                  v-focus
-                  v-model="contact.name" 
-                  @blur="doneEditing(contact)" 
-                  @keyup.enter="doneEditing(contact)"
-                />
+                <div class="contact-item-label pb-0 m-auto">{{contact.name}}</div>
                 <div class="text-muted text-small mb-2 card-text contact-item-label pt-0 m-auto">{{contact.username}}</div>
-                <!-- <div v-else>Cancel</div> -->
               </div>
             </div>
             <div class="action-container btn-group">
             <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <div class="test"></div>
+              <div class="dots-icon"></div>
             </div>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu border-round">
               <a class="dropdown-item"  @click="editContact(contact, index)">Edit user</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" style="color: red" @click="removeContact(index)">Delete user</a>
             </div>
-              
-              <!-- <div class="action-edit-contact" @click="editContact(contact)">
-                &#9998;
-              </div>
-              <div class="action-edit-contact" @click="removeContact(index)">
-                &times;
-              </div> -->
             </div>
           </div>
         </div>
       </div>
     </div>
     <h3 v-else>No users found.</h3>
+
+    <!-- Modals -->
+
     <div class="modal fade" id="addContact" tabindex="-1" role="dialog" aria-labelledby="addContactLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content border-round">
           <div class="modal-header">
             <h5 class="modal-title" id="addContactLabel">Add new user</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -56,8 +42,7 @@
             <div class="mb-5 text-center">
               <img v-if="newContact.pic !== ''" v-bind:src="newContact.pic" class="uploading-image img-thumbnail list-thumbnail align-self-center m-2 rounded-circle m-auto small" />
               <input id="f02" type="file" @change="uploadImage" placeholder="Add profile picture" />
-              <label class="custom-btn" for="f02">{{newContact.pic === '' ? 'Add picture' : 'Change picture'}}</label>
-              <!-- <input type="file" accept="image/jpeg" @change=uploadImage> -->
+              <label class="custom-btn border-round" for="f02">{{newContact.pic === '' ? 'Add picture' : 'Change picture'}}</label>
             </div>
             <label>Name</label>
             <input 
@@ -73,19 +58,18 @@
               placeholder="@marksmith" 
               v-model="newContact.username" 
             >
-
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary custom-btn p-2" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary custom-btn p-2" @click="addContact()">Save changes</button>
+            <button type="button" class="btn btn-outline-secondary custom-btn border-round p-2" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-primary custom-btn border-round p-2" @click="addContact()">Save changes</button>
           </div>
         </div>
       </div>
     </div>
-
+    
     <div class="modal fade" id="editContact" tabindex="-1" role="dialog" aria-labelledby="editContactLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content border-round">
           <div class="modal-header">
             <h5 class="modal-title" id="editContactLabel">Edit user</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -95,9 +79,8 @@
           <div class="modal-body pb-5 pl-5 pr-5 pt-4">
             <div class="mb-5 text-center">
               <img v-bind:src="contactToEdit.pic" class="uploading-image img-thumbnail list-thumbnail align-self-center m-2 rounded-circle m-auto small" />
-              <input id="f02" type="file" @change="uploadImage" placeholder="Add profile picture" />
-              <label class="custom-btn" for="f02">{{'Change picture'}}</label>
-              <!-- <input type="file" accept="image/jpeg" @change=uploadImage> -->
+              <input id="change-pic" type="file" @change="changeImage" placeholder="Add profile picture" />
+              <label class="custom-btn border-round" for="change-pic">Change picture</label>
             </div>
             <label>Name</label>
             <input 
@@ -113,21 +96,22 @@
               placeholder="@marksmith" 
               v-model="contactToEdit.username" 
             >
-
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary custom-btn p-2" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary custom-btn p-2" @click="saveContact()">Save changes</button>
+            <button type="button" class="btn btn-outline-secondary custom-btn border-round p-2" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-primary custom-btn border-round p-2" @click="saveContact()">Save changes</button>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- End Modals -->
+
   </div>
 </template>
 
 <script>
 import $ from 'jquery';
-// import AddContactModal from './AddContactModal';
 
 export default {
   name: 'ContactList',
@@ -142,7 +126,7 @@ export default {
       contactToEdit: {},
       indexToEdit: "",
       open: false,
-      idForContact: 7,
+      idForContact: 6,
       contactList: [
         {
           id: 1,
@@ -158,21 +142,21 @@ export default {
         },
         {
           id: 3,
-          name: "Diana Seidakhmetova",
-          username: "@dianaseidakhmetova",
-          pic: "/woman-profile-pic.jpeg",
+          name: "Gulmira Mazkenova",
+          username: "@gulmiramazkenova",
+          pic: "/woman-2-profile-pic.jpg",
         },
         {
           id: 4,
-          name: "Diana Seidakhmetova",
-          username: "@dianaseidakhmetova",
-          pic: "/woman-profile-pic.jpeg",
+          name: "Bill Nelms",
+          username: "@billnelms",
+          pic: "/man-2-profile-pic.jpeg",
         },
         {
           id: 5,
-          name: "Diana Seidakhmetova",
-          username: "@dianaseidakhmetova",
-          pic: "/woman-profile-pic.jpeg",
+          name: "martyotte",
+          username: "@martyotte",
+          pic: "/man-3-profile-pic.jpeg",
         }
       ]
     }
@@ -191,6 +175,14 @@ export default {
       reader.readAsDataURL(image);
       reader.onload = e =>{
         this.newContact.pic = e.target.result;
+      };
+    },
+    changeImage(e){
+      const image = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = e =>{
+        this.contactToEdit.pic = e.target.result;
       };
     },
     addContact(){
@@ -226,23 +218,26 @@ export default {
     saveContact(){
       const index = this.indexToEdit;
       const contact = this.contactToEdit;
-      this.contactList.map(function(item) { return item.id === index ? contact : item; });
+      const newList = this.contactList.map((item, id) => { return id === index ? contact : item; });
+      this.contactList = newList;
+      $('#editContact').modal('hide');
     },
   
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+
+  /* Custom input-file */
 
   [type=file] {
     position: absolute;
     filter: alpha(opacity=0);
     opacity: 0;
   }
-  input,
-  [type=file] + label {
+
+  input, [type=file] + label {
     border: 1px solid #CCC;
     border-radius: 3px;
     text-align: left;
@@ -252,6 +247,7 @@ export default {
     left: 0;
     position: relative;
   }
+
   [type=file] + label {
     text-align: center;
     /* left: 7.35em; */
@@ -262,26 +258,15 @@ export default {
     border: none;
     cursor: pointer;
   }
+
   [type=file] + label:hover {
     background: #3399ff;
   }
 
+  /* End custom input-file */
+
   .custom-btn{
-    border-radius: 20px!important;
     width: 30%;
-  }
-
-  .contact-input{
-    width: 100%;
-    padding: 10px 18px;
-    font-size: 18px;
-    margin-bottom: 16px;
-    border: 1px solid #efefef;
-    border-radius: 20px;
-
-  }
-  .contact-input:focus{
-    outline: 0;
   }
 
   .contact-item{
@@ -294,37 +279,12 @@ export default {
     border-radius: .75rem!important;
   }
 
-  .uploading-image{
-     display:flex;
-   }
-
-  .action-edit-contact{
-    cursor: pointer;
-    margin-left: 14px;
-  }
-
-  .action-edit-contact:focus{
-    color: black;
-  }
-
-  .action-container{
-    display: flex;
-  }
-
   .contact-item-label{
     padding: 10px;
     border: 1px solid white;
   }
 
-  .contact-item-edit{
-    font-size: 24px;
-    margin-left: 12px;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    color: #2c3e50;
-  }
+  /* Images */
 
   .list-thumbnail.small {
     height: 60px;
@@ -347,21 +307,62 @@ export default {
     padding: 0;
   }
 
-  .contact-item-edit:focus{
-    outline: none;
+  /* End images */
+
+
+  /* Action-container */
+
+  .action-container{
+    position: absolute!important;
+    display: flex;
+    right: 10px;
+    cursor: pointer;
+    top: 10px;
   }
 
-  .test:after {
+  .dropdown-menu{
+    border: 1px solid #f1f1f1!important;
+  }
+
+  .dots-icon:after {
     content: '\2807';
     font-size: 30px;
     color: #9fa2a5;
   }
 
-  .action-container{
-    position: absolute!important;
-    right: 10px;
-    cursor: pointer;
-    top: 10px;
+  /* End action-container */
+
+
+
+  /* Modals */
+
+  #addContact .modal-content, #editContact .modal-content{
+    border: none;
   }
+
+  .contact-input{
+    width: 100%;
+    padding: 10px 18px;
+    font-size: 18px;
+    margin-bottom: 16px;
+    border: 1px solid #efefef;
+    border-radius: 20px;
+
+  }
+
+  .contact-input:focus{
+    outline: 0;
+  }
+
+  .uploading-image{
+    display:flex;
+  }
+
+  .modal .uploading-image{
+    width: 90px;
+    height: 90px;
+  }
+
+  /* End modals */
 
 </style>

@@ -1,5 +1,6 @@
 # coding-challenge
 
+To run the app: npm run serve
 ## Project setup
 ```
 npm install
