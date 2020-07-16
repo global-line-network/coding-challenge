@@ -1,12 +1,17 @@
 <template>
   <div id="app" class="container">
-    <img alt="Vue logo" class="logo" src="./assets/logo.png">
+    <img alt="Vue logo" class="logo" src="../public/global-line-network.png">
+    <div class="row justify-content-between mb-5 mt-5">
+        <h3>User Management</h3>
+        <button type="button" style="width: auto" class="btn btn-outline-primary custom-btn" data-toggle="modal" data-target="#addContact">
+          + Add new user
+        </button>
+    </div>
     <ContactsList/>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue';
 import ContactsList from './components/ContactsList.vue';
 
 export default {
@@ -41,6 +46,6 @@ export default {
   /* text-align: center; */
   color: #2c3e50;
   margin-top: 60px;
-  font-size: 24px;
+  /* font-size: 20px; */
 }
 </style>
