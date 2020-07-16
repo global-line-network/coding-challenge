@@ -1,5 +1,10 @@
 @import "../../styles//library";
 
+.foreground {
+  z-index: 0;
+  display: none !important;
+}
+
 .container-users {
   width: 100%;
 
@@ -99,9 +104,10 @@
     padding: 0;
     min-width: 280px;
     max-width: 280px;
-    max-height: 280px;
+    max-height: 98px;
     border-radius: 10px;
     border: none;
+    overflow: hidden;
   }
 
   & i {
@@ -133,6 +139,17 @@
       flex: 2;
       height: 100%;
       padding: 10px 0 0 0;
+
+      & .picker-wrap {
+        position: fixed;
+        transform: translateX(-28%);
+      }
+
+      & .user-info-date {
+        & input {
+          padding-left: 0;
+        }
+      }
 
       & input {
         border: none;
@@ -183,6 +200,34 @@
 
         &:hover {
           color: rgb(237, 26, 59);
+        }
+      }
+
+      & .container-user-actions {
+        z-index: 1;
+      }
+
+      & .container-user-actions-save {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        // z-index: 2;
+
+        & .btn-user-edit {
+          background: #6cc35a;
+          color: #fff;
+          border: none;
+        }
+
+        & .btn-user-edit-cancel {
+          background: #d85a4b;
+          color: #fff;
+          border: none;
+        }
+
+        & button:hover {
+          filter: brightness(0.8);
         }
       }
     }
