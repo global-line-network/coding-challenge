@@ -14,9 +14,10 @@ import {
   faPlus,
   faTimes,
   faSpinner,
+  faCheck
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faTrash, faPencilAlt, faPlus, faTimes, faSpinner);
+library.add(faTrash, faPencilAlt, faPlus, faTimes, faSpinner, faCheck);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 // !-- fontawesome --!
 
