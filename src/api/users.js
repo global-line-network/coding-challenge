@@ -52,6 +52,12 @@ export function createUser(userData) {
   });
 }
 
+export function updateUser(userID) {
+  return userID;
+  // let url = `${Constants.users.fetch}/users/${userID}`;
+  // axiosPromise(url);
+}
+
 export function deleteUser(userID) {
   return userID;
   // let url = `${Constants.users.fetch}/users/${userID}`;
