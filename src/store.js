@@ -1,7 +1,8 @@
 import Vue from "vue";
 
 export const user = Vue.observable({
-  list: []
+  list: [],
+  edit: false
 });
 
 export const spinner = Vue.observable({
