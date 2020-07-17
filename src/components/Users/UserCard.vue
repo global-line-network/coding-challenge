@@ -38,7 +38,7 @@
               v-bind:alt="`${user.first_name} ${user.last_name}`"
             />
           </div>
-          <div class="card-user-info">
+          <div class="card-user-info" v-bind:data-name="`${user.first_name} ${user.last_name}`">
             <input
               :disabled="userEdit == 0"
               placeholder="Name"
