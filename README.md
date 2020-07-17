@@ -1,5 +1,10 @@
 # coding-challenge
 
+## Prerequisite
+- [Node Js](https://nodejs.org/en/download/)
+- [Vue](https://cli.vuejs.org/guide/installation.html)
+- [Chrome Browser](https://www.google.com/chrome/)
+
 ## Project setup
 ```
 npm install
@@ -15,10 +20,22 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
+### Running the Test (Cypress)
+##### Start development server
 ```
-npm run lint
+npm run serve
+```
+##### Run Cypress
+```
+npx cypress open
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Configs & APIs
+#### Constants
+```
+src/constants/index.js
+```
+#### API
+```
+src/api/index.js
+```
