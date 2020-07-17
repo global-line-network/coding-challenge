@@ -87,16 +87,19 @@ export default {
             timer: 3000
           }).then(() => this.$modal.hide("vue-modal"));
 
-          user.list = [
-            ...user.list,
-            {
-              id: response.data.id,
-              avatar,
-              first_name: response.data.userData.first_name,
-              last_name: response.data.userData.last_name,
-              createdAt: Utils.dateTrim(response.data.createdAt)
-            }
-          ];
+          user.list = Utils.sortUser(
+            [
+              ...user.list,
+              {
+                id: response.data.id,
+                avatar,
+                first_name: response.data.userData.first_name,
+                last_name: response.data.userData.last_name,
+                createdAt: Utils.dateTrim(response.data.createdAt)
+              }
+            ],
+            "asc"
+          );
 
           spinner.createUserBtn.text = "Create";
           spinner.createUserBtn.spinner = "fade";
