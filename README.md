@@ -10,7 +10,12 @@ Test for Global Line Network
 - h2database
 - SpringBootTest 
 
-## 3.	Implementation details 
+## 2.	Implementation details 
 - Implemented services to perfor curd operation for user
 - Can be deployed and run through springboot
 - Test is added to verify service
+
+## 3.	Instalation and Testing
+- It is Maven project with spring boot all libs can be added thorugh maven and project can run throgh spring boot 
+- Service can be called at http://localhost:8080/
+
