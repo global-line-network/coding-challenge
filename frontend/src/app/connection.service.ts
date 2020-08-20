@@ -11,7 +11,25 @@ export class ConnectionService {
   constructor(private http: HttpClient ) { }
 
   getUserList(){
-    console.log(this.REGRES_URL+'api/users?page=1');
     return this.http.get(this.REGRES_URL + 'api/users?page=1' );
+  }
+
+  createUser(firstName, lastName){
+    return this.http.post(this.REGRES_URL + 'api/users', {
+      first_name: firstName
+      , last_name: lastName
+    });
+  }
+
+  updateUser(id, firstName, lastName){
+    return this.http.put(this.REGRES_URL + 'api/users' + id, {
+      id: id
+      , first_name: firstName
+      , last_name: lastName
+    });
+  }
+
+  deleteUser(id){
+    return this.http.delete(this.REGRES_URL + 'api/users' + id);
   }
 }
