@@ -58,10 +58,10 @@ app.route('/api/users').put((req, res) => {
     // loop to update
     for (var i = 0; i < usersList.length; i++) {
         if (usersList[i].id == req.body.id) {
-            console.log(usersList[i].first_name);
+            // console.log(usersList[i].first_name);
             usersList[i].first_name = req.body.first_name;
             usersList[i].last_name = req.body.last_name;
-            console.log(usersList[i].first_name + "AFTER");
+            // console.log(usersList[i].first_name + "AFTER");
             break;
         }
     }
@@ -85,7 +85,7 @@ app.route('/api/users/:id').delete((req, res) => {
         if (usersList[i].id == deletedID) {
             // console.log(usersList);
             usersList.splice(i,1);
-            console.log(usersList);
+            // console.log(usersList);
             break;
         }
     }
