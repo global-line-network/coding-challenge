@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
   ngOnInit(){
     this.conn.getUserList().subscribe((list) => {
       this.result = list;
-      this.userList = this.result.data;
+      this.userList = this.result;
       console.log(this.result);
     });
   }
@@ -51,21 +51,17 @@ export class AppComponent implements OnInit{
 
   addUser(){
     this.conn.createUser(this.firstName, this.lastName).subscribe((list) => {
-      this.userList.push({ "id": list["id"],"first_name": list["first_name"],  "last_name": list["last_name"]});
-      console.log("AFTER CREATE");
-      console.log(this.userList);
+      this.result = list;
+      this.userList = this.result;
+      console.log(this.result);
     })
   }
 
   updateUser(){
     this.conn.updateUser(this.id, this.firstName, this.lastName).subscribe((list) => {
-      for (var i = 0; i < this.userList.length; i++) {
-        if (this.userList[i].id == this.id) {
-          this.userList[i].first_name = this.firstName;
-          this.userList[i].last_name = this.lastName;
-          break;
-        }
-      }
+      this.result = list;
+      this.userList = this.result;
+      console.log(this.result);
     });
   }
 
@@ -73,13 +69,9 @@ export class AppComponent implements OnInit{
     console.log("delete " + this.id + "?");
     // console.log(this.userList.splice(0,1));
     this.conn.deleteUser(this.id).subscribe((list) => {
-      for (var i = 0; i < this.userList.length; i++) {
-        if (this.userList[i].id == this.id) {
-          this.userList.splice(i,1);
-          break;
-        }
-      }
-      console.log(this.userList);
+      this.result = list;
+      this.userList = this.result;
+      console.log(this.result);
     });
   }
 }
