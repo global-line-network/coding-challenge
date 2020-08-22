@@ -1,0 +1,60 @@
+<img src="../assets/logo.png" class="img-fluid" alt="Responsive image">
+<h3>User Data</h3>
+<div class="btn-group" role="group" aria-label="Actions">
+  <button type="button" class="btn btn-outline-primary" (click)=showCreate()>Add User</button>
+  <button type="button" class="btn btn-outline-primary" (click)=showUpdate()>Update User</button>
+  <button type="button" class="btn btn-outline-primary" (click)=showDelete()>Delete User</button>
+</div>
+<br>
+<!-- create section -->
+<div class="input-group mb-3" *ngIf="show == 0">
+  <input type="text" aria-label="First name" placeholder="First Name" class="form-control" ngModel #firstName="ngModel" id="firstName" (change)=setFirstName(firstName)>
+  <input type="text" aria-label="Last name" placeholder="Last Name" class="form-control" ngModel #lastName="ngModel" id="lastName" (change)=setLastName(lastName)>
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" class="btn btn-primary" (click)=addUser()>Create</button>
+  </div>
+</div>
+
+<div *ngIf="show == 1" ><!-- <app-update-user></app-update-user> -->
+<!-- udpate section -->
+  <div class="input-group mb-3">
+    <input type="text" aria-label="ID" placeholder="ID" class="form-control" ngModel #id="ngModel" id="id" (change)=setId(id)>
+    <input type="text" aria-label="First name" placeholder="First Name" class="form-control" ngModel #firstName="ngModel" id="firstName" (change)=setFirstName(firstName)>
+    <input type="text" aria-label="Last name" placeholder="Last Name" class="form-control" ngModel #lastName="ngModel" id="lastName" (change)=setLastName(lastName)>
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" class="btn btn-primary" (click)=updateUser()>Update</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="show == 2" ><!-- <app-delete-user></app-delete-user> -->
+<!-- delete section -->
+  <div class="input-group mb-3">
+    <input type="text" aria-label="ID" placeholder="ID" class="form-control" ngModel #id="ngModel" id="id" (change)=setId(id)>
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" class="btn btn-primary" (click)=deleteUser()>Delete</button>
+    </div>
+  </div>
+</div>
+
+<br>
+<!-- display section -->
+<div class="container">
+  <div class="row">
+    <div class="col bg-secondary text-white">ID</div>
+    <div class="col bg-secondary text-white"></div>
+    <div class="col bg-secondary text-white">First Name</div>
+    <div class="col bg-secondary text-white">Last Name</div>
+    <div class="col bg-secondary text-white"></div>
+  </div>
+  <div class="row" *ngFor="let list of userList">
+    <div class="col align-items-start">{{ list?.id }}</div>
+    <div class="col"><img src={{list?.avatar}} class="img-fluid"></div>
+    <div class="col">{{ list?.first_name }}</div>
+    <div class="col">{{ list?.last_name }}</div>
+    <div class="col">
+      <!-- <button type="button" class="btn btn-primary">Update</button>
+      <button type="button" class="btn btn-danger">Delete</button> -->
+    </div>
+  </div>
+</div>
