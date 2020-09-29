@@ -12,7 +12,7 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 Requirement :
 
 * JDK 11
-* Maven 3.6
+* Maven 3.6.2
 
 ## Running the application in dev mode
 
@@ -37,6 +37,12 @@ curl --location --request POST 'http://localhost:8080/api/register' \
 {
     "token": "eyJraWQiOiIvcHJpdmF0ZWtleS5wZW0iLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJHTE4tVGVjaCIsInN1YiI6ImFobWFkLnJhbXNleUBnbWFpbC5jb20iLCJpYXQiOjE2MDEzNzUwOTgsImV4cCI6MTYwMTM3ODY5OCwiZ3JvdXBzIjpbIlVzZXIiXSwianRpIjoidG1SaTUyZ2FndTNucnZFUnY1VmFLUSJ9.C-PIIZ3qXjqWAMqq5hxE2SvlRMzUoOFYT3eQzaf-he85wkZAsvnDBS7fm5qhD3go2lPH7kuUrHypTMpyn5kMUnE2FDx7joPT7hqjWzuxb0NlbEJRgNhZ_jfjtS0XdgS6-1IPo4Cm5-NRssJ-71HL6wjJmDvOiEZIp5PZSxtjzhfaZT4JRZhjj3gJsx-VRDcV8cdmarZmuMZfrVcru2dKz6mWEHjGJbpi9PTOfel8eE8yuwNc4HX_S4zBQ5oyfXWUE7D4YBWaq4Gsvbrs1Jt4TkoZZHei_FN3FAhh82gbD1SiOUHHEcLumrmokxwtZMMaZWtayKmU_rufiId08fBPmg",
     "id": 33
+}
+```
+* Missing request param on Authentication endpoint will return
+```
+{
+    "error": "Missing Password"
 }
 ```
 

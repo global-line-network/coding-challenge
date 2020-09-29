@@ -3,11 +3,11 @@ package com.gln.service;
 import com.gln.model.User;
 import com.gln.repository.UserRepository;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 import java.util.Optional;
 
-@Singleton
+@ApplicationScoped
 public class UserService {
 
     @Inject
@@ -18,7 +18,7 @@ public class UserService {
     }
 
     public void addUser(User user){
-        userRepository.persistAndFlush(user);
+        userRepository.persist(user);
     }
 
     public boolean isUserPersistent(User user) {
