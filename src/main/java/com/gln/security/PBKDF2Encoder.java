@@ -18,7 +18,7 @@ public class PBKDF2Encoder {
 
     public String encode(CharSequence cs) {
         try {
-            byte[] result = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512")
+            byte[] result = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
                     .generateSecret(new PBEKeySpec(cs.toString().toCharArray(), secret.getBytes(), iteration, keylength))
                     .getEncoded();
             return Base64.getEncoder().encodeToString(result);
