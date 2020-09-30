@@ -1,4 +1,4 @@
-package com.gln.controller;
+package com.gln.resource;
 
 import com.gln.model.User;
 import com.gln.payload.*;
@@ -21,7 +21,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Path("/api")
-public class AuthenticationController {
+public class AuthenticationResource {
 
     @Inject
     PBKDF2Encoder passwordEncoder;
@@ -50,6 +50,8 @@ public class AuthenticationController {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }else{
+                return Response.status(Response.Status.NOT_FOUND).entity(new ErrorResponse(ErrorMessages.ERROR_MESSAGES_USER_NOT_FOUND)).build();
             }
 
         }
