@@ -16,6 +16,6 @@ import java.util.List;
 public class UserInfo {
 
     Advertising ad;
-    List<UserAccount> data;
+    UserAccount data;
 
 }

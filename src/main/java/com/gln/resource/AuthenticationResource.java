@@ -20,8 +20,11 @@ import javax.ws.rs.core.Response;
 import java.util.Optional;
 import java.util.Set;
 
-@Path("/api")
+@Path(AuthenticationResource.RESOURCE_PATH)
+@Produces(MediaType.APPLICATION_JSON)
 public class AuthenticationResource {
+
+    public static final String RESOURCE_PATH = "/api";
 
     @Inject
     PBKDF2Encoder passwordEncoder;
@@ -38,7 +41,6 @@ public class AuthenticationResource {
     @PermitAll
     @POST
     @Path("/login")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response login(AuthRequest authRequest) {
 
         Set<ConstraintViolation<AuthRequest>> violations = validator.validate(authRequest);
@@ -63,7 +65,6 @@ public class AuthenticationResource {
     @Transactional
     @POST
     @Path("/register")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response signup(SignUpRequest signUpRequest) {
 
         Set<ConstraintViolation<SignUpRequest>> violations = validator.validate(signUpRequest);

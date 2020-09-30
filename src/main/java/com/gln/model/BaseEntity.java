@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
 
 @Data
 @MappedSuperclass
-public abstract class BaseEntity {
+public class BaseEntity {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     @Column(name = "created_at" , updatable = false)
     @CreationTimestamp

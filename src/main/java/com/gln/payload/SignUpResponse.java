@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 public class SignUpResponse extends AuthResponse{
 
-    int id;
-    public SignUpResponse(int id, String token) {
+    Long id;
+    public SignUpResponse(Long id, String token) {
         super(token);
         this.id = id;
     }
