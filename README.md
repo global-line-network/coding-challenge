@@ -3,7 +3,7 @@
   <img src="https://globalline.my/static/logo.png" width="200">
 </p>
 
-##Coding-challenge 
+## Coding-challenge 
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -112,7 +112,7 @@ curl --location --request GET 'http://localhost:8080/api/users/196' \
 }
 ```
 
-* Get All User Account Request
+* Get All User Account Request (pageNum start from 0(first page))
 ```
 curl --location --request GET 'http://localhost:8080/api/users?pageNum=1&pageSize=4' \
 --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJHTE4tVGVjaCIsInN1YiI6ImFobWFkLnJhbXNleUBnbWFpbC5jb20iLCJpYXQiOjE2MDE0NDU4MjYsImV4cCI6MTYwMTQ0OTQyNiwiZ3JvdXBzIjpbIlVzZXIiXSwianRpIjoiZkdrN3hvZFY1amNQRUxFeHptV1Y4dyJ9.KK7guNkITwDmRHn2o_p7Tc53Gt7ojJlf90owTcjXVTDLjkauky_ScQef0ErZy43uUjtH-yM--bE8OkbY4JPEd8okXz6L2W59mdo3YOhz-4EJ8ZrOa82mIIBLmdIQO9e17DQgtqT6WRY2i2SyXvFTJNUySpLoIzJLfDLJNoG8OmKxs5C3jyH1NmPBRKmwOOt4f-E13M8JPzXQVNwdHVBP64JWRxdhSsz6XjHGbXyD_CQ4E7x9VHI926P7TyBgHPcX04RuXskkfXj0VIo3Fn3kxFlgVy3QSMCjoH5PU25HPLxG1CWIj75DGcA6rqPnZWvkSA3Z57ny_V3dzKuxMvz7XA'
@@ -155,6 +155,37 @@ curl --location --request GET 'http://localhost:8080/api/users?pageNum=1&pageSiz
     "total_pages": 0
 }
 ```
+
+* Delete user account 
+```
+curl --location --request DELETE 'http://localhost:8080/api/users/97' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJHTE4tVGVjaCIsInN1YiI6ImFobWFkLnJhbXNleUBnbWFpbC5jb20iLCJpYXQiOjE2MDE0NzAwOTksImV4cCI6MTYwMTQ3MzY5OSwiZ3JvdXBzIjpbIlVzZXIiXSwianRpIjoiRTZjM25iMGRTY0p2elI2NDNndHBrdyJ9.SKMN_Vgi6QhG3Fcjqe6YN3uY5hJ9GN_4bXD6V2Zz8e-tYVK59kWISZ21ipZdUc7sZGziZofQ79e2E3cB-S9kwrHkHrD5MMyedGuwCm2VgYSIznFv66Ir1GcZybF5syPUIqlg9-kVSPnp4KXTmZ-c3mJN3ACMLCoJklOmYipSTb1RBrGJWc1fFgnShTtIdd8CezHHNFNfBouxa5lD5x-7OoxAFUY8K9k94S8vQMzyMJ03O6WcMRENGbWQDY1HbjygJSZNezG7HaRKi4RVM0ZK-Dxl2M825ApGy3wxyhD1KN9zGU4uKzcsA6uUjztCC0oBNZG5XxNwjLnGGdCzbhY5RA'
+```
+  Response HTTP Status No Content (204): 
+
+* Update user account Request
+```
+curl --location --request PUT 'http://localhost:8080/api/users/129' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJHTE4tVGVjaCIsInN1YiI6ImFobWFkLnJhbXNleUBnbWFpbC5jb20iLCJpYXQiOjE2MDE0NzAwOTksImV4cCI6MTYwMTQ3MzY5OSwiZ3JvdXBzIjpbIlVzZXIiXSwianRpIjoiRTZjM25iMGRTY0p2elI2NDNndHBrdyJ9.SKMN_Vgi6QhG3Fcjqe6YN3uY5hJ9GN_4bXD6V2Zz8e-tYVK59kWISZ21ipZdUc7sZGziZofQ79e2E3cB-S9kwrHkHrD5MMyedGuwCm2VgYSIznFv66Ir1GcZybF5syPUIqlg9-kVSPnp4KXTmZ-c3mJN3ACMLCoJklOmYipSTb1RBrGJWc1fFgnShTtIdd8CezHHNFNfBouxa5lD5x-7OoxAFUY8K9k94S8vQMzyMJ03O6WcMRENGbWQDY1HbjygJSZNezG7HaRKi4RVM0ZK-Dxl2M825ApGy3wxyhD1KN9zGU4uKzcsA6uUjztCC0oBNZG5XxNwjLnGGdCzbhY5RA' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "job" : "manager",
+    "name" : "yusran fikri"
+}'
+```
+
+Response
+
+```
+{
+    "createdDate": "2020-09-29T21:01:58.610471",
+    "id": 129,
+    "modifiedDate": "2020-09-30T19:55:58.164469",
+    "job": "manager",
+    "name": "yusran fikri"
+}
+```
+
 
 ## Packaging and running the application
 
