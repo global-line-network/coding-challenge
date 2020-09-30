@@ -14,6 +14,9 @@ Requirement :
 * JDK 11
 * Maven 3.6.2
 
+This application using H2 as embedded DB so need initial registration/login, after that POST some user account and then 
+enable for GET / UPDATE or DELETE endpoint .
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
@@ -43,6 +46,113 @@ curl --location --request POST 'http://localhost:8080/api/register' \
 ```
 {
     "error": "Missing Password"
+}
+```
+
+* Login 
+```
+curl --location --request POST 'http://localhost:8080/api/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "ahmad.ramsey@gmail.com",
+    "password": "test123"
+}'
+```  
+
+* Login Response (token response needed for access UsersAccount Resource)
+```
+{
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJHTE4tVGVjaCIsInN1YiI6ImFobWFkLnJhbXNleUBnbWFpbC5jb20iLCJpYXQiOjE2MDE0NDU4MjYsImV4cCI6MTYwMTQ0OTQyNiwiZ3JvdXBzIjpbIlVzZXIiXSwianRpIjoiZkdrN3hvZFY1amNQRUxFeHptV1Y4dyJ9.KK7guNkITwDmRHn2o_p7Tc53Gt7ojJlf90owTcjXVTDLjkauky_ScQef0ErZy43uUjtH-yM--bE8OkbY4JPEd8okXz6L2W59mdo3YOhz-4EJ8ZrOa82mIIBLmdIQO9e17DQgtqT6WRY2i2SyXvFTJNUySpLoIzJLfDLJNoG8OmKxs5C3jyH1NmPBRKmwOOt4f-E13M8JPzXQVNwdHVBP64JWRxdhSsz6XjHGbXyD_CQ4E7x9VHI926P7TyBgHPcX04RuXskkfXj0VIo3Fn3kxFlgVy3QSMCjoH5PU25HPLxG1CWIj75DGcA6rqPnZWvkSA3Z57ny_V3dzKuxMvz7XA"
+}
+```
+
+* Post UserAccount Request
+```
+curl --location --request POST 'http://localhost:8080/api/users' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJHTE4tVGVjaCIsInN1YiI6ImFobWFkLnJhbXNleUBnbWFpbC5jb20iLCJpYXQiOjE2MDE0NDU4MjYsImV4cCI6MTYwMTQ0OTQyNiwiZ3JvdXBzIjpbIlVzZXIiXSwianRpIjoiZkdrN3hvZFY1amNQRUxFeHptV1Y4dyJ9.KK7guNkITwDmRHn2o_p7Tc53Gt7ojJlf90owTcjXVTDLjkauky_ScQef0ErZy43uUjtH-yM--bE8OkbY4JPEd8okXz6L2W59mdo3YOhz-4EJ8ZrOa82mIIBLmdIQO9e17DQgtqT6WRY2i2SyXvFTJNUySpLoIzJLfDLJNoG8OmKxs5C3jyH1NmPBRKmwOOt4f-E13M8JPzXQVNwdHVBP64JWRxdhSsz6XjHGbXyD_CQ4E7x9VHI926P7TyBgHPcX04RuXskkfXj0VIo3Fn3kxFlgVy3QSMCjoH5PU25HPLxG1CWIj75DGcA6rqPnZWvkSA3Z57ny_V3dzKuxMvz7XA' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "naima",
+    "job": "QA"
+}'
+```
+
+* Post UserAccount Response
+```
+{
+    "createdDate": "2020-09-30T13:06:55.316377",
+    "id": 196,
+    "modifiedDate": "2020-09-30T13:06:55.316455",
+    "job": "QA",
+    "name": "naima"
+}
+```
+
+* Get UserAccount By Id Request
+```
+curl --location --request GET 'http://localhost:8080/api/users/196' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJHTE4tVGVjaCIsInN1YiI6ImFobWFkLnJhbXNleUBnbWFpbC5jb20iLCJpYXQiOjE2MDE0NDU4MjYsImV4cCI6MTYwMTQ0OTQyNiwiZ3JvdXBzIjpbIlVzZXIiXSwianRpIjoiZkdrN3hvZFY1amNQRUxFeHptV1Y4dyJ9.KK7guNkITwDmRHn2o_p7Tc53Gt7ojJlf90owTcjXVTDLjkauky_ScQef0ErZy43uUjtH-yM--bE8OkbY4JPEd8okXz6L2W59mdo3YOhz-4EJ8ZrOa82mIIBLmdIQO9e17DQgtqT6WRY2i2SyXvFTJNUySpLoIzJLfDLJNoG8OmKxs5C3jyH1NmPBRKmwOOt4f-E13M8JPzXQVNwdHVBP64JWRxdhSsz6XjHGbXyD_CQ4E7x9VHI926P7TyBgHPcX04RuXskkfXj0VIo3Fn3kxFlgVy3QSMCjoH5PU25HPLxG1CWIj75DGcA6rqPnZWvkSA3Z57ny_V3dzKuxMvz7XA'
+```
+
+* Get User Account By Id Response
+```
+{
+    "ad": {
+        "company": "StatusCode Weekly",
+        "text": "http://statuscode.org/",
+        "url": "A weekly newsletter focusing on software development, infrastructure, the server, performance, and the stack end of things."
+    },
+    "data": {
+        "createdDate": "2020-09-30T13:06:55.316377",
+        "id": 196,
+        "modifiedDate": "2020-09-30T13:06:55.316455",
+        "job": "QA",
+        "name": "naima"
+    }
+}
+```
+
+* Get All User Account Request
+```
+curl --location --request GET 'http://localhost:8080/api/users?pageNum=1&pageSize=4' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJHTE4tVGVjaCIsInN1YiI6ImFobWFkLnJhbXNleUBnbWFpbC5jb20iLCJpYXQiOjE2MDE0NDU4MjYsImV4cCI6MTYwMTQ0OTQyNiwiZ3JvdXBzIjpbIlVzZXIiXSwianRpIjoiZkdrN3hvZFY1amNQRUxFeHptV1Y4dyJ9.KK7guNkITwDmRHn2o_p7Tc53Gt7ojJlf90owTcjXVTDLjkauky_ScQef0ErZy43uUjtH-yM--bE8OkbY4JPEd8okXz6L2W59mdo3YOhz-4EJ8ZrOa82mIIBLmdIQO9e17DQgtqT6WRY2i2SyXvFTJNUySpLoIzJLfDLJNoG8OmKxs5C3jyH1NmPBRKmwOOt4f-E13M8JPzXQVNwdHVBP64JWRxdhSsz6XjHGbXyD_CQ4E7x9VHI926P7TyBgHPcX04RuXskkfXj0VIo3Fn3kxFlgVy3QSMCjoH5PU25HPLxG1CWIj75DGcA6rqPnZWvkSA3Z57ny_V3dzKuxMvz7XA'
+```
+
+* Get All User Account Response
+```
+{
+    "ad": {
+        "company": "StatusCode Weekly",
+        "text": "http://statuscode.org/",
+        "url": "A weekly newsletter focusing on software development, infrastructure, the server, performance, and the stack end of things."
+    },
+    "data": [
+        {
+            "createdDate": "2020-09-30T11:56:49.626073",
+            "id": 163,
+            "modifiedDate": "2020-09-30T11:56:49.626273",
+            "job": "QA",
+            "name": "mima"
+        },
+        {
+            "createdDate": "2020-09-30T12:00:15.202249",
+            "id": 164,
+            "modifiedDate": "2020-09-30T12:00:15.202306",
+            "job": "accounting",
+            "name": "niet"
+        },
+        {
+            "createdDate": "2020-09-30T13:06:55.316377",
+            "id": 196,
+            "modifiedDate": "2020-09-30T13:06:55.316455",
+            "job": "QA",
+            "name": "naima"
+        }
+    ],
+    "page": 1,
+    "per_page": 4,
+    "total": 3,
+    "total_pages": 0
 }
 ```
 
