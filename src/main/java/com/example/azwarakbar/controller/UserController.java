@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ import javax.validation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class UserController {
@@ -92,7 +94,19 @@ public class UserController {
 
     @RequestMapping(value = "/api/user", produces = "application/json")
     @ResponseBody
-    public ResponseEntity<ObjectNode> listUser(@RequestParam int page) {
+    public ResponseEntity<ObjectNode> listUser(@Nullable @RequestParam Integer page, @Nullable @RequestParam Integer delay) {
+        if (page == null) {
+            page = 0;
+        }
+
+        if (delay != null) {
+            try {
+                TimeUnit.SECONDS.sleep(delay);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
+        }
+
         return ResponseEntity.ok(service.getListUser(page));
     }
 
@@ -111,6 +125,4 @@ public class UserController {
 
         return new ResponseEntity<>(objNode, HttpStatus.NOT_FOUND);
     }
-
-
 }
