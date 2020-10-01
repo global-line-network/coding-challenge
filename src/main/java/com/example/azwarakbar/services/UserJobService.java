@@ -29,4 +29,28 @@ public class UserJobService {
 
         return userJob;
     }
+
+    public UserJob update(UserJob userJob) {
+        UserJob userJob1 = server.find(UserJob.class)
+                .where()
+                .eq("id", userJob.getId())
+                .findOne();
+
+        if (userJob1 != null) {
+            userJob1.setName(userJob.getName());
+            userJob1.setJob(userJob.getJob());
+            userJob1.update();
+
+            return userJob1;
+        }
+
+        return null;
+    }
+
+    public UserJob getUserJob(Long id) {
+        return server.find(UserJob.class)
+                .where()
+                .eq("id", id)
+                .findOne();
+    }
 }
