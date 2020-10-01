@@ -1,9 +1,11 @@
 package com.example.azwarakbar.controller;
 
 import com.example.azwarakbar.models.User;
+import com.example.azwarakbar.response.RegistrationSuccess;
 import com.example.azwarakbar.services.UserService;
 import com.example.azwarakbar.utils.ResponseUtils;
 import com.example.azwarakbar.utils.ZJson;
+import com.example.azwarakbar.utils.ZString;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,7 @@ public class UserController {
 
     @PostMapping(value = "/api/register", consumes = "application/json")
     @ResponseBody
-    public ResponseEntity<ObjectNode> add(@RequestBody User user) {
+    public ResponseEntity<ObjectNode> register(@RequestBody User user) {
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
@@ -47,8 +49,11 @@ public class UserController {
             return new ResponseEntity<>(ResponseUtils.getError(arrayNode), HttpStatus.BAD_REQUEST);
         }
 
-        ObjectNode objectNode = ZJson.toObjectNode(user);
+        service.save(user);
+        String token = ZString.generateRandomStr();
+        RegistrationSuccess rs = new RegistrationSuccess(user.getId(), token);
+        ObjectNode objectNode = ZJson.toObjectNode(rs);
 
-        return ResponseEntity.ok(ResponseUtils.getSuccessNode(objectNode));
+        return ResponseEntity.ok(objectNode);
     }
 }
