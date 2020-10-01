@@ -43,7 +43,13 @@ Send your questions to [tech@chimaera.my](mailto:tech@chimaera.my).
   
 Good luck!
 
+### Running project
+To run this project we have to install Maven first on our environtment.
+After maven has already installed, go to terminal and run using command: mvn springboot:run
 
+### Testing
+For testing, I provided Postman file at this link: 
+https://www.getpostman.com/collections/03aa0e218424844d949a
 
 
   
