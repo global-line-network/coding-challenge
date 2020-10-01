@@ -14,9 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.*;
 import java.util.ArrayList;
@@ -32,15 +30,12 @@ public class UserController {
     @PostMapping(value = "/api/register", consumes = "application/json")
     @ResponseBody
     public ResponseEntity<ObjectNode> register(@RequestBody User user) {
-
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
-
         Set<ConstraintViolation<User>> constraintViolations = validator.validate(user);
         List<String> listError = new ArrayList<>();
 
         if (constraintViolations.size() > 0 ) {
-
             for (ConstraintViolation<User> contraints : constraintViolations) {
                 String strError = contraints.getPropertyPath() + ": " + contraints.getMessage();
                 listError.add(strError);
@@ -62,15 +57,12 @@ public class UserController {
     @PostMapping(value = "/api/login", consumes = "application/json")
     @ResponseBody
     public ResponseEntity<ObjectNode> login(@RequestBody LoginUser user) {
-
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
-
         Set<ConstraintViolation<LoginUser>> constraintViolations = validator.validate(user);
         List<String> listError = new ArrayList<>();
 
         if (constraintViolations.size() > 0 ) {
-
             for (ConstraintViolation<LoginUser> contraints : constraintViolations) {
                 String strError = contraints.getPropertyPath() + ": " + contraints.getMessage();
                 listError.add(strError);
@@ -90,10 +82,17 @@ public class UserController {
 
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode objNode = mapper.createObjectNode();
-
         String token = ZString.generateRandomStr();
+
         objNode.put("token", token);
 
         return ResponseEntity.ok(objNode);
     }
+
+    @RequestMapping(value = "/api/user", produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<ObjectNode> listUser(@RequestParam int page) {
+        return ResponseEntity.ok(service.getListUser(page));
+    }
+
 }
