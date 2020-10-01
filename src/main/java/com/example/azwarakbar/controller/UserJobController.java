@@ -64,5 +64,56 @@ public class UserJobController {
         return ResponseEntity.ok(objNode);
     }
 
+    @PutMapping(value = "/api/users/{id}", consumes = "application/json")
+    @PatchMapping(value = "/api/users/{id}", consumes = "application/json")
+    @ResponseBody
+    public ResponseEntity<ObjectNode> update(@RequestBody UserJob userJob, @PathVariable Long id) {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<UserJob>> constraintViolations = validator.validate(userJob);
+        List<String> listError = new ArrayList<>();
 
+        if (constraintViolations.size() > 0 ) {
+            for (ConstraintViolation<UserJob> contraints : constraintViolations) {
+                String strError = contraints.getPropertyPath() + ": " + contraints.getMessage();
+                listError.add(strError);
+            }
+
+            ArrayNode arrayNode = ZJson.toArrayNode(listError);
+
+            return new ResponseEntity<>(ResponseUtils.getError(arrayNode), HttpStatus.BAD_REQUEST);
+        }
+
+        userJob.setId(id);
+
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode objNode = mapper.createObjectNode();
+        UserJob uj = service.update(userJob);
+
+        if (uj == null) {
+            return new ResponseEntity<>(objNode, HttpStatus.NOT_FOUND);
+        }
+
+        objNode.put("name", uj.getName());
+        objNode.put("job", uj.getJob());
+        objNode.put("updatedAt", uj.getWhenModified().toString());
+
+        return ResponseEntity.ok(objNode);
+    }
+
+    @DeleteMapping(value = "/api/users/{id}")
+    @ResponseBody
+    public ResponseEntity<ObjectNode> delete(@PathVariable Long id) {
+        UserJob userJob = service.getUserJob(id);
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode objNode = mapper.createObjectNode();
+
+        if (userJob == null) {
+            return new ResponseEntity<>(objNode, HttpStatus.NOT_FOUND);
+        }
+
+        userJob.delete();
+
+        return new ResponseEntity<>(objNode, HttpStatus.NO_CONTENT);
+    }
 }
