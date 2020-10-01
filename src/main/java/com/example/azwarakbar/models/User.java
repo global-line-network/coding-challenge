@@ -14,7 +14,7 @@ public class User extends BaseModel {
     String email;
     String firstName;
     String lastName;
-    String avatar;
+    String avatar = "not_set";
     @NotNull @NotEmpty(message = "Missing password")
     String password;
 

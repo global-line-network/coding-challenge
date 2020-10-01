@@ -2,7 +2,7 @@ package com.example.azwarakbar.services;
 
 import com.example.azwarakbar.models.User;
 import com.example.azwarakbar.request.LoginUser;
-import com.example.azwarakbar.response.ListUserFormat;
+import com.example.azwarakbar.response.UserFormat;
 import com.example.azwarakbar.utils.ZJson;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -64,16 +64,31 @@ public class UserService {
         return objNode;
     }
 
-    private List<ListUserFormat> getFormattedList(List<User> userList) {
-        List<ListUserFormat> listUserFormats = new ArrayList<>();
+    private List<UserFormat> getFormattedList(List<User> userList) {
+        List<UserFormat> listUserFormats = new ArrayList<>();
 
         for (User user : userList) {
-            ListUserFormat luf = new ListUserFormat(user.getId(), user.getEmail(), user.getFirstName(),
+            UserFormat luf = new UserFormat(user.getId(), user.getEmail(), user.getFirstName(),
                     user.getLastName(), user.getAvatar());
 
             listUserFormats.add(luf);
         }
 
         return listUserFormats;
+    }
+
+    public UserFormat getUser(Long id) {
+        User user = server.find(User.class)
+                .where()
+                .eq("id", id)
+                .findOne();
+
+        if (user == null)
+            return null;
+
+        UserFormat uf = new UserFormat(user.getId(), user.getEmail(),
+                user.getFirstName(), user.getLastName(), user.getAvatar());
+
+        return uf;
     }
 }

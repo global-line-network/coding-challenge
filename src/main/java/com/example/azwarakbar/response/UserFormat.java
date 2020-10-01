@@ -3,7 +3,7 @@ package com.example.azwarakbar.response;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ListUserFormat {
+public class UserFormat {
 
     Long id;
     String email;
@@ -16,7 +16,7 @@ public class ListUserFormat {
 
     String avatar;
 
-    public ListUserFormat(Long id, String email, String firstName, String lastName, String avatar) {
+    public UserFormat(Long id, String email, String firstName, String lastName, String avatar) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;

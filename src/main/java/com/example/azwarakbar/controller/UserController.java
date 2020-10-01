@@ -2,6 +2,7 @@ package com.example.azwarakbar.controller;
 
 import com.example.azwarakbar.models.User;
 import com.example.azwarakbar.request.LoginUser;
+import com.example.azwarakbar.response.UserFormat;
 import com.example.azwarakbar.response.RegistrationSuccess;
 import com.example.azwarakbar.services.UserService;
 import com.example.azwarakbar.utils.ResponseUtils;
@@ -94,5 +95,22 @@ public class UserController {
     public ResponseEntity<ObjectNode> listUser(@RequestParam int page) {
         return ResponseEntity.ok(service.getListUser(page));
     }
+
+    @RequestMapping(value = "/api/user/{id}", produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<ObjectNode> getUser(@PathVariable Long id) {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode objNode = mapper.createObjectNode();
+        UserFormat user = service.getUser(id);
+
+        if (user != null) {
+            ObjectNode userNode = ZJson.toObjectNode(user);
+            objNode.set("data", userNode);
+            return ResponseEntity.ok(objNode);
+        }
+
+        return new ResponseEntity<>(objNode, HttpStatus.NOT_FOUND);
+    }
+
 
 }

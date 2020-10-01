@@ -26,8 +26,7 @@ public class ResponseUtils {
 
     public static ObjectNode getError(String data) {
         return JsonNodeFactory.instance.objectNode()
-                .put("status", "error")
-                .put("data", data);
+                .put("error", data);
     }
 
     public static ObjectNode getError(Object data) {
@@ -38,7 +37,6 @@ public class ResponseUtils {
 
     public static ObjectNode getError(ArrayNode data) {
         return (ObjectNode) JsonNodeFactory.instance.objectNode()
-                .put("status", "error")
                 .set("error", data);
     }
 
