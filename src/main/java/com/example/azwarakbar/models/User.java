@@ -4,17 +4,18 @@ import io.ebean.annotation.NotNull;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="user")
 public class User extends BaseModel {
 
-    @NotNull
+    @NotNull @NotEmpty(message = "Missing email")
     String email;
     String firstName;
     String lastName;
     String avatar;
-    @NotNull
+    @NotNull @NotEmpty(message = "Missing password")
     String password;
 
     public String getEmail() {
