@@ -23,7 +23,7 @@ def user_list(request):
             delay = request.GET['delay']
             time.sleep(int(delay))
 
-        users = User.objects.all()
+        users = User.objects.all().order_by('id')
         paginator = Paginator(users, page_size)
 
         if int(page_number) > paginator.num_pages:
