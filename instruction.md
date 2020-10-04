@@ -1,1 +1,1 @@
-run docker-compose up in this directory
+run "docker-compose up" in this directory
