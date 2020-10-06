@@ -13,7 +13,7 @@ The main challenge will be to build a simple user management tool that will perf
 about look of the application. There are no business rules & guidelines other than to show us what you’re truly made of. It can be as simple or as complex as you want it to be.
 
 ### Prerequisites
-There are none :) Our main solutions stack include but not limited to Kotlin, Java, AngularJS, Flutter, Spring...  
+There are none :) Our main solutions stack include but not limited to Kotlin, Java, AngularJS, Flutter, Spring...
 Feel free to use any languages and technologies you are comfortable with.
 
 ## Mockups
@@ -44,12 +44,16 @@ Send your questions to [tech@chimaera.my](mailto:tech@chimaera.my).
 Good luck!
 
 ### Running project
-To run this project we have to install Maven first on our environtment.
-After maven has already installed, go to terminal and run using command: mvn springboot:run
-
+To run this project we have to setup our development environment.  
+  
+- Install Java JDK 8, you can download it from [here](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)  
+- Instruction on JDK 8 installation setup: [setup JDK 8](https://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)  
+- Install Maven 3.6.3, you can download it from [here](https://maven.apache.org/download.cgi)  
+- Intruction on Maven setup: [setup Maven](https://maven.apache.org/install.html)  
+- After maven has already installed, go to terminal and go to this root project folder  
+- And then from inside of this root project run this command: `mvn springboot:run`
+- After this project started, then you can check it using this URL from your browser http://localhost:8080/api/user
+  
 ### Testing
 For testing, I provided Postman file at this link: 
 https://www.getpostman.com/collections/03aa0e218424844d949a
-
-
-  
