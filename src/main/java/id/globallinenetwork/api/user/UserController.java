@@ -1,6 +1,5 @@
 package id.globallinenetwork.api.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,7 +61,7 @@ public class UserController {
         }
     }
 
-    @PatchMapping("/users/{id}")
+    @RequestMapping(value = "/users/{id}", method = {RequestMethod.PATCH, RequestMethod.PUT})
     public ResponseEntity<?> updateUser(@PathVariable("id") Integer id, @RequestBody CreateUserDto createUserDto){
         ResponseUpdateUser result = userService.updateUser(id, createUserDto);
         Map<String, Object> data = new HashMap<>();
