@@ -51,5 +51,15 @@ public class UserService implements IUser {
         return createUser;
     }
 
-
+    @Override
+    public ResponseUpdateUser updateUser(Integer id, CreateUserDto createUserDto){
+        if (id != null){
+            ResponseUpdateUser updateUser = new ResponseUpdateUser();
+            updateUser.setName(createUserDto.getName());
+            updateUser.setJob(createUserDto.getJob());
+            updateUser.setUpdatedAt(Instant.now().toString());
+            return updateUser;
+        }
+        return null;
+    }
 }

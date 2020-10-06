@@ -3,10 +3,7 @@ package id.globallinenetwork.api.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
@@ -63,5 +60,16 @@ public class UserController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(data);
         }
+    }
+
+    @PatchMapping("/users/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable("id") Integer id, @RequestBody CreateUserDto createUserDto){
+        ResponseUpdateUser result = userService.updateUser(id, createUserDto);
+        Map<String, Object> data = new HashMap<>();
+        if (result == null) {
+            data.put("error:","Missing id");
+            return ResponseEntity.badRequest().body(data);
+        }
+        return ResponseEntity.ok().body(result);
     }
 }

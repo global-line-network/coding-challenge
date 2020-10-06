@@ -8,4 +8,5 @@ public interface IUser {
     Map<String, Object> registration(RegisterDto registerDto);
     Map<String, Object> login(LoginDto loginDto);
     ResponseCreateUser createUser(CreateUserDto createUserDto) throws NoSuchProviderException, NoSuchAlgorithmException;
+    ResponseUpdateUser updateUser(Integer id, CreateUserDto createUserDto);
 }
