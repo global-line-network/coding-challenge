@@ -13,6 +13,8 @@ The objective of this challenge is to evaluate your domain knowledge in front-en
 ## List of API
 
 - Register /api/register
+- Login /api/login
+- Create /api/users
 
 ### Prerequisites
 

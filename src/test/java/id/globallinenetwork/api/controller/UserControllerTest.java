@@ -50,8 +50,8 @@ public class UserControllerTest {
     @DisplayName("Registration of new user it will return error if failed")
     public void register() throws Exception {
         RegisterDto registerDto = new RegisterDto();
-        registerDto.setEmail("muhamad.iqbal1987@gmail.com");
-        registerDto.setPassword("123Abcdefgh_!#");
+        registerDto.setEmail("eve.holt@reqres.in");
+        registerDto.setPassword("cityslicka");
 
         Gson gson = new Gson();
         String gsonRegister = gson.toJson(registerDto);

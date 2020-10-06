@@ -9,5 +9,4 @@ public class GlobalLineNetworkApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GlobalLineNetworkApplication.class, args);
 	}
-
 }
