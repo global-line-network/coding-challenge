@@ -11,6 +11,7 @@ public class User {
     private String job;
     private String email;
     private String password;
+    private String avatar;
     private String createdAt;
     private String updateAt;
 }

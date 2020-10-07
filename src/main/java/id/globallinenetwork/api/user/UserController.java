@@ -5,9 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api")
@@ -56,7 +56,7 @@ public class UserController {
 
         try {
             return ResponseEntity.ok().body(userService.createUser(createUserDto));
-        } catch (NoSuchProviderException | NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             data.put("error", e);
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(data);
@@ -80,5 +80,40 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping(value = "/users/{id}")
+    public ResponseEntity<?> singleUser(@PathVariable("id") Integer id){
+        Map<String,Object> data = userService.getSingleUser(id);
+        if (data == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }else if(data.containsKey("error")){
+            return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(data, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/users/")
+    public ResponseEntity<?> getAllUser(@RequestParam("page") Integer page){
+        final int perPage = 6;
+        int start = (perPage-1)*page;
+        int totalData = userService.getUsers().size();
+
+        if (start > totalData) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }else if (totalData <= 0){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        ListAllUserDto listUser = userService.getListUser(page);
+        return new ResponseEntity<>(listUser, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/users/")
+    public CompletableFuture<ListAllUserDto> getDelayedUser(@RequestParam("delay") Integer delay,
+                                                            @RequestParam("page") Integer page) throws InterruptedException{
+        CompletableFuture<ListAllUserDto> listAllUserDtoCompletableFuture =
+                userService.getAsyncAllUser(delay, page);
+        return listAllUserDtoCompletableFuture;
     }
 }
