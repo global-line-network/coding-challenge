@@ -63,12 +63,20 @@ public class UserController {
 
     @RequestMapping(value = "/users/{id}", method = {RequestMethod.PATCH, RequestMethod.PUT})
     public ResponseEntity<?> updateUser(@PathVariable("id") Integer id, @RequestBody CreateUserDto createUserDto){
-        ResponseUpdateUser result = userService.updateUser(id, createUserDto);
+        User result = userService.updateUser(id, createUserDto);
         Map<String, Object> data = new HashMap<>();
         if (result == null) {
             data.put("error:","Missing id");
             return ResponseEntity.badRequest().body(data);
         }
         return ResponseEntity.ok().body(result);
+    }
+
+    @DeleteMapping(value = "/users/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable("id") Integer id){
+        if (userService.deleteUser(id)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 public interface IUser {
     Map<String, Object> registration(RegisterDto registerDto);
     Map<String, Object> login(LoginDto loginDto);
-    ResponseCreateUser createUser(CreateUserDto createUserDto) throws NoSuchProviderException, NoSuchAlgorithmException;
-    ResponseUpdateUser updateUser(Integer id, CreateUserDto createUserDto);
+    User createUser(CreateUserDto createUserDto) throws NoSuchProviderException, NoSuchAlgorithmException;
+    User updateUser(Integer id, CreateUserDto createUserDto);
+    boolean deleteUser(Integer id);
 }
