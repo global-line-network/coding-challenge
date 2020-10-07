@@ -32,7 +32,9 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDto loginDto){
         Map<String, Object> data = userService.login(loginDto);
-        if (data.containsKey("token")){
+        if (data == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }else if (data.containsKey("token")){
             return ResponseEntity.ok().body(data);
         }
 
