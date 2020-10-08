@@ -1,5 +1,6 @@
 package id.globallinenetwork.api.user;
 
+import id.globallinenetwork.api.utility.GetSingleData;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -85,12 +86,7 @@ public class UserController {
     @GetMapping(value = "/users/{id}")
     public ResponseEntity<?> singleUser(@PathVariable("id") Integer id){
         Map<String,Object> data = userService.getSingleUser(id);
-        if (data == null) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }else if(data.containsKey("error")){
-            return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(data, HttpStatus.OK);
+        return GetSingleData.getResponseEntity(data);
     }
 
     @GetMapping(value = "/users/")
