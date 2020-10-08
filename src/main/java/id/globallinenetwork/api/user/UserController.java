@@ -112,8 +112,6 @@ public class UserController {
     @GetMapping(value = "/users/")
     public CompletableFuture<ListAllUserDto> getDelayedUser(@RequestParam("delay") Integer delay,
                                                             @RequestParam("page") Integer page) throws InterruptedException{
-        CompletableFuture<ListAllUserDto> listAllUserDtoCompletableFuture =
-                userService.getAsyncAllUser(delay, page);
-        return listAllUserDtoCompletableFuture;
+        return userService.getAsyncAllUser(delay, page);
     }
 }
