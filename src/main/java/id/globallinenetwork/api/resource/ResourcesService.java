@@ -10,7 +10,7 @@ public class ResourcesService implements IResource {
     private List<Resource> resources = null;
     private Company company = null;
 
-    public ResourcesService(){
+    public void initializeData(){
         resources = new ArrayList<>();
         int id = 0;
         int year = 2000;

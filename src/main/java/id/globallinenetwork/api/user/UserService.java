@@ -2,6 +2,8 @@ package id.globallinenetwork.api.user;
 
 import id.globallinenetwork.api.company.Company;
 import id.globallinenetwork.api.utility.PasswordGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -11,70 +13,111 @@ import java.security.SecureRandom;
 import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements IUser {
 
     private static final String EMAIL_DOMAIN = "@globallinenetwork.com";
+    private static final Logger LOG = LoggerFactory.getLogger(Logger.class);
     private final List<User> users = new ArrayList<>();
     private SecureRandom secureRandom = null;
     private Company company;
 
-    public UserService() {
-        int id = 0;
+    public void initializeData() {
+        int companyId = 0;
+        int userId = 0;
 
         try {
             secureRandom = SecureRandom.getInstance("SHA1PRNG", "SUN");
-            id = secureRandom.nextInt(1000);
+            companyId = secureRandom.nextInt(1000);
+
+            ++userId;
             User user1 = new User(1, "Muhammad Thobroni", "CEO", "muhammad" +
                     "@globallinenetwork.com", "fur7jf89",
                     "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128" +
                             ".jpg",Instant.now().toString(), Instant.now().toString());
+            ++userId;
             User user2 = new User(2, "Abu Bakar", "CTO", "abu.bakar@globallinenetwork.com", "fur7jf89",
                     "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128" +
                             ".jpg",Instant.now().toString(), Instant.now().toString());
-            User user3 = new User(3, "Muhamamd Umar", "Software Engineer", "umar" +
+
+            ++userId;
+            User user3 = new User(3, "Muhammad Umar", "Software Engineer", "umar" +
                     "@globallinenetwork.com", "fur7jf89",
                     "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128" +
                             ".jpg",Instant.now().toString(), Instant.now().toString());
+
+            ++userId;
             User user4 = new User(4, "Muhammad Usman", "FrontEnd Engineer", "usman" +
                     "@globallinenetwork.com", "fur7jf89",
                     "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128" +
                             ".jpg",Instant.now().toString(), Instant.now().toString());
+
+            ++userId;
             User user5 = new User(5, "Muhammad Ali", "Security Engineer", "ali" +
                     "@globallinenetwork.com", "fur7jf89",
                     "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128" +
                             ".jpg",Instant.now().toString(), Instant.now().toString());
+
+            ++userId;
             User user6 = new User(6, "Eve Holt", "Security Engineer", "eve.holt@reqres.in", "pistol"
                     , "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128" +
                     ".jpg",Instant.now().toString(), Instant.now().toString());
-            User user7 = new User(7, "Janet Weaver", "QA", "janet.weaver@reqres.in", "pistol",
+
+            ++userId;
+            User user7 = new User(7, "Janet Weaver", "QA", "janet.weaver@reqres.in", "cityslicka",
                     "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128" +
                             ".jpg",Instant.now().toString(), Instant.now().toString());
+            ++userId;
             User user8 = new User(8, "Michael Lawson", "Scrum Master", "michael.lawson@reqres.in",
                     "pistol",
                     "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128" +
                             ".jpg",Instant.now().toString(), Instant.now().toString());
-            User user9 = new User(7, "Lindsay Ferguson", "Software Engineer", "lindsay" +
+
+            ++userId;
+            User user9 = new User(9, "Lindsay Ferguson", "Software Engineer", "lindsay" +
                     ".ferguson@reqres" +
                     ".in",
                     "pistol",
                     "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128" +
                             ".jpg",Instant.now().toString(), Instant.now().toString());
-            User user10 = new User(7, "Tobias Funke", "Senior Software Engineer", "tobias.funke@reqres.in",
-                    "pistol",
-                    "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128" +
-                            ".jpg",Instant.now().toString(), Instant.now().toString());
-            User user11 = new User(7, "Byron Fields", "Senior Software Engineer", "byron.fields@reqres.in",
-                    "pistol",
-                    "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128" +
-                            ".jpg",Instant.now().toString(), Instant.now().toString());
-            User user12 = new User(7, "George Edwards", "Senior Software Engineer", "george.edwards@reqres.in",
+
+            ++userId;
+            User user10 = new User(10, "Tobias Funke", "Senior Software Engineer",
+                    "tobias.funke@reqres.in",
                     "pistol",
                     "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128" +
                             ".jpg",Instant.now().toString(), Instant.now().toString());
 
-            company = new Company(secureRandom.nextInt(1000), "StatusCode " +
+            ++userId;
+            User user11 = new User(11, "Byron Fields", "Senior Software Engineer",
+                    "byron.fields@reqres.in",
+                    "pistol",
+                    "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128" +
+                            ".jpg",Instant.now().toString(), Instant.now().toString());
+
+            ++userId;
+            User user12 = new User(12, "George Edwards", "Senior Software Engineer",
+                    "george.edwards@reqres.in",
+                    "pistol",
+                    "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128" +
+                            ".jpg",Instant.now().toString(), Instant.now().toString());
+
+            users.add(user1);
+            users.add(user2);
+            users.add(user3);
+            users.add(user4);
+            users.add(user5);
+            users.add(user6);
+            users.add(user7);
+            users.add(user8);
+            users.add(user9);
+            users.add(user10);
+            users.add(user11);
+            users.add(user12);
+
+            company = new Company(companyId, "StatusCode " +
                     "Weekly", "http://statuscode.org/",
                     "A weekly newsletter focusing on software development, " +
                             "infrastructure, the server, performance, and the stack end of things.");
@@ -90,13 +133,23 @@ public class UserService implements IUser {
     @Override
     public Map<String, Object> registration(RegisterDto registerDto) {
         Map<String, Object> data = new HashMap<>();
-        if (registerDto.getPassword().equals("") || registerDto.getPassword() == null) {
+        if (registerDto.getPassword() == null || registerDto.getPassword().equals("")) {
             data.put("error", "Missing password");
             return data;
         }
 
-        data.put("id", 4);
-        data.put("token", "QpwL5tke4Pnpja7X4");
+        List<User> listUser = users
+                .stream()
+                .filter(user ->
+                        user.getEmail().equals(registerDto.getEmail()) && user.getPassword().equals(registerDto.getPassword()))
+                .collect(Collectors.toList());
+
+        if (!listUser.isEmpty()){
+            data.put("id", listUser.get(0).getId());
+            data.put("token", "QpwL5tke4Pnpja7X4");
+        }else{
+            return null;
+        }
 
         return data;
     }
@@ -104,13 +157,21 @@ public class UserService implements IUser {
     @Override
     public Map<String, Object> login(LoginDto loginDto) {
         Map<String, Object> data = new HashMap<>();
-        if (loginDto.getPassword().equals("") || loginDto.getPassword() == null) {
+        if (loginDto.getPassword() == null || loginDto.getPassword().equals("")) {
             data.put("error", "Missing password");
             return data;
         } else {
-            Optional<User> optionalUser = users.stream().filter(user -> user.getEmail().equals(loginDto.getEmail()) &&
-                    user.getPassword().equals(loginDto.getPassword())).findFirst();
-            if (optionalUser.isPresent()) {
+            LOG.info("Email: "+loginDto.getEmail());
+            LOG.info("Password: "+loginDto.getPassword());
+
+            List<User> optionalUser = users
+                    .stream()
+                    .filter(user ->
+                            user.getEmail().equals(loginDto.getEmail()) && user.getPassword().equals(loginDto.getPassword()))
+                    .collect(Collectors.toList());
+
+            LOG.info("Optional size => "+optionalUser.size());
+            if (optionalUser.size() > 0) {
                 data.put("token", "QpwL5tke4Pnpja7X4");
                 return data;
             }
@@ -188,7 +249,7 @@ public class UserService implements IUser {
         allUserDto.setTotalPage(users.size()/perPage);
 
         List<ResponseSingleUser> userList = new ArrayList<>();
-        for (int i = (perPage-1)*page; i < perPage*page; i++) {
+        for (int i = (page-1)*perPage; i < perPage*page; i++) {
             User user = users.get(i);
             ResponseSingleUser responseSingleUser = populateUser(user);
             userList.add(responseSingleUser);

@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/api")
@@ -89,25 +91,28 @@ public class UserController {
         return GetSingleData.getResponseEntity(data);
     }
 
-    @GetMapping(value = "/users/")
-    public ResponseEntity<?> getAllUser(@RequestParam("page") Integer page){
-        final int perPage = 6;
-        int start = (perPage-1)*page;
-        int totalData = userService.getUsers().size();
+    @GetMapping(value = "/users")
+    public ResponseEntity<?> getAllUser(@RequestParam("page") Optional<Integer> page,
+                                        @RequestParam("delay") Optional<Integer> delay) throws InterruptedException, ExecutionException {
+        if (delay.isPresent()){
+            return new ResponseEntity<>(userService.getAsyncAllUser(delay.get(), 1).get(),
+                    HttpStatus.OK);
+        }else {
+            ListAllUserDto listUser = null;
+            if (page.isPresent()){
+                final int perPage = 6;
+                int start = (perPage - 1) * page.get();
+                int totalData = userService.getUsers().size();
 
-        if (start > totalData) {
-            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
-        }else if (totalData <= 0){
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+                if (start > totalData) {
+                    return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+                } else if (totalData <= 0) {
+                    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+                }
+                listUser = userService.getListUser(page.get());
+            }
+
+            return new ResponseEntity<>(listUser, HttpStatus.OK);
         }
-
-        ListAllUserDto listUser = userService.getListUser(page);
-        return new ResponseEntity<>(listUser, HttpStatus.OK);
-    }
-
-    @GetMapping(value = "/users/")
-    public CompletableFuture<ListAllUserDto> getDelayedUser(@RequestParam("delay") Integer delay,
-                                                            @RequestParam("page") Integer page) throws InterruptedException{
-        return userService.getAsyncAllUser(delay, page);
     }
 }
