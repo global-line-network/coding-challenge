@@ -3,20 +3,14 @@ package id.globallinenetwork.api.controller;
 import com.google.gson.Gson;
 import id.globallinenetwork.api.user.*;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
-
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -31,18 +25,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Tag("UserController")
 public class UserControllerTest {
 
-    private MockMvc mockMvc;
-
-    @MockBean
-    private UserService userService;
-
     @Autowired
     private TestRestTemplate restTemplate;
-
-    @BeforeEach
-    public void test(){
-        mockMvc = MockMvcBuilders.standaloneSetup(new UserController(userService)).build();
-    }
 
     @Test
     @DisplayName("Registration of new user is success")
@@ -50,9 +34,6 @@ public class UserControllerTest {
         RegisterDto registerDto = new RegisterDto();
         registerDto.setEmail("eve.holt@reqres.in");
         registerDto.setPassword("cityslicka");
-
-        Gson gson = new Gson();
-        String gsonRegister = gson.toJson(registerDto);
 
         //when
         ResponseEntity<?> result = restTemplate.postForEntity("/api/register", registerDto, ResponseEntity.class);
@@ -72,9 +53,6 @@ public class UserControllerTest {
         RegisterDto registerDto = new RegisterDto();
         registerDto.setEmail("eve.holt@reqres.in");
 
-        Gson gson = new Gson();
-        String gsonRegister = gson.toJson(registerDto);
-
         //when
         ResponseEntity<?> result = restTemplate.postForEntity("/api/register", registerDto, ResponseEntity.class);
 
@@ -92,9 +70,6 @@ public class UserControllerTest {
         LoginDto loginDto = new LoginDto();
         loginDto.setEmail("janet.weaver@reqres.in");
         loginDto.setPassword("cityslicka");
-
-        Gson gson = new Gson();
-        String gsonLogin = gson.toJson(loginDto);
 
         //when
         ResponseEntity<?> result = restTemplate.postForEntity("/api/login", loginDto,
@@ -229,5 +204,43 @@ public class UserControllerTest {
         //Then
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(!Objects.equals(result.getBody(), null));
+    }
+
+    @Test
+    @DisplayName("Bad Request Get Single User")
+    public void badRequestGetSingleUser() throws Exception{
+        Map<String, Object> data = new HashMap<>();
+        //When
+        ResponseEntity<?> result = restTemplate.getForEntity("/api/users/{id}", ResponseEntity.class, 6);
+
+        //Then
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+        data.put("error", "Missing id");
+        assertThat(Objects.equals(result.getBody(), data));
+    }
+
+    @Test
+    @DisplayName("Not Found/Null Get Single User")
+    public void notFoundGetSingleUser() throws Exception{
+        //When
+        ResponseEntity<?> result = restTemplate.getForEntity("/api/users/{id}", ResponseEntity.class, 6);
+
+        //Then
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
+        assertThat(Objects.equals(result.getBody(), null));
+    }
+
+    @Test
+    @DisplayName("Success Get Single User")
+    public void successGetSingleUser() throws Exception{
+        //When
+        ResponseEntity<?> result = restTemplate.getForEntity("/api/users/{id}", ResponseEntity.class, 6);
+
+        //Then
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Map<String, Object> data = new HashMap<>();
+        data.put("data",null);
+        data.put("ad", null);
+        assertThat(!Objects.equals(result.getBody(), data));
     }
 }
