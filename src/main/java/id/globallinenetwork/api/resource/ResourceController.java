@@ -36,6 +36,4 @@ public class ResourceController {
         Map<String, Object> resource = resourcesService.getSingleResource(id);
         return GetSingleData.getResponseEntity(resource);
     }
-
-
 }
