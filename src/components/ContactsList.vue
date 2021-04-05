@@ -5,10 +5,10 @@
         <div v-for="(contact, index) in contactList" :key="contact.id" class="col-12 col-md-6 col-lg-4 ">
           <div class="contact-item d-flex flex-row mb-4 card p-3">
             <div class="d-flex">
-              <img class="img-thumbnail list-thumbnail align-self-center m-2 rounded-circle small" v-bind:src="contact.pic" />
+              <img class="img-thumbnail list-thumbnail align-self-center m-2 rounded-circle small" v-bind:src="contact.avatar" />
               <div class="contact-item-left">
-                <div class="contact-item-label pb-0 m-auto">{{contact.name}}</div>
-                <div class="text-muted text-small mb-2 card-text contact-item-label pt-0 m-auto">{{contact.username}}</div>
+                <div class="contact-item-label pb-0 m-auto">{{contact.full_name}}</div>
+                <div class="text-muted text-small mb-2 card-text contact-item-label pt-0 m-auto">{{contact.email}}</div>
               </div>
             </div>
             <div class="action-container btn-group">
@@ -40,23 +40,23 @@
           </div>
           <div class="modal-body pb-5 pl-5 pr-5 pt-4">
             <div class="mb-5 text-center">
-              <img v-if="newContact.pic !== ''" v-bind:src="newContact.pic" class="uploading-image img-thumbnail list-thumbnail align-self-center m-2 rounded-circle m-auto small" />
-              <input id="f02" type="file" @change="uploadImage" placeholder="Add profile picture" />
-              <label class="custom-btn border-round" for="f02">{{newContact.pic === '' ? 'Add picture' : 'Change picture'}}</label>
+              <img v-if="newContact.avatar !== ''" v-bind:src="newContact.avatar" class="uploading-image img-thumbnail list-thumbnail align-self-center m-2 rounded-circle m-auto small" />
+              <input id="f02" type="file" @change="uploadImage" accept="image/*" placeholder="Add profile picture" />
+              <label class="custom-btn border-round" for="f02">{{newContact.avatar === '' ? 'Add picture' : 'Change picture'}}</label>
             </div>
-            <label>Name</label>
+            <label>Full Name</label>
             <input 
               type="text" 
               class="contact-input" 
               placeholder="Mark Smith" 
-              v-model="newContact.name" 
+              v-model="newContact.full_name" 
             >
-            <label>Username</label>
+            <label>Email</label>
             <input 
               type="text" 
               class="contact-input" 
-              placeholder="@marksmith" 
-              v-model="newContact.username" 
+              placeholder="marksmith@reqres.in" 
+              v-model="newContact.email" 
             >
           </div>
           <div class="modal-footer">
@@ -78,23 +78,23 @@
           </div>
           <div class="modal-body pb-5 pl-5 pr-5 pt-4">
             <div class="mb-5 text-center">
-              <img v-bind:src="contactToEdit.pic" class="uploading-image img-thumbnail list-thumbnail align-self-center m-2 rounded-circle m-auto small" />
+              <img v-bind:src="contactToEdit.avatar" class="uploading-image img-thumbnail list-thumbnail align-self-center m-2 rounded-circle m-auto small" />
               <input id="change-pic" type="file" @change="changeImage" placeholder="Add profile picture" />
               <label class="custom-btn border-round" for="change-pic">Change picture</label>
             </div>
-            <label>Name</label>
+            <label>Full Name</label>
             <input 
               type="text" 
               class="contact-input" 
               placeholder="Mark Smith" 
-              v-model="contactToEdit.name" 
+              v-model="contactToEdit.full_name" 
             >
-            <label>Username</label>
+            <label>Email</label>
             <input 
               type="text" 
               class="contact-input" 
               placeholder="@marksmith" 
-              v-model="contactToEdit.username" 
+              v-model="contactToEdit.email" 
             >
           </div>
           <div class="modal-footer">
@@ -119,46 +119,15 @@ export default {
   data(){
     return{
       newContact: {
-        name: "",
-        username: "",
-        pic: ""
+        full_name: "",
+        email: "",
+        avatar: ""
       },
       contactToEdit: {},
       indexToEdit: "",
       open: false,
-      idForContact: 6,
-      contactList: [
-        {
-          id: 1,
-          name: "Mark Smith",
-          username: "@marksmith",
-          pic: "/man-profile-pic.jpeg",
-        },
-        {
-          id: 2,
-          name: "Diana Seidakhmetova",
-          username: "@dianaseidakhmetova",
-          pic: "/woman-profile-pic.jpeg",
-        },
-        {
-          id: 3,
-          name: "Gulmira Mazkenova",
-          username: "@gulmiramazkenova",
-          pic: "/woman-2-profile-pic.jpg",
-        },
-        {
-          id: 4,
-          name: "Bill Nelms",
-          username: "@billnelms",
-          pic: "/man-2-profile-pic.jpeg",
-        },
-        {
-          id: 5,
-          name: "martyotte",
-          username: "@martyotte",
-          pic: "/man-3-profile-pic.jpeg",
-        }
-      ]
+      idForContact: null,
+      contactList: []
     }
   },
   directives: {
@@ -174,7 +143,7 @@ export default {
       const reader = new FileReader();
       reader.readAsDataURL(image);
       reader.onload = e =>{
-        this.newContact.pic = e.target.result;
+        this.newContact.avatar = e.target.result;
       };
     },
     changeImage(e){
@@ -182,26 +151,26 @@ export default {
       const reader = new FileReader();
       reader.readAsDataURL(image);
       reader.onload = e =>{
-        this.contactToEdit.pic = e.target.result;
+        this.contactToEdit.avatar = e.target.result;
       };
     },
     addContact(){
-      if( this.newContact.name === "" || this.newContact.username === "" || this.newContact.pic === ""){
+      if( this.newContact.full_name === "" || this.newContact.email === "" || this.newContact.avatar === ""){
         return
       }
       this.contactList.push({
         id: this.idForContact,
-        name: this.newContact.name,
-        username: this.newContact.username,
-        pic: this.newContact.pic,
+        full_name: this.newContact.full_name,
+        email: this.newContact.email,
+        avatar: this.newContact.avatar,
       })
 
       $('#addContact').modal('hide');
 
       this.newContact = {
-        name: "",
-        username: "",
-        pic: ""
+        full_name: "",
+        email: "",
+        avatar: ""
       },
       this.idForContact++
     },
@@ -222,7 +191,20 @@ export default {
       this.contactList = newList;
       $('#editContact').modal('hide');
     },
-  
+    async getUsersList(){
+      const res = await fetch("https://reqres.in/api/users/");
+      const json = await res.json();
+      const list = json.data.map(el => {
+        let user = Object.assign({}, el);
+        user["full_name"] = user["first_name"] + " " + user["last_name"];
+        return user;
+      })
+      this.contactList = list;
+    }
+  },
+  mounted(){
+    this.getUsersList();
+    this.idForContact = this.contactList.length + 1;
   }
 }
 </script>
