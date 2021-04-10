@@ -8,10 +8,16 @@ app.debug = True
 def hello_world():
     return render_template('home.html')
 
-@app.route("/get_user", methods=['GET'])
+@app.route("/api/delete_user", methods=['POST'])
+def delete_user():
+    user_id = request.args.get('userid')
+    url = "https://reqres.in/api/users/{}".format(user_id)
+    response = requests.delete(url)
+    return jsonify(response.text)
+
+@app.route("/api/get_user", methods=['GET'])
 def get_user():
-    page = request.args.get('page', default = 1, type = int)
-    url = "https://reqres.in/api/users?page={}".format(page)
+    url = "https://reqres.in/api/users?per_page=100"
     response = requests.get(url)
     if response.ok:
         return jsonify(response.text)
