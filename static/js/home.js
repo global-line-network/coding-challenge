@@ -17,6 +17,20 @@ $(document).on('click', '.btn-delete', function(){
     showModal('deleteModal');
 });
 
+$(document).on('click', '.btn-edit', function(){
+    var userId = $(this).attr('userid');
+    $('.btn-edit-save').attr('userid', userId);
+    var index = getUserIndex(userId);
+    var userName = `${userList.data[index].first_name} ${userList.data[index].last_name}`;
+    var userEmail = userList.data[index].email
+
+    $('#editModalLabel').text(`Editing ${userName}`);
+    $('#user-name').val(userName);
+    $('#user-email').val(userEmail);
+
+    showModal('editModal');
+});
+
 
 $(document).on('click', '.delete-confirm', function(){
     var userId = $(this).attr('userid');
@@ -27,13 +41,10 @@ $(document).on('click', '.delete-confirm', function(){
         data: {userid : userId},
         success: function(response) {
             console.log('deleted');
-            var index = userList.data.findIndex(function(user, i){
-                return user.id == userId;
-            });
+            var index = getUserIndex(userId);
             if(index > -1) {
                 userList.data.splice(index, 1);
                 fillUsers(userList);
-
                 hideModal('deleteModal');
                 showModal('successDeleteModal');
             }   
@@ -41,6 +52,41 @@ $(document).on('click', '.delete-confirm', function(){
     });
 
 });
+
+
+$(document).on('click', '.btn-edit-save', function(){
+    var userId = $(this).attr('userid');
+    var userFirstName = $("#user-name").val().split(' ').slice(0, -1).join(' ');
+    var userLastName = $("#user-name").val().split(' ').slice(-1).join(' ');
+    var userEmail = $("#user-email").val();
+
+    $.ajax({
+        type: "POST",
+        url: "api/update_user",
+        data: {user_id : userId, first_name: userFirstName, last_name: userLastName, emal: userEmail},
+        success: function(response) {
+            console.log('Updated');
+            var index = getUserIndex(userId);
+            if(index > -1) {
+                userList.data[index].first_name = userFirstName;
+                userList.data[index].last_name = userLastName;
+                userList.data[index].email = userEmail;
+                fillUsers(userList);
+                hideModal('editModal');
+                showModal('successEditModal');
+            }   
+        }
+    });
+});
+
+
+function getUserIndex(userId){
+    var index = userList.data.findIndex(function(user, i){
+        return user.id == userId;
+    });
+
+    return index;
+}
 
 function fillUsers(userList) {
     var userPage = $(".users");
