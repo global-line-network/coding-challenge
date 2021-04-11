@@ -16,6 +16,7 @@ def create_user():
 
     url = "https://reqres.in/api/users"
     response = requests.post(url, data = {"first_name": user_first_name, "last_name": user_last_name, "email": user_email} )
+    print(response.text)
     return jsonify(response.text)
 
 @app.route("/api/delete_user", methods=['POST'])
