@@ -9,8 +9,17 @@
 
 <div class="container">
 
-    <div class="users"></div>
+	<div class="row justify-content-evenly">
+		<div class="col-4">
+			<div class="container mt-5 d-flex justify-content-center">
+				<button type="button" class="btn btn-labeled btn-success btn-new">
+					<span class="btn-label"><i class="fa fa-user-plus" aria-hidden="true"></i></span>Add New User</button>
+			</div>
+		</div>
+	</div>
 
+    <div class="users"></div>
+	
     <div class="user-row-template invisible row justify-content-evenly">    
         <div class="col-4 invisible user-template">
             <div class="container mt-5 d-flex justify-content-center">
@@ -19,7 +28,7 @@
                         <div class="image"> <img class="user-image" src="https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png" class="rounded" width="155"> </div>
                         <div class="ml-3 w-100">
                             <h4 class="mb-0 mt-0 user-name">Alex Morrision</h4> <span class="user-mail">Senior Journalist</span>
-                            <div class="button mt-2 d-flex flex-row align-items-center"> <button class="btn btn-sm btn-outline-primary w-100 btn-edit" userid="">Edit</button> <button class="btn btn-sm btn-danger w-100 ml-2 btn-delete" userid="">Delete</button> </div>
+                            <div class="button mt-2 d-flex flex-row align-items-center"> <button class="btn btn-sm btn-outline-primary w-100 btn-edit" userid="">Edit</button> <button class="btn btn-sm btn-outline-danger w-100 ml-2 btn-delete" userid="">Delete</button> </div>
                         </div>
                     </div>
                 </div>
@@ -32,13 +41,14 @@
                         <div class="image"> <img class="user-image" src="https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png" class="rounded" width="155"> </div>
                         <div class="ml-3 w-100">
                             <h4 class="mb-0 mt-0 user-name">Alex Morrision</h4> <span class="user-mail">Senior Journalist</span>
-                            <div class="button mt-2 d-flex flex-row align-items-center"> <button class="btn btn-sm btn-outline-primary w-100 btn-edit" userid="">Edit</button> <button class="btn btn-sm btn-danger w-100 ml-2 btn-delete" userid="">Delete</button> </div>
+                            <div class="button mt-2 d-flex flex-row align-items-center"> <button class="btn btn-sm btn-outline-primary w-100 btn-edit" userid="">Edit</button> <button class="btn btn-sm btn-outline-danger w-100 ml-2 btn-delete" userid="">Delete</button> </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
+	 
 </div>
 
 <div class="modal" id="deleteModal" tabindex="-1" aria-hidden="true">
@@ -127,7 +137,54 @@
 		</div>
 	  </div>
 	</div>
-  </div>
+</div>
+
+<div class="modal fade" id="newModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="newModalLabel">Add New User</h5>
+		  <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
+		</div>
+		<div class="modal-body">
+		  <form>
+			<div class="mb-3">
+			  <label for="new-user-name" class="col-form-label">Name:</label>
+			  <input type="text" class="form-control" id="new-user-name">
+			</div>
+			<div class="mb-3">
+			  <label for="new-user-email" class="col-form-label">Email:</label>
+			  <input type="email" class="form-control" id="new-user-email">
+			</div>
+		  </form>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		  <button type="button" class="btn btn-primary btn-new-save" userid="">Save</button>
+		</div>
+	  </div>
+	</div>
+</div>
+
+<div class="modal" id="successNewModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header flex-column">
+				<div class="icon-box-1">
+					<i class="fa fa-check" aria-hidden="true"></i>
+				</div>						
+				<h4 class="modal-title w-100">Successfully Created</h4>	
+                <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
+			</div>
+			<div class="modal-body">
+				<p>User has been created.</p>
+			</div>
+			<div class="modal-footer justify-content-center">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <script src="/static/js/jquery.js"></script>
 <script src="/static/js/home.js"></script>

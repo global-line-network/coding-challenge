@@ -8,6 +8,16 @@ app.debug = True
 def hello_world():
     return render_template('home.html')
 
+@app.route("/api/create_user", methods=['POST'])
+def create_user():
+    user_first_name = request.args.get('first_name')
+    user_last_name = request.args.get('last_name')
+    user_email = request.args.get('email')
+
+    url = "https://reqres.in/api/users"
+    response = requests.post(url, data = {"first_name": user_first_name, "last_name": user_last_name, "email": user_email} )
+    return jsonify(response.text)
+
 @app.route("/api/delete_user", methods=['POST'])
 def delete_user():
     user_id = request.args.get('userid')

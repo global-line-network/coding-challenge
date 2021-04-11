@@ -17,6 +17,30 @@ $(document).on('click', '.btn-delete', function(){
     showModal('deleteModal');
 });
 
+$(document).on('click', '.btn-new', function(){
+    $('.delete-confirm').attr('userid', $(this).attr('userid'));
+    showModal('newModal');
+});
+
+$(document).on('click', '.btn-new-save', function(){
+
+    var userFirstName = $("#new-user-name").val().split(' ').slice(0, -1).join(' ');
+    var userLastName = $("#new-user-name").val().split(' ').slice(-1).join(' ');
+    var userEmail = $("#new-user-email").val();
+
+    $.ajax({
+        type: "POST",
+        url: "api/create_user",
+        data: {first_name: userFirstName, last_name: userLastName, email: userEmail},
+        success: function(response) {
+            userList.data.push({id: parseInt(JSON.parse(response).id), email: userEmail, first_name: userFirstName, last_name: userLastName, avatar:"https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg"});
+            fillUsers(userList);
+            hideModal('newModal');
+            showModal('successNewModal');
+        }
+    });
+});
+
 $(document).on('click', '.btn-edit', function(){
     var userId = $(this).attr('userid');
     $('.btn-edit-save').attr('userid', userId);
@@ -63,7 +87,7 @@ $(document).on('click', '.btn-edit-save', function(){
     $.ajax({
         type: "POST",
         url: "api/update_user",
-        data: {user_id : userId, first_name: userFirstName, last_name: userLastName, emal: userEmail},
+        data: {user_id : userId, first_name: userFirstName, last_name: userLastName, email: userEmail},
         success: function(response) {
             console.log('Updated');
             var index = getUserIndex(userId);
