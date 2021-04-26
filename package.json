@@ -13,6 +13,8 @@
   "homepage": "https://mokwangquan.github.io",
   "author": "Mok Wang Quan",
   "dependencies": {
+    "@mdi/font": "^5.9.55",
+    "import": "0.0.6",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.4.8",
