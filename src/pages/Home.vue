@@ -1,20 +1,28 @@
 <template>
   <div class="container">
-    <v-container>
-      <img alt="GlobalLine logo" src="../assets/logo.png" class="logo" />
-      <v-row>
+    <v-container class="d-flex flex-column">
+      <v-row class="d-flex">
+        <img
+          alt="GlobalLine logo"
+          src="../assets/logo.png"
+          class="logo"
+          style="padding: 0.5rem 1rem"
+        />
+      </v-row>
+      <v-row style="padding: 0.5rem 1rem">
         <h1>User Accounts</h1>
       </v-row>
-      <v-row>
-        <v-btn color="blue" class="add-button" rounded="lg">
+      <v-row style="padding: 0.5rem 1rem">
+        <v-btn color="blue" class="add-button" rounded>
           <v-icon color="white"> mdi-plus </v-icon>
-          <span style="color:white">Create New</span>
+          <span style="color: white">Create New</span>
         </v-btn>
       </v-row>
-      <v-row>
-        <v-col col="12" md="6">
+      <v-row class="">
+        <v-col col="12" md="6" lg="4">
+          <!-- Only display odd number id -->
           <UserPanel
-            v-for="user in users"
+            v-for="user in users.filter((user) => user.id % 2 !== 0)"
             :key="user.id"
             :id="user.id"
             :email="user.email"
@@ -24,9 +32,10 @@
           ></UserPanel>
         </v-col>
         <br />
-        <v-col col="12" md="6">
+        <v-col col="12" md="6" lg="4">
+          <!-- Only display even number id -->
           <UserPanel
-            v-for="user in users"
+            v-for="user in users.filter((user) => user.id % 2 === 0)"
             :key="user.id"
             :id="user.id"
             :email="user.email"
@@ -101,8 +110,8 @@ h1 {
   font-size: 40px;
 }
 .container {
-  margin: 0.5rem 2rem 0;
-  padding: 0 8rem 0;
+  margin-top: 1rem;
+  padding: 0 5rem 0;
 }
 .logo {
   width: 200px;
