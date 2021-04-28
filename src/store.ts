@@ -1,21 +1,5 @@
-// import { createStore, applyMiddleware } from 'redux';
-// import { composeWithDevTools } from "redux-devtools-extension";
-// import thunk from 'redux-thunk';
-// import rootReducer from './reducers';
-
-// const initialState = {};
-
-// const middleware = [thunk];
-
-// const store = createStore(
-//   rootReducer,
-//   initialState,
-//   composeWithDevTools(applyMiddleware(...middleware))
-// );
-
-// export default store;
-
 import { configureStore } from '@reduxjs/toolkit'
+import { useDispatch } from 'react-redux'
 import rootReducer from './reducers'
 
 const store = configureStore({
@@ -24,9 +8,10 @@ const store = configureStore({
     }
 })
   
-  // Infer the `RootState` and `AppDispatch` types from the store itself
-  export type RootState = ReturnType<typeof store.getState>
-  // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-  export type AppDispatch = typeof store.dispatch
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch
 
-  export default store;
+
+export default store;

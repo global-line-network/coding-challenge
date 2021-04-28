@@ -8,9 +8,11 @@ import {
 
 import UserAccountService from '../services/UserAccountSevice';
 
-export const createUser = (name, job) => async(dispatch) => {
+export const createUser = (first_name, last_name, avatar, email) => async(dispatch) => {
     try {
-        const res = await UserAccountService.create({name, job});
+        const res = await UserAccountService.create({first_name, last_name, avatar, email});
+
+        console.log(res);
         
         dispatch({
             type: CREATE_USER,
@@ -20,6 +22,7 @@ export const createUser = (name, job) => async(dispatch) => {
         return Promise.resolve(res.data);
 
     } catch (error) {
+        console.log(error);
         return Promise.reject(error);
     }
 };

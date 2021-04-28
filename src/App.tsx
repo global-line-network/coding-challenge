@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateUser from './components/AddUserButton';
+import CreateUser from './components/AddUser';
 import ListUser from './components/ListUsers';
 
 export default function App() {

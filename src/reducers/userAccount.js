@@ -13,7 +13,7 @@ const userAccountReducer = (state = initialState, action) => {
 
     switch(type) {
         case CREATE_USER:
-            return [...state, payload];
+            return {items: [...state, payload]};
         case RETRIEVE_TOTAL_PAGES:
             return payload;
         case RETRIEVE_USERS:
