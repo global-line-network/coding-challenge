@@ -1,0 +1,33 @@
+{
+  "name": "@mokwangquan/mokwangquan.github.io",
+  "version": "1.0.2",
+  "description": "Portfolio of Mok Wang Quan",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mokwangquan/mokwangquan.github.io.git"
+  },
+  "homepage": "https://mokwangquan.github.io",
+  "author": "Mok Wang Quan",
+  "dependencies": {
+    "@mdi/font": "^5.9.55",
+    "import": "0.0.6",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
+    "vuetify": "^2.4.8",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-router": "^4.5.12",
+    "@vue/cli-plugin-vuex": "^4.5.12",
+    "@vue/cli-service": "^4.5.12",
+    "sass": "^1.32.0",
+    "sass-loader": "^10.0.0",
+    "vue-cli-plugin-vuetify": "~2.2.2",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.7.0"
+  }
+}
