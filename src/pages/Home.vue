@@ -15,10 +15,24 @@
         <h1>User Accounts</h1>
       </v-row>
       <v-row style="padding: 0.5rem 1rem">
-        <v-btn color="blue" class="add-button" rounded>
+        <v-btn
+          color="blue"
+          class="add-button"
+          rounded
+          @click="create"
+          v-if="!isCreate"
+        >
           <v-icon color="white"> mdi-plus </v-icon>
-          <span @click="create" style="color: white">Create New</span>
+          <span style="color: white">Create New</span>
         </v-btn>
+        <v-btn color="blue" rounded @click="create" v-else>
+          <span style="color: white">Cancel</span>
+        </v-btn>
+      </v-row>
+      <v-row justify="center" v-if="errorMessage">
+        <span style="color: red" @click="resetError"
+          >We are sorry. {{ errorMessage }} Click me to close this message</span
+        >
       </v-row>
       <v-row v-if="isCreate">
         <UserPanel :isCreate="true" @quitCreate="create"></UserPanel>
@@ -63,7 +77,11 @@ export default {
   },
   methods: {
     create() {
+      console.log(this.isCreate);
       this.isCreate = !this.isCreate;
+    },
+    resetError() {
+      this.$store.dispatch("resetError");
     },
   },
   computed: {
@@ -77,6 +95,9 @@ export default {
     },
     isLoading() {
       return this.$store.getters.isLoading;
+    },
+    errorMessage() {
+      return this.$store.getters.getErrorMessage;
     },
   },
   mounted() {

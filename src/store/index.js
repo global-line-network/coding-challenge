@@ -13,7 +13,40 @@ export default new Vuex.Store({
     fetchUsers(state, payload) {
       state.users = payload.results;
     },
+    createUser(state, payload) {
+      const newUser = payload.user;
+      state.users.unshift(newUser);
+    },
+    editUser(state, payload) {
+      const userToBeEdit = payload.user;
+      state.users = state.users.map(user => {
+        if (Number(user.id) === Number(userToBeEdit.id)) {
+          user.email = userToBeEdit.email;
+          user.first_name = userToBeEdit.first_name;
+        }
+        return user;
+      });
+    },
+    deleteUser(state, payload) { //payload receiving contains user id (id)
+      state.users = state.users.filter(user => {
+        console.log("HIT + " + payload.id + user.id);
+        return (Number(user.id) !== Number(payload.id));
+      });
+    },
+    rearrageUsers(state, _) { //rearrange the user.id to arrange it nicely in UI
+      var num = 1;
+      state.users = state.users.map(user => {
+        user.id = num++;
+        console.log(user.id);
+        return user;
+      });
+    },
+    resetError(state, _) {
+      console.log("HITTT")
+      state.error = null;
+    }
   },
+
   actions: {
     fetchUsers(context, _) {
       context.state.error = null;
@@ -49,62 +82,43 @@ export default new Vuex.Store({
         });
     },
     createOrUpdateUser(context, payload) {
-      context.state.error = null;
-      let url = 'https://reqres.in/api/users';
-      let method = "POST";
-      if (payload.id) {
-        url = 'https://reqres.in/api/users/' + payload.id;
-        method = "PUT";
+      const users = context.getters.getUsers;
+      try {
+        if (!payload.first_name || !payload.email) {
+          context.state.error = "First Name and Email fields cannot be empty !";
+          return
+        }
+        if (payload.id) { //id exists = edit
+          context.commit('editUser', { user: payload });
+        }
+        else { // id not exists = create new
+          const newId = users[users.length - 1].id + 1
+          const user = {
+            id: newId,
+            email: payload.email,
+            first_name: payload.first_name,
+          };
+          context.commit('createUser', { user: user });
+          context.commit('rearrageUsers');
+        }
       }
-      fetch(url, {
-        method: method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: payload.email,
-          first_name: payload.first_name,
-        }),
-      })
-        .then((response) => {
-          console.log("POST/PUT = " + response);
-          if (!response.ok) {
-            throw new Error('Could not save data!');
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          this.error = error.message;
-        })
-        .finally(() => {
-          context.dispatch('fetchUsers');
-        }
-
-        );
+      catch (e) {
+        const errorMsg = "Error occured when creating/updating user with error = " + e;
+        context.state.error = errorMsg;
+      }
     },
-    deleteUser(context, payload) {
-      context.state.error = null;
-      const url = 'https://reqres.in/api/users/' + payload
-      fetch(url, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => {
-          console.log("DELETE = " + response);
-          if (!response.ok) {
-            throw new Error('Could not delete data!');
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          this.error = error.message;
-        })
-        .finally(() => {
-          context.dispatch('fetchUsers');
-        }
-        );
+    deleteUser(context, payload) { //payload receiving is user id
+      try {
+        context.commit('deleteUser', { id: payload });
+        context.commit('rearrageUsers');
+      }
+      catch (e) {
+        const errorMsg = "Error occured when deleting user with error = " + e;
+        context.state.error = errorMsg;
+      }
+    },
+    resetError(context, _) {
+      context.commit('resetError');
     }
   },
   getters: {
@@ -113,6 +127,9 @@ export default new Vuex.Store({
     },
     isLoading(state) {
       return state.isLoading;
+    },
+    getErrorMessage(state) {
+      return state.error;
     }
   }
 })
