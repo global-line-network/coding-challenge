@@ -29,7 +29,6 @@ export default new Vuex.Store({
     },
     deleteUser(state, payload) { //payload receiving contains user id (id)
       state.users = state.users.filter(user => {
-        console.log("HIT + " + payload.id + user.id);
         return (Number(user.id) !== Number(payload.id));
       });
     },
@@ -37,12 +36,10 @@ export default new Vuex.Store({
       var num = 1;
       state.users = state.users.map(user => {
         user.id = num++;
-        console.log(user.id);
         return user;
       });
     },
     resetError(state, _) {
-      console.log("HITTT")
       state.error = null;
     }
   },
@@ -54,7 +51,6 @@ export default new Vuex.Store({
       context.state.error = null;
       fetch('https://reqres.in/api/users')
         .then((response) => {
-          console.log("GET = " + response);
           if (response.ok) {
             return response.json();
           }
@@ -75,10 +71,10 @@ export default new Vuex.Store({
 
           return results;
         })
-        .catch((error) => {
-          console.log(error);
+        .catch((e) => {
+          const errorMsg = "Error occured when creating/updating user with error = " + e;
           context.state.isLoading = false;
-          context.state.error = 'Failed to fetch data - please try again later.';
+          context.state.error = errorMsg;
         });
     },
     createOrUpdateUser(context, payload) {

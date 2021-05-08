@@ -62,6 +62,12 @@
           </div>
         </v-col>
       </v-row>
+      <div style="margin: auto" v-else>
+        <v-progress-circular
+          indeterminate
+          color="primary"
+        ></v-progress-circular>
+      </div>
     </v-container>
   </div>
 </template>
@@ -77,7 +83,6 @@ export default {
   },
   methods: {
     create() {
-      console.log(this.isCreate);
       this.isCreate = !this.isCreate;
     },
     resetError() {
